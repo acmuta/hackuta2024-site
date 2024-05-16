@@ -1,18 +1,22 @@
 import { headers } from 'next/headers'
-import { getEnhancedSession} from '@/lib/utils/server'
+import { redirect } from 'next/navigation'
 
-export default function Apply(){
+import { getEnhancedSession } from '@/lib/utils/server'
+// import { ApplicationForm } from './ApplicationForm'
 
+export default function Home() {
+	const { user } = getEnhancedSession(headers())
 
-    const { user, perms } = getEnhancedSession(headers())
-    console.log("apply page", user)
-    return(
-        <div>
-            <h1>Apply</h1>
-        </div>
-    )
-
-    // if (!user) {
-
-    // }
+	if (!user) {
+		redirect('/api/auth/signin?callbackUrl=%2Fapply')
+	} else if (user.applied) {
+		redirect('/dashboard')
+	} else {
+		return (
+            <>
+                <h1>Apply</h1>
+                {/* <ApplicationForm /> */}
+            </>
+        )
+	}
 }

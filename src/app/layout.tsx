@@ -94,7 +94,7 @@ export default function RootLayout({
 		headers().get('x-middleware-pathname') ?? '',
 	)
 	const { user, perms } = getEnhancedSession(headers())
-  console.log("layout", user)
+
 
 	return (
 		<html

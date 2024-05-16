@@ -25,7 +25,7 @@ export const MarqueeHeader = (
 	
 
 	return (
-        console.log("in header",user),
+
         <div>
             {!user?.application && (
 						<Link href="/apply" >
