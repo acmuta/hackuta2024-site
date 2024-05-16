@@ -5,7 +5,7 @@ import { isDevelopment } from '@/lib/utils/server'
 import { EmailData, SendEmailOptions } from './types'
 
 const {
-    MAILCHIMP_TRANSACTIONAL_API_KEY: mcApiKey,
+    // MAILCHIMP_TRANSACTIONAL_API_KEY: mcApiKey,
     SENDGRID_API_KEY: sgApiKey,
     TRANSACTIONAL_FROM_EMAIL: fromEmail,
     TRANSACTIONAL_FROM_NAME: fromName,

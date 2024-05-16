@@ -80,7 +80,7 @@ export const authOptions: AuthOptions = {
                         subject: `Sign in to your ${siteName} account`,
 
                         html: `<body>
-<p>Hello, this is silly Sandro say hi</p>
+<p>Hello,</p>
 <p>Follow this link to sign in to your ${siteName} account.</p>
 <p><a href="${url}">${url}</a></p>
 <p>
@@ -99,6 +99,7 @@ ${siteName} Team`,
                     })
                 } catch (e) {
                     logger.error(e, '[NextAuth] send email')
+                    // console.error(e)
                 }
             },
         }),
@@ -125,6 +126,7 @@ export async function getServerUser(
         return getUser(client, session.user.email)
     } catch (e) {
         logger.error(e, '[getServerUser]')
+        // console.log(e)
         return null
     }
 }
@@ -135,10 +137,12 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         return res.status(200).end()
     }
 
+
     const routeName = 'enhanced-session'
     if (
         req.query.nextauth?.length === 1 && req.query.nextauth[0] === routeName
     ) {
+        console.log('auth helooooo')
         try {
             const client = await clientPromise
             // This is the only place where getServerUser should be used
@@ -174,6 +178,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             })
         } catch (e) {
             logger.error(e, `[/api/auth/${routeName}]`)
+            console.error("enhanced session", e)
             return res.status(200).json(
                 {
                     user: null,

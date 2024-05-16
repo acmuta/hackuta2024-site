@@ -1,5 +1,9 @@
 import type { NextRequest } from 'next/server'
-import { NextResponse } from 'next/server'
+import logger from '@/lib/logger'
+
+
+import { withAuth } from "next-auth/middleware"
+import { NextResponse } from "next/server"
 
 import {
     BuiltInRoles,
@@ -12,6 +16,7 @@ const Redirects = new Map([
     [/^\/devpost\/?$/, 'https://hackuta2023.devpost.com/'],
 ])
 
+
 export async function middleware(request: NextRequest) {
     // Redirects
     for (const [regex, target] of Redirects) {
@@ -22,6 +27,7 @@ export async function middleware(request: NextRequest) {
             })
         }
     }
+    console.log('middleware')
 
     // Middleware can only run on the Edge runtime which cannot import from @/lib/utils/server.
     // So we duplicated the SITE_URL code here.
@@ -33,10 +39,11 @@ export async function middleware(request: NextRequest) {
     // Replace localhost with 127.0.0.1 due to DNS lookup potentially trying to interpret that as IPv6 loopback address,
     // which will cause issues as the production Next.js server only listens to IPv4 requests.
     const siteUrl = SITE_URL.replace(/\blocalhost\b/, '127.0.0.1')
-
+    // console.log("cookie", request.headers.get('cookie'))
     // Get session
     let session: EnhancedSession
     try {
+
         const sessionResponse = await fetch(
             `${siteUrl}/api/auth/enhanced-session`,
             {
@@ -45,9 +52,13 @@ export async function middleware(request: NextRequest) {
                 },
             },
         )
+        // console.log("session", sessionResponse)
         session = await sessionResponse.json()
+        // console.log(session)
+
     } catch (e) {
         console.error('[middleware]', e)
+
         session = {
             user: null,
             perms: BuiltInRoles['@@base'],
