@@ -1,44 +1,44 @@
-import { ObjectId, WithId } from "mongodb";
-import validator from "validator";
-import z from "zod";
+import { ObjectId, WithId } from "mongodb"
+import validator from "validator"
+import z from "zod"
 
-import countries from "@/data/countries.json";
-import universities from "@/data/universities.json";
-import type { ToJsonValue } from "@/lib/utils/shared";
+import countries from "@/data/countries.json"
+import universities from "@/data/universities.json"
+import type { ToJsonValue } from "@/lib/utils/shared"
 
 export default interface User {
-  email: string;
-  image: string;
-  roles?: string[];
+  email: string
+  image: string
+  roles?: string[]
   /**
    * Exists iff the current user is viewing the website as another role.
    * `roles` would store the viewing-as roles,
    * and `rolesActual` would store the actual roles of the user.
    */
-  rolesActual?: string[];
-  emailVerified: Date | null;
-  applied?: Date;
-  application?: Application;
-  applicationStatus?: "accepted" | "rejected" | "waitlisted";
-  applicationDecided?: Date;
-  receivedEmailTags?: string[];
-  checkInPin?: number;
-  checkedIn?: Date;
+  rolesActual?: string[]
+  emailVerified: Date | null
+  applied?: Date
+  application?: Application
+  applicationStatus?: "accepted" | "rejected" | "waitlisted"
+  applicationDecided?: Date
+  receivedEmailTags?: string[]
+  checkInPin?: number
+  checkedIn?: Date
   /** In the form of `A00` */
-  hexId?: string;
-  attendedEvents?: string[];
-  pointAdjustments?: PointAdjustment[];
-  points?: number;
-  pointsObtained?: number;
+  hexId?: string
+  attendedEvents?: string[]
+  pointAdjustments?: PointAdjustment[]
+  points?: number
+  pointsObtained?: number
 }
 
 export interface PointAdjustment {
-  delta: number;
-  reason: string;
-  timestamp: number;
+  delta: number
+  reason: string
+  timestamp: number
 }
 
-export type JsonUser = ToJsonValue<WithId<User>>;
+export type JsonUser = ToJsonValue<WithId<User>>
 
 export const LevelOfStudySchema = z.enum([
   "Less than Secondary / High School",
@@ -52,11 +52,11 @@ export const LevelOfStudySchema = z.enum([
   "Other",
   "I’m not currently a student",
   "Prefer not to answer",
-]);
+])
 
 export const CountrySchema = z.enum(
   Object.values(countries) as [string, ...string[]]
-);
+)
 
 /**
  * Sort in alphabetical order, except:
@@ -68,23 +68,23 @@ const sortUniversity = (a: string, b: string) => {
     ["The University of Texas at Arlington", 10],
     ["The University of Texas at Dallas", 10],
     ["Texas A&M University", 6],
-  ]);
+  ])
   const normalize = (s: string) =>
-    s.toLowerCase().startsWith("the ") ? s.slice(4) : s;
-  const [loveForA, loveForB] = [Loves.get(a), Loves.get(b)];
+    s.toLowerCase().startsWith("the ") ? s.slice(4) : s
+  const [loveForA, loveForB] = [Loves.get(a), Loves.get(b)]
   const [weightA, weightB] = [
     loveForA !== undefined ? loveForA : 0,
     loveForB !== undefined ? loveForB : 0,
-  ];
+  ]
 
-  return weightB - weightA || normalize(a).localeCompare(normalize(b));
-};
+  return weightB - weightA || normalize(a).localeCompare(normalize(b))
+}
 
 export const KnownUniversitySchema = z.enum(
   (universities as [string, ...string[]]).sort(sortUniversity)
-);
+)
 
-export const TShirtSizeSchema = z.enum(["S", "M", "L", "XL"]);
+export const TShirtSizeSchema = z.enum(["S", "M", "L", "XL"])
 
 export const KnownDietaryRestrictionSchema = z.enum([
   "Allergies",
@@ -94,21 +94,21 @@ export const KnownDietaryRestrictionSchema = z.enum([
   "Vegan",
   "Vegetarian",
   "None",
-]);
+])
 
 export const KnownGenderSchema = z.enum([
   "Man",
   "Woman",
   "Non-Binary",
   "Prefer Not to Answer",
-]);
+])
 
 export const KnownPronounsSchema = z.enum([
   "She/Her",
   "He/Him",
   "They/Them",
   "Prefer Not to Answer",
-]);
+])
 
 export const KnownRaceEthnicitySchema = z.enum([
   "Asian Indian",
@@ -128,9 +128,9 @@ export const KnownRaceEthnicitySchema = z.enum([
   "Other Asian (Thai, Cambodian, etc)",
   "Other Paciﬁc Islander",
   "Prefer Not to Answer",
-]);
+])
 
-export const TernarySchema = z.enum(["Yes", "No", "Unsure"]);
+export const TernarySchema = z.enum(["Yes", "No", "Unsure"])
 
 export const KnownSexualitySchema = z.enum([
   "Heterosexual or straight",
@@ -138,7 +138,7 @@ export const KnownSexualitySchema = z.enum([
   "Bisexual",
   "Asexual",
   "Prefer Not to Answer",
-]);
+])
 
 export const KnownMajorSchema = z.enum([
   "Computer science, computer engineering, or software engineering",
@@ -155,9 +155,11 @@ export const KnownMajorSchema = z.enum([
   "Undecided / No Declared Major",
   "My school does not offer majors / primary areas of study",
   "Prefer not to answer",
-]);
+])
 
-export const YesNoSchema = z.enum(["Yes", "No"]);
+export const CampusSchema = z.enum(["On-campus", "Off-campus"])
+
+export const YesNoSchema = z.enum(["Yes", "No"])
 
 /**
  * https://guide.mlh.io/general-information/managing-registrations/registration-timelines#some-important-registration-fields
@@ -195,13 +197,13 @@ export const ApplicationSchema = z.object({
   agreedMlhSharing: z.literal("Yes"),
   agreedMlhMarketing: YesNoSchema,
   needTransportation: YesNoSchema,
-  onCampusStatus: YesNoSchema,
-});
+  onCampusStatus: CampusSchema,
+})
 
-export type Application = z.infer<typeof ApplicationSchema>;
+export type Application = z.infer<typeof ApplicationSchema>
 
-export type IdentifieableUser = ObjectId | User | string;
+export type IdentifieableUser = ObjectId | User | string
 
 export function getFullName(user: User | JsonUser): string {
-  return `${user.application?.firstName} ${user.application?.lastName}`;
+  return `${user.application?.firstName} ${user.application?.lastName}`
 }

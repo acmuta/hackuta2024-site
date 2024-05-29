@@ -1,13 +1,13 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { useState } from "react";
+import Link from "next/link"
+import { useState } from "react"
 
-import { Box } from "@/components/Box";
-import { Button } from "@/components/Button";
-import { Dropdown, TextInput } from "@/components/Form";
-import ErrorMessage from "@/components/Form/ErrorMessage";
-import { FileInput } from "@/components/Form/FileInput";
+import { Box } from "@/components/Box"
+import { Button } from "@/components/Button"
+import { Dropdown, TextInput } from "@/components/Form"
+import ErrorMessage from "@/components/Form/ErrorMessage"
+import { FileInput } from "@/components/Form/FileInput"
 import {
   Application,
   ApplicationSchema,
@@ -23,67 +23,68 @@ import {
   TernarySchema,
   TShirtSizeSchema,
   YesNoSchema,
-} from "@/lib/db/models/User";
-import { range, stringifyError } from "@/lib/utils/client";
-import { fetchPost, toOption, zodEnumToOptions } from "@/lib/utils/shared";
+  CampusSchema,
+} from "@/lib/db/models/User"
+import { range, stringifyError } from "@/lib/utils/client"
+import { fetchPost, toOption, zodEnumToOptions } from "@/lib/utils/shared"
 
-import styles from "./ApplicationForm.module.css";
+import styles from "./ApplicationForm.module.css"
 
 export function ApplicationForm() {
-  const [formErrors, setFormMessages] = useState<string[]>([]);
-  const [errors, setErrors] = useState<Record<string, string[]>>({});
+  const [formErrors, setFormMessages] = useState<string[]>([])
+  const [errors, setErrors] = useState<Record<string, string[]>>({})
   async function submit() {
     const formData = new FormData(
       document.getElementById("applicationForm") as HTMLFormElement
-    );
+    )
     const jsonData: Record<string, string | string[] | number> =
-      Object.create(null);
+      Object.create(null)
     await Promise.all(
       [...formData].map(async ([k, v]) => {
         if (v === "") {
-          return;
+          return
         }
-        const zodFieldType = ApplicationSchema.shape[k as keyof Application];
+        const zodFieldType = ApplicationSchema.shape[k as keyof Application]
         const typeName =
           zodFieldType._def.typeName === "ZodOptional"
             ? zodFieldType._def.innerType._def.typeName
-            : zodFieldType._def.typeName;
+            : zodFieldType._def.typeName
         if (typeName === "ZodArray") {
-          ((jsonData[k] ??= []) as string[]).push(v.toString());
+          ;((jsonData[k] ??= []) as string[]).push(v.toString())
         } else if (typeName === "ZodNumber") {
-          jsonData[k] = parseFloat(v.toString());
+          jsonData[k] = parseFloat(v.toString())
         } else {
           if (k === "resume") {
             if (!(v instanceof File)) {
-              console.error("resume", v);
-              throw "resume is not File";
+              console.error("resume", v)
+              throw "resume is not File"
             }
             if (v.size > 2 * 1024 * 1024) {
-              throw "resume must be smaller than 2 MB";
+              throw "resume must be smaller than 2 MB"
             }
-            jsonData[k] = await getBase64(v as File);
+            jsonData[k] = await getBase64(v as File)
           } else {
-            jsonData[k] = v.toString();
+            jsonData[k] = v.toString()
           }
         }
       })
-    );
-    const validateResult = ApplicationSchema.safeParse(jsonData);
+    )
+    const validateResult = ApplicationSchema.safeParse(jsonData)
     if (validateResult.success) {
-      setFormMessages([]);
-      setErrors({});
+      setFormMessages([])
+      setErrors({})
       try {
-        await fetchPost<boolean>("/api/apply", JSON.stringify(jsonData));
+        await fetchPost<boolean>("/api/apply", JSON.stringify(jsonData))
       } catch (e) {
-        setFormMessages(["Submission failed", stringifyError(e)]);
+        setFormMessages(["Submission failed", stringifyError(e)])
       }
     } else {
-      const { formErrors, fieldErrors } = validateResult.error.formErrors;
+      const { formErrors, fieldErrors } = validateResult.error.formErrors
       setFormMessages([
         "Form validation failed, please double-check your submission",
         ...formErrors,
-      ]);
-      setErrors(fieldErrors);
+      ])
+      setErrors(fieldErrors)
     }
   }
 
@@ -178,7 +179,7 @@ export function ApplicationForm() {
         text="Do you live on-campus/off-campus?"
         errors={errors["onCampusStatus"]}
         selectProps={{ form: "applicationForm" }}
-        options={zodEnumToOptions(YesNoSchema)}
+        options={zodEnumToOptions(CampusSchema)}
       />
 
       <h3 className="font-heading text-2xl">Optional Information</h3>
@@ -327,14 +328,14 @@ export function ApplicationForm() {
         <Button onClick={submit}>Submit</Button>
       </span>
     </Box>
-  );
+  )
 }
 
 function getBase64(file: Blob): Promise<string> {
   return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (e) => reject(e);
-  });
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => resolve(reader.result as string)
+    reader.onerror = (e) => reject(e)
+  })
 }

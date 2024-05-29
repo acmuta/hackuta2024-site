@@ -1,6 +1,6 @@
-import { Button } from "@/components/Button";
-import Image from "next/image";
-import Link from "next/link";
+import { Button } from "@/components/Button"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function Home() {
   return (
@@ -9,8 +9,8 @@ export default function Home() {
         className="bg-lime-600 px-4 py-2 rounded-md  text-white"
         href={"/api/auth/signin"}
       >
-        Apply
+        Sign In
       </Link>
     </div>
-  );
+  )
 }
