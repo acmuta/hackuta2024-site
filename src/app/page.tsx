@@ -288,11 +288,11 @@ export default async function Landing() {
                   Apply
                 </LinkButton>
               )}
-              {user?.applied && !isHackingTimeOver() && (
+              {/* {user?.applied && !isHackingTimeOver() && (
                 <LinkButton href="/dashboard" className="text-2xl">
                   Dashboard
                 </LinkButton>
-              )}
+              )} */}
               {user?.applied && isHackingTimeOver() && (
                 <LinkButton href="/devpost" className="text-2xl">
                   Submit to Devpost
@@ -305,13 +305,13 @@ export default async function Landing() {
               >
                 Discord
               </LinkButton>
-              <LinkButton
+              {/* <LinkButton
                 href="https://docs.google.com/forms/d/e/1FAIpQLSfQ5gopSj69iT5josqR7u5ztnebidDRo9h9F3gL5qduCHCTag/viewform?usp=sf_link"
                 className="bg-hackuta-darkblue"
                 kind="secondary"
               >
                 Volunteer/Mentor
-              </LinkButton>
+              </LinkButton> */}
             </div>
           </div>
         </div>

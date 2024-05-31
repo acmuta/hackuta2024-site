@@ -113,7 +113,7 @@ export const MarqueeHeader = ({
               <HeaderLink href="/dashboard">Dashboard</HeaderLink>
             )}
             <HeaderLink href="/faq">FAQ</HeaderLink>
-            <HeaderLink href="/schedule">Schedule</HeaderLink>
+            {/* <HeaderLink href="/schedule">Schedule</HeaderLink> */}
             <HeaderLink href={user ? "/api/auth/signout" : "/api/auth/signin"}>
               {user ? "Sign Out" : "Sign In"}
             </HeaderLink>
@@ -149,9 +149,9 @@ export const MarqueeHeader = ({
           <HeaderLink href="/faq" onClick={closeMenu}>
             FAQ
           </HeaderLink>
-          <HeaderLink href="/schedule" onClick={closeMenu}>
+          {/* <HeaderLink href="/schedule" onClick={closeMenu}>
             Schedule
-          </HeaderLink>
+          </HeaderLink> */}
           <HeaderLink
             href={user ? "/api/auth/signout" : "/api/auth/signin"}
             onClick={closeMenu}

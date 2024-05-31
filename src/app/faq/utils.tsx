@@ -6,7 +6,7 @@ import clientPromise from "@/lib/db"
 import { FaqModel } from "@/lib/db/models/Faq"
 import logger from "@/lib/logger"
 
-// import { MarkDownRenderer } from "../admin/post/MarkDownRenderer"
+import { MarkDownRenderer } from "../admin/post/MarkDownRenderer"
 
 export function FaqSection({
   faqs,
@@ -30,7 +30,8 @@ export function FaqSection({
               key={`${faq.q}-${faq.a}`}
               summary={faq.q}
             >
-              {/* <MarkDownRenderer>{faq.a}</MarkDownRenderer> */}
+              <MarkDownRenderer>{faq.a}</MarkDownRenderer>
+              {/* <p>{faq.a}</p> */}
             </Accordion>
           ))
       }

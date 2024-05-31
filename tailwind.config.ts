@@ -54,6 +54,9 @@ const config: Config = {
         "event-future": "#007cab",
         "event-past": "#494947",
       },
+      dropShadow: {
+        hackuta: shadow,
+      },
       fontFamily: {
         heading: ["var(--font-rhd)", "sans-serif"],
         body: ["var(--font-atkinson)", "sans-serif"],
@@ -75,7 +78,7 @@ const config: Config = {
         46: "11.5rem",
       },
       zIndex: {
-        "100": 100,
+        100: "100",
       },
     },
   },
