@@ -2,10 +2,10 @@
 import React from 'react'
 import Iframe from 'react-iframe'
 
-const Countdown: React.FC = () => {
+const GoogleMaps: React.FC = () => {
 	return (
 		<Iframe
-			url="https://www.google.com/maps/d/embed?mid=17d4SqZ5DRYsMwP1y5kkszrcxU3zc2-k&ehbc=2E312F"
+			url="https://www.google.com/maps/d/embed?mid=1VJ-nNE1Lh8NjEzRZW1jNkflhKEeiEQ0&ehbc=2E312F"
 			width="720px"
 			height="480px"
 			className=""
@@ -15,4 +15,4 @@ const Countdown: React.FC = () => {
 	)
 }
 
-export default Countdown
+export default GoogleMaps

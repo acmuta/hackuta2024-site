@@ -1,11 +1,11 @@
 'use client' // IconoirProvider can only be used in client components
 
 import {
-	GitHub,
+	Github,
 	IconoirProvider,
 	Instagram,
-	LinkedIn,
-	VerifiedBadge,
+	Linkedin,
+	// VerifiedBadge,
 } from 'iconoir-react'
 import Link, { LinkProps } from 'next/link'
 import { ReactNode } from 'react'
@@ -56,7 +56,7 @@ export const Organizer = ({
 				<span className="font-medium text-xs text-gray-300">{role}</span>
 				{isDirector && (
 					<Box direction="row" gap=".125rem">
-						Director <VerifiedBadge aria-hidden="true" />
+						Director{/* Director <VerifiedBadge aria-hidden="true" /> */}
 					</Box>
 				)}
 			</Box>
@@ -127,7 +127,7 @@ const GitHubLink = ({ username }: OrganizerSocialUsername) => (
 	<OrganizerSocial
 		baseUrl={'https://github.com/'}
 		username={username}
-		icon={<GitHub aria-labelledby={`organizer-${username}-github`} />}
+		icon={<Github aria-labelledby={`organizer-${username}-github`} />}
 		platform="Twitter"
 	/>
 )
@@ -145,7 +145,7 @@ const LinkedInLink = ({ username }: OrganizerSocialUsername) => (
 	<OrganizerSocial
 		baseUrl={'https://www.linkedin.com/in/'}
 		username={username}
-		icon={<LinkedIn aria-labelledby={`organizer-${username}-linkedin`} />}
+		icon={<Linkedin aria-labelledby={`organizer-${username}-linkedin`} />}
 		platform="LinkedIn"
 	/>
 )
