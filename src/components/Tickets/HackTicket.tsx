@@ -125,7 +125,7 @@ export const HackTicket = ({ className, user }: HackTicketProps) => {
 					</p> */}
           </div>
           <p className="flex justify-around items-center pt-2 border-t font-normal border-gray-700">
-            <span>SWSH & SEIR</span>
+            {/* <span>SWSH & SEIR</span> */}
             <span className="text-xl">🎪</span>
             <span>Arlington, TX</span>
           </p>

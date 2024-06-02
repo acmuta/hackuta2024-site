@@ -124,8 +124,8 @@ export default function RootLayout({
                   name: "The Association for Computing Machinery at UTA",
                   url: "https://acm.uta.edu",
                 },
-                startDate: "2023-10-07",
-                endDate: "2023-10-08",
+                startDate: "2024-10-12",
+                endDate: "2024-10-13",
               }),
             }}
           />

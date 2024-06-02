@@ -16,7 +16,7 @@ export default function SiteFooter() {
               href={"/discord"}
               className="no-underline text-hackuta-beige"
             >
-              <Discord width={"32px"} aria-label="HackUTA 2023 Discord" />
+              <Discord width={"32px"} aria-label="HackUTA 2024 Discord" />
             </Link>,
             <Link
               key="instagram"
