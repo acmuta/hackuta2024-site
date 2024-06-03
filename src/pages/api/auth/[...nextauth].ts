@@ -81,7 +81,12 @@ import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import { MongoClient, WithId } from "mongodb"
 import { NextApiRequest, NextApiResponse } from "next"
 import NextAuth, { AuthOptions, getServerSession } from "next-auth"
+// import { OAuthConfig, OAuthUserConfig } from 'next-auth/providers'
+import { OAuthUserConfig, OAuthConfig } from "next-auth/providers/oauth"
+import DiscordProvider from "next-auth/providers/discord"
 import EmailProvider from "next-auth/providers/email"
+import GitHubProvider from "next-auth/providers/github"
+import GoogleProvider from "next-auth/providers/google"
 
 import { BuiltInRoles, EnhancedSession, getUserPerms } from "@/lib/auth/server"
 import clientPromise from "@/lib/db"
@@ -99,23 +104,57 @@ if (!secret) {
   throw new Error('Invalid/Missing environment variable: "NEXTAUTH_SECRET"')
 }
 
+const SupportedProviders = new Map<
+  string,
+  (options: OAuthUserConfig<any>) => OAuthConfig<any>
+>([
+  ["discord", DiscordProvider],
+  ["github", GitHubProvider],
+  ["google", GoogleProvider],
+])
+
+function* getOAuthProviders(): Generator<OAuthConfig<any>> {
+  for (const [name, provider] of SupportedProviders) {
+    const idEnvName = `OAUTH_${name.toUpperCase()}_ID`
+    const secretEnvName = `OAUTH_${name.toUpperCase()}_SECRET`
+    const { [idEnvName]: id, [secretEnvName]: secret } = process.env
+
+    // Skip if neither id nor secret were supplied.
+    // Log a warning if only one of them is supplied.
+    if (!(id && secret)) {
+      if (id || secret) {
+        logger.warn(
+          `Missing "${idEnvName}" or "${secretEnvName}" environment variable.`
+        )
+      }
+      continue
+    }
+
+    yield provider({
+      clientId: id,
+      clientSecret: secret,
+      allowDangerousEmailAccountLinking: true,
+    })
+  }
+}
+
 export const authOptions: AuthOptions = {
   adapter: MongoDBAdapter(clientPromise) as Adapter,
   providers: [
-    // ...getOAuthProviders(),
-    // ...(disableEmail === 'true'
-    //     ? []
-    //     : [
-    EmailProvider({
-      async sendVerificationRequest(params) {
-        const { identifier, url } = params
-        try {
-          await sendEmail({
-            to: [{ email: identifier }],
+    ...getOAuthProviders(),
+    ...(disableEmail === "true"
+      ? []
+      : [
+          EmailProvider({
+            async sendVerificationRequest(params) {
+              const { identifier, url } = params
+              try {
+                await sendEmail({
+                  to: [{ email: identifier }],
 
-            subject: `Sign in to your ${siteName} account`,
+                  subject: `Sign in to your ${siteName} account`,
 
-            html: `<body>
+                  html: `<body>
 <p>Hello,</p>
 <p>Follow this link to sign in to your ${siteName} account.</p>
 <p><a href="${url}">${url}</a></p>
@@ -124,7 +163,7 @@ Thanks,<br>
 ${siteName} Team
 </p>
 </body>`,
-            text: `Hello,
+                  text: `Hello,
 
 Follow this link to sign in to your ${siteName} account.
 
@@ -132,14 +171,14 @@ ${url}
 
 Thanks,
 ${siteName} Team`,
-          })
-        } catch (e) {
-          logger.error(e, "[NextAuth] send email")
-          // console.error(e)
-        }
-      },
-    }),
-    // ]),
+                })
+              } catch (e) {
+                logger.error(e, "[NextAuth] send email")
+                // console.error(e)
+              }
+            },
+          }),
+        ]),
   ],
   secret,
 }
