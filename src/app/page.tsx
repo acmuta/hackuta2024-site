@@ -16,27 +16,29 @@
 // }
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { headers } from "next/headers"
-import { SVGProps } from "react-html-props"
+import { headers } from "next/headers";
+import { SVGProps } from "react-html-props";
 
-import { Box } from "@/components/Box"
-import { LinkButton } from "@/components/Button"
-import { HackTicket } from "@/components/Tickets/HackTicket"
-import { LogoTicket, LogoTicketKind } from "@/components/Tickets/LogoTicket"
-import { WavyPattern } from "@/components/WavyPattern"
-import { getEnhancedSession } from "@/lib/utils/server"
+import { Box } from "@/components/Box";
+import { LinkButton } from "@/components/Button";
+import { HackTicket } from "@/components/Tickets/HackTicket";
+import { LogoTicket, LogoTicketKind } from "@/components/Tickets/LogoTicket";
+import { WavyPattern } from "@/components/WavyPattern";
+import { getEnhancedSession } from "@/lib/utils/server";
 
-import GoogleMyMap from "@/components/GoogleMyMap"
-import Link from "next/link"
+import GoogleMyMap from "@/components/GoogleMyMap";
+import Link from "next/link";
 // import { AllTeams } from "./admin/organizers/OrganizerData"
-import { FaqSection, getFaqs } from "./faq/utils"
+import { FaqSection, getFaqs } from "./faq/utils";
+import { HeroHighlight } from "@/components/hero-highlight/hero-highlight";
+import Page from "./newlanding/page";
 // import { MeetTheTeamSection } from "./MeetTheTeamSection"
 
 // https://beta.nextjs.org/docs/api-reference/segment-config#dynamic
 // We read from the database on this route, so this has to be dynamic.
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 
-type SeparatorProps = SVGProps
+type SeparatorProps = SVGProps;
 const Separator = ({ ...props }: SeparatorProps) => {
   return (
     <svg
@@ -57,10 +59,10 @@ const Separator = ({ ...props }: SeparatorProps) => {
         strokeDasharray="24 24"
       />
     </svg>
-  )
-}
+  );
+};
 
-type CTAArrowProps = SVGProps
+type CTAArrowProps = SVGProps;
 const CTAArrow = ({ ...props }: CTAArrowProps) => {
   return (
     <svg
@@ -114,14 +116,22 @@ const CTAArrow = ({ ...props }: CTAArrowProps) => {
         </filter>
       </defs>
     </svg>
-  )
+  );
+};
+
+export default function RevampedLandingPage() {
+  return (
+    <>
+      <Page />
+    </>
+  );
 }
 
-export default async function Landing() {
+export async function Landing() {
   // const startDate = new Date('10/07/2023 06:00:00')
   // const endDate = new Date('10/08/2023 18:00:00')
   // const events = await getEvents()
-  const faqs = await getFaqs()
+  const faqs = await getFaqs();
   const sponsors = [
     {
       companyName: "Mouser Electronics",
@@ -160,7 +170,7 @@ export default async function Landing() {
       imageUrl: "/images/Sponsors/acmuta.png",
       kind: "Sponsor",
     },
-  ]
+  ];
 
   const partners = [
     {
@@ -199,7 +209,7 @@ export default async function Landing() {
       imageUrl: "/images/Partners/echo3d.png",
       kind: "Partner",
     },
-  ]
+  ];
 
   const specialThanks = [
     {
@@ -226,17 +236,17 @@ export default async function Landing() {
       imageUrl: "/images/SpecialThanks/csec.png",
       kind: "SpecialThanks",
     },
-  ]
+  ];
 
-  const { user } = getEnhancedSession(headers())
+  const { user } = getEnhancedSession(headers());
 
-  const hackingDeadline = new Date("2024-10-12T12:00:00-05:00")
+  const hackingDeadline = new Date("2024-10-12T12:00:00-05:00");
   const isHackingTimeOver = () => {
-    const currentTime = new Date()
-    const timeDifference = hackingDeadline.getTime() - currentTime.getTime()
+    const currentTime = new Date();
+    const timeDifference = hackingDeadline.getTime() - currentTime.getTime();
 
-    return timeDifference <= 0
-  }
+    return timeDifference <= 0;
+  };
 
   return (
     <>
@@ -411,6 +421,8 @@ export default async function Landing() {
 					</div>
 				</div> */}
       </Box>
+
+      <Page />
     </>
-  )
+  );
 }
