@@ -90,7 +90,7 @@ export const MarqueeHeader = ({
               href="/"
             >
               <Logo className="inline-block" />
-              <span className="text-center text-3xl">HackUTA 2025</span>
+              <span className="text-center text-3xl">HackUTA 2024</span>
             </a>
           }
 
