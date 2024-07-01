@@ -1,4 +1,7 @@
+"use client"
+
 // components/Countdown.tsx
+import { jetbrains } from "@/app/layout"
 import React, { useEffect, useState } from "react"
 import { DivProps } from "react-html-props"
 
@@ -104,29 +107,29 @@ const Countdown: React.FC = ({ className }: CountdownProps) => {
   }, [])
 
   return (
-    <div className="flex flex-center justify-center flex-col">
-      <div className={`inline-block gap-2 ${className}`}>
+    <div className={`flex flex-center justify-center flex-col items-center`}>
+      <div className={`inline-block gap-2 ${className} `}>
         <div className="inline-block">
-          <span suppressHydrationWarning>{countdown.days}</span>
-          <span className="text-sm">d</span>
+          <span suppressHydrationWarning className="text-2xl font-semibold jetbrains-font text-violet-500">{countdown.days}</span>
+          <span className="text-sm jetbrains-font">day</span>
           <span className="font-normal mx-2">·</span>
         </div>
         <div className="inline-block">
-          <span suppressHydrationWarning>{countdown.hours}</span>
-          <span className="text-sm">h</span>
+          <span suppressHydrationWarning className="text-2xl font-semibold jetbrains-font text-violet-400">{countdown.hours}</span>
+          <span className="text-sm jetbrains-font">hr</span>
           <span className="font-normal mx-2">·</span>
         </div>
         <div className="inline-block">
-          <span suppressHydrationWarning>{countdown.minutes}</span>
-          <span className="text-sm">m</span>
+          <span suppressHydrationWarning className="text-2xl font-semibold jetbrains-font text-violet-300">{countdown.minutes}</span>
+          <span className="text-sm jetbrains-font">min</span>
           <span className="font-normal mx-2">·</span>
         </div>
         <div className="inline-block">
-          <span suppressHydrationWarning>{countdown.seconds}</span>
-          <span className="text-sm">s</span>
+          <span suppressHydrationWarning className="text-2xl font-semibold jetbrains-font text-violet-200">{countdown.seconds}</span>
+          <span className="text-sm ">sec</span>
         </div>
       </div>
-      <div className="text-center text-sm uppercase">{getText()}</div>
+      <div className="text-center text-sm uppercase text-white/50 ">{getText()}</div>
     </div>
   )
 }
