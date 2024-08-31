@@ -15,7 +15,7 @@
 //   )
 // }
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
+import "./globals.css"
 import { headers } from "next/headers"
 import { SVGProps } from "react-html-props"
 
@@ -31,6 +31,9 @@ import Link from "next/link"
 // import { AllTeams } from "./admin/organizers/OrganizerData"
 import { FaqSection, getFaqs } from "./faq/utils"
 // import { MeetTheTeamSection } from "./MeetTheTeamSection"
+import local from "next/font/local"
+
+const PS2Font = local({ src: "../../public/fonts/btseps2.woff2" })
 
 // https://beta.nextjs.org/docs/api-reference/segment-config#dynamic
 // We read from the database on this route, so this has to be dynamic.
@@ -250,7 +253,9 @@ export default async function Landing() {
         <div className="flex flex-col items-center justify-start gap-8 bg-hackuta-red bg-hackuta-pattern-transparent p-8 md:p-16 w-full min-h-max">
           <div className="flex flex-col items-center justify-start gap-8">
             <section className="flex flex-col items-center">
-              <h1 className="text-4xl sm:text-6xl md:text-8xl mx-[-8rem] font-heading text-white drop-shadow-hackuta">
+              <h1
+                className={`text-4xl sm:text-6xl md:text-8xl mx-[-8rem] ${PS2Font.className} text-white drop-shadow-hackuta`}
+              >
                 HackUTA 2024
               </h1>
               <div className="sm:text-lg font-rhd text-white font-semibold md:text-3xl tracking-wider uppercase gap-2 inline-block">
