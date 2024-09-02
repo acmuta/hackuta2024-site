@@ -33,12 +33,13 @@ import {
 import { twMerge } from "tailwind-merge"
 
 import { Box } from "@/components/Box"
-import { MarqueeHeader } from "@/components/MarqueeHeader"
+import { PS2Header } from "@/components/PS2Header"
 import { getEnhancedSession, siteName } from "@/lib/utils/server"
 
 import { headers } from "next/headers"
 // import { ViewAsRoleBanner } from "./admin/role/ViewAsRoleBanner"
 import SiteFooter from "./SiteFooter"
+import { Vortex } from "@/components/ui/vortex"
 
 /** fonts **/
 // const bungee = Bungee({
@@ -133,9 +134,18 @@ export default function RootLayout({
       </head>
       <Box as="body" direction="column" className="p-2">
         {/* <ViewAsRoleBanner user={user} /> */}
-        <MarqueeHeader user={user} perms={perms} />
-        <main className="flex-[1]">{children}</main>
-        <SiteFooter />
+        <div className="">
+          <Vortex
+            backgroundColor="black"
+            className=""
+            baseHue={208}
+            rangeY={400}
+          >
+            <PS2Header user={user} perms={perms} />
+            <main className="flex-[1]">{children}</main>
+            <SiteFooter />
+          </Vortex>
+        </div>
       </Box>
     </html>
   )
