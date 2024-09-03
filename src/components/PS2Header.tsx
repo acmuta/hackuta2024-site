@@ -174,28 +174,14 @@ export const PS2Header = ({
   )
 }
 
-export type MLHTrustBadgeColor = MLHTrustBadgeProps["color"]
-
-export type MLHTrustBadgeProps = {
-  color: "white" | "black" | "gray" | "red" | "blue" | "yellow"
-  imageClassName?: string
-}
-
-export const MLHTrustBadge = ({
-  color,
-  imageClassName,
-}: MLHTrustBadgeProps) => {
+export const MLHTrustBadge = () => {
   return (
-    <Link
-      href={`https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=${color}`}
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={`https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-${color}.svg`}
-        alt="Major League Hacking 2025 Hackathon Season"
-        className={imageClassName}
-      />
-    </Link>
+    <div style={{position: 'absolute', top:0, right: 0}}>
+      <Link href={`https://mlh.io/seasons/2025/events`}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/MLH-badge.png" alt="Major League Hacking 2025 Hackathon Season"/>
+      </Link>
+    </div>
   )
 }
 
