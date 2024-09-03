@@ -1,12 +1,7 @@
 "use client"
 
-import { Menu } from "iconoir-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ReactNode, useState } from "react"
-import { twMerge } from "tailwind-merge"
-
-import { canAccessDashboard, hasPermission } from "@/lib/auth/shared"
 import { AppPermissions } from "@/lib/db/models/Role"
 
 export type MarqueeHeaderProps = {
@@ -16,16 +11,16 @@ export type MarqueeHeaderProps = {
 
 
 export const PS2Header = ({
-  showBadge,
-}: MarqueeHeaderProps) => {
-  const pathname = usePathname()
-  if (showBadge === undefined) {
-    showBadge = pathname === "/"
-  }
+  showBadge,}: MarqueeHeaderProps) => {
+    const pathname = usePathname()
+    if (showBadge === undefined) {
+      showBadge = pathname === "/"
+}
 
   return (
-    <div>
-      {showBadge && (<MLHTrustBadge/>)}
+    <div style={{ position: 'relative', height: '60px' }}>
+    <img src="/HackUTA_Logo.png"></img>
+    {showBadge && (<MLHTrustBadge/>)}
     </div>
   );
 }
