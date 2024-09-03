@@ -1,16 +1,21 @@
 .applicationForm {
-	padding: 1rem 5rem;
-	margin: 0 auto;
-	width: 100%;
-	max-width: 48rem;
+  padding: 1rem 5rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 48rem;
+  border: 1.5px solid;
+  border-color: var(--color-primary-lighter);
+  border-radius: 10px;
+  background-color: rgb(128, 136, 255, 0.1);
+  color: #ffffff;
 }
 
 .applicationForm p {
-	margin: 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 768px) {
-	.applicationForm {
-		padding: 1rem 2rem;
-	}
+  .applicationForm {
+    padding: 1rem 2rem;
+  }
 }

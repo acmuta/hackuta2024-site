@@ -13,11 +13,11 @@
 
   --color-background: #000;
   --color-body: #323e52;
-  --color-primary: #2869a9;
+  --color-primary: #2551ab;
   --color-primary-darker: #122f4c;
-  --color-primary-lighter: #ab2406;
+  --color-primary-lighter: #c1c4f7;
   --color-primary-body: var(--color-white);
-  --color-outline: #059266;
+  --color-outline: #8088ff;
   --color-error: var(--color-red);
 
   --font-weight-light: 300;

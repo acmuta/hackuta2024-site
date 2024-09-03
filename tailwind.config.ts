@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss"
 
-const shadow = "4px 4px 0 rgba(18, 47, 76, 0.25)"
+const shadow = "4px 4px 0 rgba(110, 13, 37, 0.25)"
 
 const config: Config = {
   darkMode: ["class"],

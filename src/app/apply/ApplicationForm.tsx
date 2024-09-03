@@ -96,7 +96,7 @@ export function ApplicationForm() {
       gap="1.25rem"
       className={styles.applicationForm}
     >
-      <h2 className="font-heading text-4xl">Application</h2>
+      <h2 className="font-heading text-4xl m-auto">Application</h2>
       <h3 className="font-heading text-2xl">General Information</h3>
       <TextInput
         id="firstName"
