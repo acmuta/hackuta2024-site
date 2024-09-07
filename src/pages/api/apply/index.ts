@@ -9,7 +9,7 @@ import { getEnhancedSession } from '@/lib/utils/server'
 
 export default async function handler(
     req: NextApiRequest,
-    res: NextJSendResponse<boolean>,
+    res: NextJSendResponse<boolean>
 ) {
     try {
         const client = await clientPromise
@@ -39,7 +39,7 @@ export default async function handler(
                         application,
                         applied: new Date(),
                     },
-                },
+                }
             )
 
         res.status(200).json(jsend.success(true))

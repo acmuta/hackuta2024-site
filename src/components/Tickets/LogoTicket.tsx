@@ -1,63 +1,69 @@
-import Image from "next/image"
-import Link from "next/link"
-import { DivProps } from "react-html-props"
+import Image from 'next/image'
+import Link from 'next/link'
+import { DivProps } from 'react-html-props'
 
 export type SafeNumber = number | `${number}`
-export type LogoTicketKind = LogoTicketProps["kind"]
+export type LogoTicketKind = LogoTicketProps['kind']
 export type LogoTicketProps = DivProps & {
-  companyName: string
-  companyUrl: string
-  imageUrl: string
-  kind: "Sponsor" | "Partner" | "SpecialThanks"
+    companyName: string
+    companyUrl: string
+    imageUrl: string
+    kind: 'Sponsor' | 'Partner' | 'SpecialThanks'
 }
 
 export const LogoTicket = ({
-  companyName,
-  companyUrl,
-  imageUrl,
-  kind,
+    companyName,
+    companyUrl,
+    imageUrl,
+    kind,
 }: LogoTicketProps) => {
-  // const Separator = ({ className, ...props }: SpanProps) => (
-  // 	<span
-  // 		aria-hidden
-  // 		className={twMerge('h-full bg-black w-[1px]', className)}
-  // 		{...props}
-  // 	></span>
-  // )
-  // // const starSize = 16
-  // const topRadius = 'rounded-tl-xl rounded-tr-xl'
-  // const botRadius = 'rounded-bl-xl rounded-br-xl'
-  return (
-    <Link
-      href={companyUrl}
-      className={`md:w-80 w-fit h-40 my-2 text-center flex flex-row justify-center gap-4 items-center py-6 px-6 drop-shadow-hackuta ${
-        kind === "SpecialThanks"
-          ? "bg-hackuta-ticket-yellow"
-          : kind === "Sponsor"
-          ? "bg-hackuta-ticket-red"
-          : "bg-hackuta-ticket-blue"
-      } bg-center bg-clip-border bg-no-repeat no-underline hover:drop-shadow-none hover:mx-1 transition-all`}
-    >
-      <div className="w-15 h-28 flex justify-center items-center">
-        <div className="rotate-90 text-center font-semibold text-sm font-mono uppercase text-hackuta-black-60">
-          {companyName}
-        </div>
-      </div>
-      <div className="w-28 flex justify-center items-center">
-        <Image src={imageUrl} alt={companyName} width={128} height={96} />
-      </div>
-      <div className="w-15 h-28 flex justify-center items-center">
-        <div
-          className="-rotate-90 text-center font-semibold font-mono uppercase text-hackuta-black-60"
-          style={{
-            fontSize: kind === "SpecialThanks" ? "smaller" : "inherit",
-          }}
+    // const Separator = ({ className, ...props }: SpanProps) => (
+    // 	<span
+    // 		aria-hidden
+    // 		className={twMerge('h-full bg-black w-[1px]', className)}
+    // 		{...props}
+    // 	></span>
+    // )
+    // // const starSize = 16
+    // const topRadius = 'rounded-tl-xl rounded-tr-xl'
+    // const botRadius = 'rounded-bl-xl rounded-br-xl'
+    return (
+        <Link
+            href={companyUrl}
+            className={`md:w-80 w-fit h-40 my-2 text-center flex flex-row justify-center gap-4 items-center py-6 px-6 drop-shadow-hackuta ${
+                kind === 'SpecialThanks'
+                    ? 'bg-hackuta-ticket-yellow'
+                    : kind === 'Sponsor'
+                      ? 'bg-hackuta-ticket-red'
+                      : 'bg-hackuta-ticket-blue'
+            } bg-center bg-clip-border bg-no-repeat no-underline hover:drop-shadow-none hover:mx-1 transition-all`}
         >
-          {kind}
-        </div>
-      </div>
+            <div className="w-15 h-28 flex justify-center items-center">
+                <div className="rotate-90 text-center font-semibold text-sm font-mono uppercase text-hackuta-black-60">
+                    {companyName}
+                </div>
+            </div>
+            <div className="w-28 flex justify-center items-center">
+                <Image
+                    src={imageUrl}
+                    alt={companyName}
+                    width={128}
+                    height={96}
+                />
+            </div>
+            <div className="w-15 h-28 flex justify-center items-center">
+                <div
+                    className="-rotate-90 text-center font-semibold font-mono uppercase text-hackuta-black-60"
+                    style={{
+                        fontSize:
+                            kind === 'SpecialThanks' ? 'smaller' : 'inherit',
+                    }}
+                >
+                    {kind}
+                </div>
+            </div>
 
-      {/* <div
+            {/* <div
 				className={twJoin(
 					'flex items-center justify-center px-2 sm:px-8 sm:py-4',
 					'border-2 border-hackuta-black border-dashed border-b-0',
@@ -92,8 +98,8 @@ export const LogoTicket = ({
 					</span>
 				</div>
 			</footer> */}
-    </Link>
-  )
+        </Link>
+    )
 }
 
 // type StarProps = SVGProps

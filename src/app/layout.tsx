@@ -21,25 +21,33 @@
 //   );
 // }
 
-import "primereact/resources/primereact.min.css"
-import "primereact/resources/themes/lara-light-teal/theme.css"
-import "./globals.css"
+import 'primereact/resources/primereact.min.css'
+import 'primereact/resources/themes/lara-light-teal/theme.css'
+import './globals.css'
 
 import {
-  Atkinson_Hyperlegible,
-  Red_Hat_Display,
-  Red_Hat_Mono,
-} from "next/font/google"
-import { twMerge } from "tailwind-merge"
+    Atkinson_Hyperlegible,
+    Red_Hat_Display,
+    Red_Hat_Mono,
+} from 'next/font/google'
+import { twMerge } from 'tailwind-merge'
 
+<<<<<<< HEAD
 import { Box } from "@/components/Box"
 import { PS2Header } from "@/components/PS2Header"
 import { getEnhancedSession, siteName } from "@/lib/utils/server"
 import { headers } from "next/headers"
+=======
+import { Box } from '@/components/Box'
+import { PS2Header } from '@/components/PS2Header'
+import { getEnhancedSession, siteName } from '@/lib/utils/server'
+
+import { headers } from 'next/headers'
+>>>>>>> 5aa7ef1 (Added a formatter and linter to keep code consistent)
 // import { ViewAsRoleBanner } from "./admin/role/ViewAsRoleBanner"
-import SiteFooter from "./SiteFooter"
-import { Vortex } from "@/components/ui/vortex"
-import { Viewport, Metadata } from "next"
+import SiteFooter from './SiteFooter'
+import { Vortex } from '@/components/ui/vortex'
+import { Viewport, Metadata } from 'next'
 
 /** fonts **/
 // const bungee = Bungee({
@@ -48,57 +56,58 @@ import { Viewport, Metadata } from "next"
 // 	variable: '--font-bungee',
 // })
 const rhd = Red_Hat_Display({
-  subsets: ["latin-ext"],
-  weight: ["900"],
-  variable: "--font-rhd",
+    subsets: ['latin-ext'],
+    weight: ['900'],
+    variable: '--font-rhd',
 })
 
 const atkinson = Atkinson_Hyperlegible({
-  subsets: ["latin-ext"],
-  weight: ["400", "700"],
-  variable: "--font-atkinson",
+    subsets: ['latin-ext'],
+    weight: ['400', '700'],
+    variable: '--font-atkinson',
 })
 const rhm = Red_Hat_Mono({
-  subsets: ["latin-ext"],
-  weight: ["400", "700"],
-  variable: "--font-rhm",
+    subsets: ['latin-ext'],
+    weight: ['400', '700'],
+    variable: '--font-rhm',
 })
 
 export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
+    width: 'device-width',
+    initialScale: 1,
 }
 
 export const metadata: Metadata = {
-  title: siteName,
-  description: siteName,
-  icons: [
-    {
-      rel: "icon",
-      type: "image/png",
-      sizes: "32x32",
-      url: "/favicon-32x32.png",
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      sizes: "16x16",
-      url: "/favicon-16x16.png",
-    },
-  ],
-  manifest: "/site.webmanifest",
+    title: siteName,
+    description: siteName,
+    icons: [
+        {
+            rel: 'icon',
+            type: 'image/png',
+            sizes: '32x32',
+            url: '/favicon-32x32.png',
+        },
+        {
+            rel: 'icon',
+            type: 'image/png',
+            sizes: '16x16',
+            url: '/favicon-16x16.png',
+        },
+    ],
+    manifest: '/site.webmanifest',
 }
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode
+    children: React.ReactNode
 }) {
-  const pathname = decodeURIComponent(
-    headers().get("x-middleware-pathname") ?? ""
-  )
-  const { user, perms } = getEnhancedSession(headers())
+    const pathname = decodeURIComponent(
+        headers().get('x-middleware-pathname') ?? ''
+    )
+    const { user, perms } = getEnhancedSession(headers())
 
+<<<<<<< HEAD
   return (
     <html
       lang="en"
@@ -151,4 +160,59 @@ export default function RootLayout({
       </Box>
     </html>
   )
+=======
+    return (
+        <html
+            lang="en"
+            className={twMerge(rhd.variable, atkinson.variable, rhm.variable)}
+        >
+            <head>
+                {(pathname || '/') === '/' && (
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{
+                            __html: JSON.stringify({
+                                '@context': 'https://schema.org',
+                                '@type': 'Event',
+                                name: 'HackUTA 2024',
+                                image: 'https://hackuta.org/android-chrome-512x512.png',
+                                url: 'https://hackuta.org',
+                                location: {
+                                    type: 'Place',
+                                    address:
+                                        '501 W. Mitchell, Arlington, TX 76010',
+                                    name: 'SWSH',
+                                },
+                                description:
+                                    "HackUTA, one of North Texas' largest hackathons, is a 24-hour marathon for students to design, develop, and pitch a project from scratch.",
+                                organizer: {
+                                    type: 'Organization',
+                                    name: 'The Association for Computing Machinery at UTA',
+                                    url: 'https://acm.uta.edu',
+                                },
+                                startDate: '2024-10-12',
+                                endDate: '2024-10-13',
+                            }),
+                        }}
+                    />
+                )}
+            </head>
+            <Box as="body" direction="column" className="p-2">
+                {/* <ViewAsRoleBanner user={user} /> */}
+                <div className="">
+                    <Vortex
+                        backgroundColor="black"
+                        className=""
+                        baseHue={208}
+                        rangeY={400}
+                    >
+                        <PS2Header user={user} perms={perms} />
+                        <main className="flex-[1]">{children}</main>
+                        <SiteFooter />
+                    </Vortex>
+                </div>
+            </Box>
+        </html>
+    )
+>>>>>>> 5aa7ef1 (Added a formatter and linter to keep code consistent)
 }
