@@ -4,9 +4,9 @@
   width: 100%;
   max-width: 48rem;
   border: 1.5px solid;
-  border-color: var(--color-primary-lighter);
+  border-color: white;
   border-radius: 10px;
-  background-color: rgb(128, 136, 255, 0.1);
+  background-color: rgb(255, 255, 255, 0.1);
   color: #ffffff;
 }
 

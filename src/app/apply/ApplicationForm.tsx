@@ -285,7 +285,10 @@ export function ApplicationForm() {
         text={
           <>
             I have read and agree to the{" "}
-            <Link href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf">
+            <Link
+              className="text-[#8088ff]"
+              href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+            >
               MLH Code of Conduct
             </Link>
             .
@@ -302,13 +305,21 @@ export function ApplicationForm() {
             I authorize you to share my application/registration information
             with Major League Hacking for event administration, ranking, and MLH
             administration in-line with the{" "}
-            <Link href="https://mlh.io/privacy">MLH Privacy Policy</Link>. I
-            further agree to the terms of both the{" "}
-            <Link href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md">
+            <Link className="text-[#8088ff]" href="https://mlh.io/privacy">
+              MLH Privacy Policy
+            </Link>
+            . I further agree to the terms of both the{" "}
+            <Link
+              className="text-[#8088ff]"
+              href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md"
+            >
               MLH Contest Terms and Conditions
             </Link>{" "}
             and the{" "}
-            <Link href="https://mlh.io/privacy">MLH Privacy Policy</Link>.
+            <Link className="text-[#8088ff]" href="https://mlh.io/privacy">
+              MLH Privacy Policy
+            </Link>
+            .
           </>
         }
         errors={errors["agreedMlhSharing"]}
