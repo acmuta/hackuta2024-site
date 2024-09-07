@@ -40,6 +40,7 @@ import { headers } from "next/headers"
 // import { ViewAsRoleBanner } from "./admin/role/ViewAsRoleBanner"
 import SiteFooter from "./SiteFooter"
 import { Vortex } from "@/components/ui/vortex"
+import { Viewport, Metadata } from "next"
 
 /** fonts **/
 // const bungee = Bungee({
@@ -63,13 +64,14 @@ const rhm = Red_Hat_Mono({
   variable: "--font-rhm",
 })
 
-export const metadata = {
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+}
+
+export const metadata: Metadata = {
   title: siteName,
   description: siteName,
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
   icons: [
     {
       rel: "icon",
