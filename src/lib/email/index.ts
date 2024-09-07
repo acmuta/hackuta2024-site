@@ -15,7 +15,7 @@ const {
 
 if (!fromEmail) {
     throw new Error(
-        'Invalid/Missing environment variable: "TRANSACTIONAL_FROM_EMAIL"',
+        'Invalid/Missing environment variable: "TRANSACTIONAL_FROM_EMAIL"'
     )
 }
 

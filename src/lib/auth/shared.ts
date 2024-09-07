@@ -1,6 +1,6 @@
-import { AppPermissions } from "../db/models/Role"
+import { AppPermissions } from '../db/models/Role'
 import type { JsonUser } from '../db/models/User.ts'
-import User from "../db/models/User"
+import User from '../db/models/User'
 
 export type PermissionShape = undefined | true | PermissionShapeObject
 
@@ -43,15 +43,15 @@ export const BuiltInRoles = {
 
 export function hasPermission(
     granted: AppPermissions,
-    required: AppPermissions,
+    required: AppPermissions
 ): boolean
 export function hasPermission(
     granted: PermissionShape,
-    required: PermissionShape,
+    required: PermissionShape
 ): boolean
 export function hasPermission(
     granted: PermissionShape,
-    required: PermissionShape,
+    required: PermissionShape
 ): boolean {
     if (granted === true || required === undefined) {
         return true
@@ -279,18 +279,21 @@ export const RoutePermissions: { matcher: RegExp; perms: AppPermissions }[] = [
 
 export function hasRoutePermission(
     pathname: string,
-    granted: AppPermissions,
+    granted: AppPermissions
 ): boolean {
     return RoutePermissions.every(
         ({ matcher, perms }) =>
-            !matcher.test(pathname) || hasPermission(granted, perms),
+            !matcher.test(pathname) || hasPermission(granted, perms)
     )
 }
 
 export function canAccessDashboard(
     user: User | JsonUser | undefined | null,
-    perms: AppPermissions,
+    perms: AppPermissions
 ): boolean {
-    return !!(user?.applied || user?.checkedIn
-        || hasPermission(perms, { applicationWaived: true }))
+    return !!(
+        user?.applied ||
+        user?.checkedIn ||
+        hasPermission(perms, { applicationWaived: true })
+    )
 }

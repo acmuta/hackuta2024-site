@@ -1,12 +1,12 @@
 export default async function PostLayout({
-	children,
+    children,
 }: {
-	children: React.ReactNode
+    children: React.ReactNode
 }) {
-	return (
-		<>
-			<h1>Posts</h1>
-			{children}
-		</>
-	)
+    return (
+        <>
+            <h1>Posts</h1>
+            {children}
+        </>
+    )
 }

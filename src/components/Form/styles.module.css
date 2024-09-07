@@ -1,49 +1,49 @@
 .input {
-  padding: 0.25rem 0.75rem;
-  border: 2px solid white;
-  border-radius: 0.25rem;
-  background: rgb(255, 255, 255, 0.1);
-  font-family: var(--font-serif);
-  color: white;
+    padding: 0.25rem 0.75rem;
+    border: 2px solid white;
+    border-radius: 0.25rem;
+    background: rgb(255, 255, 255, 0.1);
+    font-family: var(--font-serif);
+    color: white;
 }
 
 .menu:not(#specificity) {
-  background: rgb(255, 255, 255, 0.1);
-  color: white;
+    background: rgb(255, 255, 255, 0.1);
+    color: white;
 }
 
 .singleValue:not(#specificity) {
-  color: white;
+    color: white;
 }
 
 .menuList:not(#specificity) {
-  padding: 0px;
-  background: rgb(18, 23, 88, 0.8);
+    padding: 0px;
+    background: rgb(18, 23, 88, 0.8);
 }
 
 .option:not(#specificity) {
-  color: white;
+    color: white;
 }
 
 .valueContainer:not(#specificity) {
-  color: white;
+    color: white;
 }
 
 .optionFocused:not(#specificity) {
-  background-color: var(--color-primary-lighter);
+    background-color: var(--color-primary-lighter);
 }
 
 .optionSelected:not(#specificity) {
-  background-color: var(--color-outline);
+    background-color: var(--color-outline);
 }
 
 .select:not(#specificity) {
-  border: 2px solid var(--color-primary-lighter);
-  background: rgb(255, 255, 255, 0.1);
+    border: 2px solid var(--color-primary-lighter);
+    background: rgb(255, 255, 255, 0.1);
 }
 
 .focused:not(#specificity) {
-  outline: 4px solid var(--color-outline) !important;
-  outline-offset: -2px;
-  background: rgb(255, 255, 255, 0.1);
+    outline: 4px solid var(--color-outline) !important;
+    outline-offset: -2px;
+    background: rgb(255, 255, 255, 0.1);
 }

@@ -1,17 +1,17 @@
 .adminLayoutRoot {
-	height: 100%;
-	border-top: 2px solid var(--color-primary-darker);
+    height: 100%;
+    border-top: 2px solid var(--color-primary-darker);
 }
 
 .adminLayoutRoot aside {
-	border-right: 2px solid var(--color-primary-darker);
-	padding: 1.5rem;
+    border-right: 2px solid var(--color-primary-darker);
+    padding: 1.5rem;
 }
 
 .adminLayoutRoot aside a {
-	white-space: pre;
+    white-space: pre;
 }
 
 .adminLayoutRoot main {
-	padding: 1.5rem;
+    padding: 1.5rem;
 }
