@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { headers } from 'next/headers'
 import { getEnhancedSession } from '@/lib/utils/server'
 import { AdminNavBar } from './AdminNav'

@@ -1,236 +1,135 @@
-// import { Button } from "@/components/Button"
-// import Image from "next/image"
-// import Link from "next/link"
-
-// export default function Home() {
-//   return (
-//     <div className="flex-col w-full h-screen flex justify-center items-center">
-//       <Link
-//         className="bg-lime-600 px-4 py-2 rounded-md  text-white"
-//         href={"/api/auth/signin"}
-//       >
-//         Sign In
-//       </Link>
-//     </div>
-//   )
-// }
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import './globals.css'
 import { headers } from 'next/headers'
-import { SVGProps } from 'react-html-props'
 
 import { Box } from '@/components/Box'
 import { LinkButton } from '@/components/Button'
 import { HackTicket } from '@/components/Tickets/HackTicket'
-import { LogoTicket, LogoTicketKind } from '@/components/Tickets/LogoTicket'
-import { WavyPattern } from '@/components/WavyPattern'
 import { getEnhancedSession } from '@/lib/utils/server'
 
-import GoogleMyMap from '@/components/GoogleMyMap'
+// import GoogleMyMap from '@/components/GoogleMyMap'
 import Link from 'next/link'
 // import { AllTeams } from "./admin/organizers/OrganizerData"
-import { FaqSection, getFaqs } from './faq/utils';
-import Image from "next/image";
-import { ArrowDown, ArrowRight } from "iconoir-react";
-import Timer from "@/components/Timer";
-import Ps2TextAnimation from "@/components/ps2TextAnimation";
+import { FaqSection, getFaqs } from './faq/utils'
+import Image from 'next/image'
+import { ArrowDown, ArrowRight } from 'iconoir-react'
+import Timer from '@/components/Timer'
+import Ps2TextAnimation from '@/components/ps2TextAnimation'
 // import { MeetTheTeamSection } from "./MeetTheTeamSection"
 
 // https://beta.nextjs.org/docs/api-reference/segment-config#dynamic
 // We read from the database on this route, so this has to be dynamic.
 export const dynamic = 'force-dynamic'
 
-type SeparatorProps = SVGProps;
-const Separator = ({ ...props }: SeparatorProps) => {
-    return (
-        <svg
-            width="1572"
-            height="10"
-            viewBox="0 0 1572 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden
-            {...props}
-        >
-            <line
-                y1="6"
-                x2="1572"
-                y2="6"
-                stroke="rgb(0,0,0,.3)"
-                strokeWidth="10"
-                strokeDasharray="24 24"
-            />
-        </svg>
-    )
-}
-
-type CTAArrowProps = SVGProps;
-const CTAArrow = ({ ...props }: CTAArrowProps) => {
-    return (
-        <svg
-            width="131"
-            height="137"
-            viewBox="0 0 131 137"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            {...props}
-        >
-            <g filter="url(#filter0_d_1_855)">
-                <path
-                    d="M10.7274 4.37185C9.82812 1.76097 6.98256 0.373457 4.37167 1.27276C1.76079 2.17206 0.373274 5.01763 1.27258 7.62851L10.7274 4.37185ZM121.536 95.0357C123.488 93.0831 123.488 89.9173 121.536 87.9646L89.7157 56.1448C87.7631 54.1922 84.5973 54.1922 82.6447 56.1448C80.6921 58.0975 80.6921 61.2633 82.6447 63.2159L110.929 91.5002L82.6447 119.784C80.6921 121.737 80.6921 124.903 82.6447 126.856C84.5973 128.808 87.7631 128.808 89.7157 126.856L121.536 95.0357ZM1.27258 7.62851C9.12479 30.4254 19.8402 52.7336 38.0036 69.3176C56.3116 86.0336 81.7007 96.5002 118 96.5002V86.5002C83.7993 86.5002 60.9384 76.7168 44.7463 61.9328C28.4097 47.0167 18.3751 26.575 10.7274 4.37185L1.27258 7.62851Z"
-                    fill="#130D08"
-                />
-            </g>
-            <defs>
-                <filter
-                    id="filter0_d_1_855"
-                    x="0.998627"
-                    y="0.99881"
-                    width="130.001"
-                    height="135.321"
-                    filterUnits="userSpaceOnUse"
-                    colorInterpolationFilters="sRGB"
-                >
-                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                    <feColorMatrix
-                        in="SourceAlpha"
-                        type="matrix"
-                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                        result="hardAlpha"
-                    />
-                    <feOffset dx="8" dy="8" />
-                    <feComposite in2="hardAlpha" operator="out" />
-                    <feColorMatrix
-                        type="matrix"
-                        values="0 0 0 0 0.0705882 0 0 0 0 0.184314 0 0 0 0 0.298039 0 0 0 0.25 0"
-                    />
-                    <feBlend
-                        mode="normal"
-                        in2="BackgroundImageFix"
-                        result="effect1_dropShadow_1_855"
-                    />
-                    <feBlend
-                        mode="normal"
-                        in="SourceGraphic"
-                        in2="effect1_dropShadow_1_855"
-                        result="shape"
-                    />
-                </filter>
-            </defs>
-        </svg>
-    )
-}
-
 export async function Landing() {
     // const startDate = new Date('10/07/2023 06:00:00')
     // const endDate = new Date('10/08/2023 18:00:00')
     // const events = await getEvents()
-    const faqs = await getFaqs();
-    const sponsors = [
-        {
-            companyName: 'Mouser Electronics',
-            companyUrl: 'https://www.mouser.com/',
-            imageUrl: '/images/Sponsors/mouser-electronics.svg',
-            kind: 'Sponsor',
-        },
-        {
-            companyName: 'UTA CSE Department',
-            companyUrl:
-                'https://www.uta.edu/academics/schools-colleges/engineering/academics/departments/cse',
-            imageUrl: '/images/Sponsors/utacse.png',
-            kind: 'Sponsor',
-        },
-        {
-            companyName: 'StateFarm',
-            companyUrl: 'https://www.statefarm.com/',
-            imageUrl: '/images/Sponsors/State-Farm-Logo.png',
-            kind: 'Sponsor',
-        },
-        {
-            companyName: 'GitHub',
-            companyUrl: 'https://github.com/',
-            imageUrl: '/images/Sponsors/github.svg',
-            kind: 'Sponsor',
-        },
-        {
-            companyName: 'UTA ISO',
-            companyUrl: 'https://www.uta.edu/security/',
-            imageUrl: '/images/Sponsors/utaiso.png',
-            kind: 'Sponsor',
-        },
-        {
-            companyName: 'ACM UTA',
-            companyUrl: 'https://acm.uta.edu',
-            imageUrl: '/images/Sponsors/acmuta.png',
-            kind: 'Sponsor',
-        },
-    ];
+    const faqs = await getFaqs()
+    // const sponsors = [
+    //     {
+    //         companyName: 'Mouser Electronics',
+    //         companyUrl: 'https://www.mouser.com/',
+    //         imageUrl: '/images/Sponsors/mouser-electronics.svg',
+    //         kind: 'Sponsor',
+    //     },
+    //     {
+    //         companyName: 'UTA CSE Department',
+    //         companyUrl:
+    //             'https://www.uta.edu/academics/schools-colleges/engineering/academics/departments/cse',
+    //         imageUrl: '/images/Sponsors/utacse.png',
+    //         kind: 'Sponsor',
+    //     },
+    //     {
+    //         companyName: 'StateFarm',
+    //         companyUrl: 'https://www.statefarm.com/',
+    //         imageUrl: '/images/Sponsors/State-Farm-Logo.png',
+    //         kind: 'Sponsor',
+    //     },
+    //     {
+    //         companyName: 'GitHub',
+    //         companyUrl: 'https://github.com/',
+    //         imageUrl: '/images/Sponsors/github.svg',
+    //         kind: 'Sponsor',
+    //     },
+    //     {
+    //         companyName: 'UTA ISO',
+    //         companyUrl: 'https://www.uta.edu/security/',
+    //         imageUrl: '/images/Sponsors/utaiso.png',
+    //         kind: 'Sponsor',
+    //     },
+    //     {
+    //         companyName: 'ACM UTA',
+    //         companyUrl: 'https://acm.uta.edu',
+    //         imageUrl: '/images/Sponsors/acmuta.png',
+    //         kind: 'Sponsor',
+    //     },
+    // ]
 
-  const partners = [
-    {
-      companyName: "Major\xa0League Hacking",
-      companyUrl: "https://mlh.io/",
-      imageUrl: "/images/Partners/mlh-logo-color-dark.svg",
-      kind: "Partner",
-    },
-    {
-      companyName: "Mathworks",
-      companyUrl: "https://www.mathworks.com/",
-      imageUrl: "/images/Partners/mathworks.png",
-      kind: "Partner",
-    },
-    {
-      companyName: "Wolfram",
-      companyUrl: "https://www.wolfram.com/",
-      imageUrl: "/images/Partners/wolfram.png",
-      kind: "Partner",
-    },
-    {
-      companyName: "Rosenfeld",
-      companyUrl: "https://rosenfeldmedia.com/",
-      imageUrl: "/images/Partners/rosenfeld.png",
-      kind: "Partner",
-    },
-    {
-      companyName: "Standout Stickers",
-      companyUrl: "http://hackp.ac/mlh-StandOutStickers-hackathons",
-      imageUrl: "/images/Partners/standout-stickers.png",
-      kind: "Partner",
-    },
-    {
-      companyName: "echo3D",
-      companyUrl: "https://www.echo3d.com",
-      imageUrl: "/images/Partners/echo3d.png",
-      kind: "Partner",
-    },
-  ]
+    // const partners = [
+    //     {
+    //         companyName: 'Major\xa0League Hacking',
+    //         companyUrl: 'https://mlh.io/',
+    //         imageUrl: '/images/Partners/mlh-logo-color-dark.svg',
+    //         kind: 'Partner',
+    //     },
+    //     {
+    //         companyName: 'Mathworks',
+    //         companyUrl: 'https://www.mathworks.com/',
+    //         imageUrl: '/images/Partners/mathworks.png',
+    //         kind: 'Partner',
+    //     },
+    //     {
+    //         companyName: 'Wolfram',
+    //         companyUrl: 'https://www.wolfram.com/',
+    //         imageUrl: '/images/Partners/wolfram.png',
+    //         kind: 'Partner',
+    //     },
+    //     {
+    //         companyName: 'Rosenfeld',
+    //         companyUrl: 'https://rosenfeldmedia.com/',
+    //         imageUrl: '/images/Partners/rosenfeld.png',
+    //         kind: 'Partner',
+    //     },
+    //     {
+    //         companyName: 'Standout Stickers',
+    //         companyUrl: 'http://hackp.ac/mlh-StandOutStickers-hackathons',
+    //         imageUrl: '/images/Partners/standout-stickers.png',
+    //         kind: 'Partner',
+    //     },
+    //     {
+    //         companyName: 'echo3D',
+    //         companyUrl: 'https://www.echo3d.com',
+    //         imageUrl: '/images/Partners/echo3d.png',
+    //         kind: 'Partner',
+    //     },
+    // ]
 
-    const specialThanks = [
-        {
-            companyName: 'HackUTD',
-            companyUrl: 'https://hackutd.co/',
-            imageUrl: '/images/SpecialThanks/hackutd.png',
-            kind: 'SpecialThanks',
-        },
-        {
-            companyName: 'HackTX',
-            companyUrl: 'https://hacktx.com/',
-            imageUrl: '/images/SpecialThanks/hacktx23.svg',
-            kind: 'SpecialThanks',
-        },
-        {
-            companyName: 'MOBI at UTA',
-            companyUrl: 'https://mobi.uta.edu',
-            imageUrl: '/images/SpecialThanks/mobi.png',
-            kind: 'SpecialThanks',
-        },
-        {
-            companyName: 'CSEC at UTA',
-            companyUrl: 'https://utacsec.org',
-            imageUrl: '/images/SpecialThanks/csec.png',
-            kind: 'SpecialThanks',
-        },
-    ];
+    // const specialThanks = [
+    //     {
+    //         companyName: 'HackUTD',
+    //         companyUrl: 'https://hackutd.co/',
+    //         imageUrl: '/images/SpecialThanks/hackutd.png',
+    //         kind: 'SpecialThanks',
+    //     },
+    //     {
+    //         companyName: 'HackTX',
+    //         companyUrl: 'https://hacktx.com/',
+    //         imageUrl: '/images/SpecialThanks/hacktx23.svg',
+    //         kind: 'SpecialThanks',
+    //     },
+    //     {
+    //         companyName: 'MOBI at UTA',
+    //         companyUrl: 'https://mobi.uta.edu',
+    //         imageUrl: '/images/SpecialThanks/mobi.png',
+    //         kind: 'SpecialThanks',
+    //     },
+    //     {
+    //         companyName: 'CSEC at UTA',
+    //         companyUrl: 'https://utacsec.org',
+    //         imageUrl: '/images/SpecialThanks/csec.png',
+    //         kind: 'SpecialThanks',
+    //     },
+    // ]
 
     const { user } = getEnhancedSession(headers())
 
@@ -423,95 +322,99 @@ export async function Landing() {
 				</div> */}
             </Box>
         </>
-    );
+    )
 }
 interface info {
-  title: string;
-  url: string;
+    title: string
+    url: string
 }
 const SubContent = (info: info, i: number) => {
-  return (
-    <Link key={i} href={info.url} className="no-underline">
-      <div className="cursor-pointer ">
-        <div className="border-white border-2 rounded-2xl p-3 min-w-20 min-h-20 md:min-w-32 md:min-h-32  bg-white/5 backdrop-blur-sm"></div>
-        <div className="flex flex-1 justify-center items-center mt-1">
-          <p className="text-sm md:text-lg text-white/60">{info.title}</p>
-        </div>
-      </div>
-    </Link>
-  );
-};
+    return (
+        <Link key={i} href={info.url} className="no-underline">
+            <div className="cursor-pointer ">
+                <div className="border-white border-2 rounded-2xl p-3 min-w-20 min-h-20 md:min-w-32 md:min-h-32  bg-white/5 backdrop-blur-sm"></div>
+                <div className="flex flex-1 justify-center items-center mt-1">
+                    <p className="text-sm md:text-lg text-white/60">
+                        {info.title}
+                    </p>
+                </div>
+            </div>
+        </Link>
+    )
+}
 
 export default function LandingPageContent() {
-  const SubContentInfo = [
-    {
-      title: "Apply",
-      url: "/apply",
-    },
-    {
-      title: "FAQ",
-      url: "/faq",
-    },
-    {
-      title: "About Us",
-      url: "/",
-    },
-    {
-      title: "What's New",
-      url: "/",
-    },
-    {
-      title: "Discord",
-      url: "/discord",
-    },
-  ];
-  return (
-    <div className="flex h-[70vh] justify-center items-center">
-      {/* The Landing Animation ps2 themed */}
-      <Ps2TextAnimation />
-      <div className="  flex flex-col sm:flex-row md:flex-col lg:flex-row w-full justify-center items-center sm:items-center lg:item-start  sm:pt-0">
-        <div className=" flex flex-[0.5] justify-center items-center">
-          <div>
-            <div className="flex flex-1 flex-col border-white border-2 rounded-2xl p-3 justify-center items-center">
-              <Image
-                src={"/Assets/hackutalogo.png"}
-                height={0}
-                width={0}
-                alt=""
-                className="min-w-40 sm:min-w-40 md: lg:min-w-80 "
-                unoptimized
-              />
-              <div className="flex flex-1 justify-center items-center">
-                <ArrowRight
-                  strokeWidth={4}
-                  className="w-[52px] h-[52px] text-white hidden md:hidden lg:inline"
-                />
-                <ArrowDown
-                  strokeWidth={4}
-                  className="w-[52px] h-[52px] text-white lg:hidden"
-                />
-              </div>
+    const SubContentInfo = [
+        {
+            title: 'Apply',
+            url: '/apply',
+        },
+        {
+            title: 'FAQ',
+            url: '/faq',
+        },
+        {
+            title: 'About Us',
+            url: '/',
+        },
+        {
+            title: "What's New",
+            url: '/',
+        },
+        {
+            title: 'Discord',
+            url: '/discord',
+        },
+    ]
+    return (
+        <div className="flex h-[70vh] justify-center items-center">
+            {/* The Landing Animation ps2 themed */}
+            <Ps2TextAnimation />
+            <div className="  flex flex-col sm:flex-row md:flex-col lg:flex-row w-full justify-center items-center sm:items-center lg:item-start  sm:pt-0">
+                <div className=" flex flex-[0.5] justify-center items-center">
+                    <div>
+                        <div className="flex flex-1 flex-col border-white border-2 rounded-2xl p-3 justify-center items-center">
+                            <Image
+                                src={'/Assets/hackutalogo.png'}
+                                height={0}
+                                width={0}
+                                alt=""
+                                className="min-w-40 sm:min-w-40 md: lg:min-w-80 "
+                                unoptimized
+                            />
+                            <div className="flex flex-1 justify-center items-center">
+                                <ArrowRight
+                                    strokeWidth={4}
+                                    className="w-[52px] h-[52px] text-white hidden md:hidden lg:inline"
+                                />
+                                <ArrowDown
+                                    strokeWidth={4}
+                                    className="w-[52px] h-[52px] text-white lg:hidden"
+                                />
+                            </div>
+                        </div>
+                        <div className="flex flex-1 justify-center items-center mt-5">
+                            <p className="text-xl text-white/60">
+                                Offical HackUTA CountDown
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex flex-col-reverse flex-1 w-full justify-center items-center sm:flex-col-reverse md:flex-col ">
+                    <div className=" flex  gap-5 flex-wrap sm:flex-nowrap items-center justify-center sm:scale-75 px-10">
+                        {SubContentInfo.map((data, i) => {
+                            return SubContent(data, i)
+                        })}
+                    </div>
+                    <div className=" flex flex-1  ">
+                        <div className="flex flex-1 items-center mt-5">
+                            {/* <p className="text-5xl font-bold text-black"> */}
+                            <Timer />
+                            {/* </p> */}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="flex flex-1 justify-center items-center mt-5">
-              <p className="text-xl text-white/60">Offical HackUTA CountDown</p>
-            </div>
-          </div>
         </div>
-        <div className="flex flex-col-reverse flex-1 w-full justify-center items-center sm:flex-col-reverse md:flex-col ">
-          <div className=" flex  gap-5 flex-wrap sm:flex-nowrap items-center justify-center sm:scale-75 px-10">
-            {SubContentInfo.map((data, i) => {
-              return SubContent(data, i);
-            })}
-          </div>
-          <div className=" flex flex-1  ">
-            <div className="flex flex-1 items-center mt-5">
-              {/* <p className="text-5xl font-bold text-black"> */}
-              <Timer />
-              {/* </p> */}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    )
 }
