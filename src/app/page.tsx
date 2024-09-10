@@ -424,9 +424,9 @@ interface info {
   title: string;
   url: string;
 }
-const SubContent = (info: info) => {
+const SubContent = (info: info, i: number) => {
   return (
-    <Link href={info.url} className="no-underline">
+    <Link key={i} href={info.url} className="no-underline">
       <div className="cursor-pointer ">
         <div className="border-white border-2 rounded-2xl p-3 min-w-20 min-h-20 md:min-w-32 md:min-h-32  bg-white/5 backdrop-blur-sm"></div>
         <div className="flex flex-1 justify-center items-center mt-1">
@@ -445,19 +445,19 @@ export default function LandingPageContent() {
     },
     {
       title: "FAQ",
-      url: "",
+      url: "/faq",
     },
     {
       title: "About Us",
-      url: "",
+      url: "/",
     },
     {
       title: "What's New",
-      url: "",
+      url: "/",
     },
     {
       title: "Discord",
-      url: "",
+      url: "/discord",
     },
   ];
   return (
@@ -495,7 +495,7 @@ export default function LandingPageContent() {
         <div className="flex flex-col-reverse flex-1 w-full justify-center items-center sm:flex-col-reverse md:flex-col ">
           <div className=" flex  gap-5 flex-wrap sm:flex-nowrap items-center justify-center sm:scale-75 px-10">
             {SubContentInfo.map((data, i) => {
-              return SubContent(data);
+              return SubContent(data, i);
             })}
           </div>
           <div className=" flex flex-1  ">

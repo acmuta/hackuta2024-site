@@ -45,9 +45,10 @@ export const isCountdownOver = () => {
 
 export type CountdownProps = DivProps;
 
-const CountDownNumberWrapper = (numbers: number) => {
+const CountDownNumberWrapper = (numbers: number, i: number) => {
   return (
     <span
+      key={i}
       suppressHydrationWarning
       className={
         " border-white/30 border-[1px] rounded-sm p-3 mx-1 min-w-32 min-h-32  backdrop-blur-lg bg-black/5"
@@ -142,14 +143,14 @@ const Countdown: React.FC = ({ className }: CountdownProps) => {
       <div className={`flex gap-x-8 ${className} text-6xl`}>
         <div className="inline-block ">
           {digitsDays.map((data, i) => {
-            return CountDownNumberWrapper(data);
+            return CountDownNumberWrapper(data, i);
           })}
           {/* <span className="text-sm lowercase">days</span> */}
           {/* <span className="font-normal mx-2">·</span> */}
         </div>
         <div className="inline-block">
           {digitsHours.map((data, i) => {
-            return CountDownNumberWrapper(data);
+            return CountDownNumberWrapper(data, i);
           })}
           {/* <span suppressHydrationWarning>{countdown.hours}</span> */}
           {/* <span className="text-sm">h</span> */}
@@ -157,7 +158,7 @@ const Countdown: React.FC = ({ className }: CountdownProps) => {
         </div>
         <div className="inline-block">
           {digitsMinutes.map((data, i) => {
-            return CountDownNumberWrapper(data);
+            return CountDownNumberWrapper(data, i);
           })}
           {/* <span suppressHydrationWarning>{countdown.minutes}</span> */}
           {/* <span className="text-sm">m</span> */}
@@ -165,7 +166,7 @@ const Countdown: React.FC = ({ className }: CountdownProps) => {
         </div>
         <div className="inline-block">
           {digitsSeconds.map((data, i) => {
-            return CountDownNumberWrapper(data);
+            return CountDownNumberWrapper(data, i);
           })}
           {/* <span suppressHydrationWarning>{countdown.seconds}</span> */}
           {/* <span className="text-sm">s</span> */}
