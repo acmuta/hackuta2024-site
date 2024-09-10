@@ -319,3 +319,63 @@ table.borderTable,
     @apply bg-background text-foreground;
   }
 }
+
+.ps2 {
+  display: inline-flex;
+  color: #ffffff;
+  /* font-size: 130px; */
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.ps2 span {
+  text-shadow: 0px 0px 2px #ffffff, 1px 1px 4px rgba(0, 0, 0, 0.7);
+  animation: smoke 0.3s linear backwards;
+  animation-delay: calc(0.1s * var(--index));
+}
+
+/* Let's create animation */
+@keyframes smoke {
+  0% {
+    color: transparent;
+    opacity: 0;
+    text-shadow: 0px 0px 100px #ffffff;
+  }
+  90% {
+    color: transparent;
+    opacity: 0.9;
+    text-shadow: 0px 0px 10px #ffffff;
+  }
+  100% {
+    color: #ffffff;
+    opacity: 1;
+    text-shadow: 0px 0px 2px #ffffff, 1px 1px 4px rgba(0, 0, 0, 0.7);
+  }
+}
+
+.ps2 {
+  background: 50% 100% / 50% 50% no-repeat
+    radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  height: full;
+  /* font-size: 10vw; */
+  font-family: "__PS2Font_cbef7e", sans-serif;
+  letter-spacing: 3px;
+  animation: reveal 3000ms ease-in-out forwards 200ms,
+    glow 2500ms linear infinite 2000ms;
+}
+@keyframes reveal {
+  80% {
+    letter-spacing: 8px;
+  }
+  100% {
+    background-size: 300% 300%;
+  }
+}
+@keyframes glow {
+  40% {
+    text-shadow: 0 0 8px #fff;
+  }
+}
