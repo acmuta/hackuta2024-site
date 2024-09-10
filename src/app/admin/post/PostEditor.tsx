@@ -11,7 +11,7 @@ import { zodEnumToOptions } from '@/lib/utils/shared'
 import { MarkDownEditor } from './MarkDownEditor'
 import { NameSlugInput } from './NameSlugInput'
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface PostEditorProps extends Partial<Post> {}
 
 export default function PostEditor({

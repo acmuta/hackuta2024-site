@@ -7,12 +7,13 @@ import { Check, NavArrowDown, Prohibition } from 'iconoir-react'
 import { ReactNode } from 'react'
 import { twJoin } from 'tailwind-merge'
 
-const PermissionOptions = Object.freeze([
-    'Partial',
-    'Granted',
-    'Omitted',
-] as const)
-export type PermissionOption = (typeof PermissionOptions)[number]
+// const PermissionOptions = Object.freeze([
+//     'Partial',
+//     'Granted',
+//     'Omitted',
+// ] as const)
+// export type PermissionOption = (typeof PermissionOptions)[number]
+export type PermissionOption = 'Partial' | 'Granted' | 'Omitted'
 
 export interface PermissionToggleProps {
     name: string

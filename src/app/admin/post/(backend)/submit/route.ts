@@ -9,6 +9,8 @@ export async function POST(request: Request) {
     try {
         // Convert form data to regular object.
         const formData = await request.formData()
+        // Allowing any for varying nature of form data (validation already enforced)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const bodyObj: Record<string, any> = Object.fromEntries(formData)
         if ('priority' in bodyObj) {
             bodyObj.priority = parseInt(bodyObj.priority)

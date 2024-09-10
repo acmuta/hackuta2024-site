@@ -200,7 +200,6 @@ export const MLHTrustBadge = ({
         <Link
             href={`https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2025-season&utm_content=${color}`}
         >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
                 src={`https://s3.amazonaws.com/logged-assets/trust-badge/2025/mlh-trust-badge-2025-${color}.svg`}
                 alt="Major League Hacking 2025 Hackathon Season"

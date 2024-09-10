@@ -1,87 +1,7 @@
-// import NextAuth from 'next-auth'
-// import { authOptions } from '@/lib/auth/options'
-
-// import { NextApiRequest, NextApiResponse } from 'next'
-// import clientPromise from '@/lib/db'
-// import { getServerUser } from '@/lib/auth/options'
-// import { getUserPerms } from '@/lib/auth/server'
-// import { randomInt } from 'crypto'
-// import User from '@/lib/db/models/User'
-// import logger from '@/lib/logger'
-// import { BuiltInRoles, EnhancedSession } from "@/lib/auth/server"
-// import { NextRequest, NextResponse } from 'next/server'
-
-// async function auth(req: NextApiRequest, res: NextApiResponse) {
-//     // https://next-auth.js.org/tutorials/avoid-corporate-link-checking-email-provider
-//     if (req.method === 'HEAD') {
-//         return res.status(200).end()
-//     }
-
-//     const routeName = 'enhanced-session'
-//     if (
-//         req.query.nextauth?.length === 1 && req.query.nextauth[0] === routeName
-//     ) {
-//         console.log('auth helooooo')
-//         try {
-//             const client = await clientPromise
-//             // This is the only place where getServerUser should be used
-//             // All other instances of getServerUser should be replaced by getEnhancedSession
-//             const user = await getServerUser(client, req, res)
-//             const perms = await getUserPerms(user)
-//             if (user?.application) {
-//                 user.application.resume = user.application.resume ? 'exists' : ''
-//             }
-//             if (user && (!user.checkInPin || user.checkInPin < 100_000)) {
-//                 // Generate check-in PIN
-//                 for (let i = 0; i < 3; i++) {
-//                     // Retry at most two times.
-//                     try {
-//                         const pin = randomInt(100_000, 999_999)
-//                         await client
-//                             .db()
-//                             .collection<User>('users')
-//                             .updateOne(
-//                                 { email: user.email },
-//                                 { $set: { checkInPin: pin } },
-//                             )
-//                         user.checkInPin = pin
-//                         break
-//                     } catch (_ignored) {
-//                         // Ignore
-//                     }
-//                 }
-//             }
-//             return res.status(200).json({
-//                 user,
-//                 perms,
-//             })
-//         } catch (e) {
-//             logger.error(e, `[/api/auth/${routeName}]`)
-//             console.error("enhanced session", e)
-//             return res.status(200).json(
-//                 {
-//                     user: null,
-//                     perms: BuiltInRoles['@@base'],
-//                 } satisfies EnhancedSession,
-//             )
-//         }
-//     }
-
-//     return NextAuth(req, res, authOptions)
-// }
-
-// // const handler = auth()
-// export const GET = auth
-// export const POST = auth
-
-// // export default auth
-// // export { handler as GET, handler as POST }
-
 import { MongoDBAdapter } from '@auth/mongodb-adapter'
 import { MongoClient, WithId } from 'mongodb'
 import { NextApiRequest, NextApiResponse } from 'next'
 import NextAuth, { AuthOptions, getServerSession } from 'next-auth'
-// import { OAuthConfig, OAuthUserConfig } from 'next-auth/providers'
 import { OAuthUserConfig, OAuthConfig } from 'next-auth/providers/oauth'
 import DiscordProvider from 'next-auth/providers/discord'
 import EmailProvider from 'next-auth/providers/email'
@@ -106,6 +26,7 @@ if (!secret) {
 
 const SupportedProviders = new Map<
     string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (options: OAuthUserConfig<any>) => OAuthConfig<any>
 >([
     ['discord', DiscordProvider],
@@ -113,6 +34,8 @@ const SupportedProviders = new Map<
     ['google', GoogleProvider],
 ])
 
+// Allowing any because invoking the provider casts the proper type.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function* getOAuthProviders(): Generator<OAuthConfig<any>> {
     for (const [name, provider] of SupportedProviders) {
         const idEnvName = `OAUTH_${name.toUpperCase()}_ID`
@@ -189,7 +112,7 @@ ${siteName} Team`,
 export async function getServerUser(
     client: MongoClient,
     req?: NextApiRequest,
-    res?: NextApiResponse<any>
+    res?: NextApiResponse<unknown>
 ): Promise<WithId<User> | null> {
     try {
         const session = await getServerSession(
@@ -244,6 +167,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
                         break
                     } catch (_ignored) {
                         // Ignore
+                        console.log(_ignored)
                     }
                 }
             }

@@ -1,7 +1,4 @@
 import type { NextRequest } from 'next/server'
-import logger from '@/lib/logger'
-
-import { withAuth } from 'next-auth/middleware'
 import { NextResponse } from 'next/server'
 
 import {

@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import tailwindcssAnimate from 'tailwindcss-animate'
 
 const shadow = '4px 4px 0 rgba(110, 13, 37, 0.25)'
 
@@ -149,7 +150,7 @@ const config: Config = {
             },
         },
     },
-    plugins: [require('tailwindcss-animate')],
+    plugins: [tailwindcssAnimate],
 } satisfies Config
 
 export default config

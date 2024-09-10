@@ -19,6 +19,7 @@ export const EventSchema = z.object({
 
 export type EventModel = z.infer<typeof EventSchema>
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export default interface Event extends EventModel {}
 
 export type JsonEvents = ToJsonValue<WithId<EventModel>>

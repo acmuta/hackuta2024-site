@@ -3,7 +3,7 @@
 import { DivProps } from 'react-html-props'
 
 import { JsonUser } from '@/lib/db/models/User'
-import { getGroupName, printRoles } from '@/lib/utils/shared'
+import { getGroupName } from '@/lib/utils/shared'
 import Countdown, { isCountdownOver } from '../Countdown'
 
 export type HackTicketProps = DivProps & {
@@ -15,7 +15,7 @@ export const HackTicket = ({ className, user }: HackTicketProps) => {
         : user?.checkInPin
           ? '/qrcode/check-in'
           : '/images/noqrcode.svg'
-    const countdownOver = false && isCountdownOver()
+    const countdownOver = isCountdownOver()
     const status =
         (user?.applicationStatus === 'waitlisted'
             ? undefined
@@ -39,6 +39,7 @@ export const HackTicket = ({ className, user }: HackTicketProps) => {
             case 'Unknown':
             default:
                 suite = ''
+                console.log(suite)
                 break
         }
     }
@@ -52,7 +53,6 @@ export const HackTicket = ({ className, user }: HackTicketProps) => {
                 <div className="my-2.5 px-4 gap-0.5 flex flex-col font-semibold text-3xl text-white">
                     {countdownOver ? (
                         <div className="flex flex-col gap-2 items-center">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src={qrCodePath}
                                 alt="ID QR code"
@@ -174,7 +174,6 @@ export const HackTicket = ({ className, user }: HackTicketProps) => {
               </div>
               <div className="h-32 mt-2">
                 <div className={`w-32 h-32`}> */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 {/* <img src={qrCodePath} alt="ID QR code" className="h-full" />
                 </div>
               </div>

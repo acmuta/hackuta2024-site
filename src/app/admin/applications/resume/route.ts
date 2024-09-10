@@ -48,6 +48,7 @@ export async function GET() {
             // interface.
             Readable.toWeb(
                 new Readable().wrap(nodeLegacyStream)
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ) as ReadableStream<any>,
             {
                 headers: {

@@ -133,6 +133,7 @@ export default function FaqEditor({ faqs }: FaqEditorProps) {
                     ]}
                     selectProps={{
                         value: next,
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         onChange: (v) => setNext(v as any),
                     }}
                 />

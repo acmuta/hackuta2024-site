@@ -69,6 +69,21 @@ export async function addRoles(
     return user
 }
 
+export async function countDocuments<T extends MongoDocument>(
+    client: MongoClient,
+    collection: string,
+    withId = false
+): Promise<number> {
+    const query = withId ? {} : { _id: { $exists: false } }
+
+    const options = withId ? {} : { projection: { _id: 0 }, maxTimeMS: 60000 }
+
+    return await client
+        .db()
+        .collection<T>(collection)
+        .countDocuments(query, options)
+}
+
 export async function getAllDocuments<T extends MongoDocument>(
     client: MongoClient,
     collection: string,
@@ -99,12 +114,16 @@ export async function paginateDocuments<T extends Document>(
     collection: string,
     { limit, after }: { limit: number; after?: ObjectId }
 ): Promise<T[]> {
-    return (await client
-        .db()
-        .collection<T>(collection)
-        .find({ _id: { $gt: after as any } })
-        .limit(limit)
-        .toArray()) as T[]
+    return (
+        (await client
+            .db()
+            .collection<T>(collection)
+            // Using any as TypeScript can't infer types for MongoDB filters properly
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .find({ _id: { $gt: after as any } })
+            .limit(limit)
+            .toArray()) as T[]
+    )
 }
 
 export const { SITE_NAME: siteName, SITE_URL: siteUrl } = process.env

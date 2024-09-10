@@ -10,6 +10,7 @@ import {
 import logger from '@/lib/logger'
 import { stringifyError } from '@/lib/utils/shared'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const BodySchema = z.object({
     emails: z.string().array(),
     decision: z.enum(['accepted', 'rejected', 'waitlisted']),
