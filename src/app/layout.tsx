@@ -35,7 +35,6 @@ import { twMerge } from "tailwind-merge"
 import { Box } from "@/components/Box"
 import { PS2Header } from "@/components/PS2Header"
 import { getEnhancedSession, siteName } from "@/lib/utils/server"
-
 import { headers } from "next/headers"
 // import { ViewAsRoleBanner } from "./admin/role/ViewAsRoleBanner"
 import SiteFooter from "./SiteFooter"
@@ -52,6 +51,7 @@ const rhd = Red_Hat_Display({
   weight: ["900"],
   variable: "--font-rhd",
 })
+
 const atkinson = Atkinson_Hyperlegible({
   subsets: ["latin-ext"],
   weight: ["400", "700"],
@@ -132,7 +132,7 @@ export default function RootLayout({
           />
         )}
       </head>
-      <Box as="body" direction="column" className="p-2">
+      <Box as="body" direction="column" className="py-2">
         {/* <ViewAsRoleBanner user={user} /> */}
         <div className="">
           <Vortex

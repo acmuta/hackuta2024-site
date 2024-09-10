@@ -15,28 +15,32 @@
 //   )
 // }
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import "./globals.css"
-import { headers } from "next/headers"
-import { SVGProps } from "react-html-props"
+import "./globals.css";
+import { headers } from "next/headers";
+import { SVGProps } from "react-html-props";
 
-import { Box } from "@/components/Box"
-import { LinkButton } from "@/components/Button"
-import { HackTicket } from "@/components/Tickets/HackTicket"
-import { LogoTicket, LogoTicketKind } from "@/components/Tickets/LogoTicket"
-import { WavyPattern } from "@/components/WavyPattern"
-import { getEnhancedSession } from "@/lib/utils/server"
+import { Box } from "@/components/Box";
+import { LinkButton } from "@/components/Button";
+import { HackTicket } from "@/components/Tickets/HackTicket";
+import { LogoTicket, LogoTicketKind } from "@/components/Tickets/LogoTicket";
+import { WavyPattern } from "@/components/WavyPattern";
+import { getEnhancedSession } from "@/lib/utils/server";
 
-import GoogleMyMap from "@/components/GoogleMyMap"
-import Link from "next/link"
+import GoogleMyMap from "@/components/GoogleMyMap";
+import Link from "next/link";
 // import { AllTeams } from "./admin/organizers/OrganizerData"
-import { FaqSection, getFaqs } from "./faq/utils"
+import { FaqSection, getFaqs } from "./faq/utils";
+import Image from "next/image";
+import { ArrowDown, ArrowRight } from "iconoir-react";
+import Timer from "@/components/Timer";
+import Ps2TextAnimation from "@/components/ps2TextAnimation";
 // import { MeetTheTeamSection } from "./MeetTheTeamSection"
 
 // https://beta.nextjs.org/docs/api-reference/segment-config#dynamic
 // We read from the database on this route, so this has to be dynamic.
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 
-type SeparatorProps = SVGProps
+type SeparatorProps = SVGProps;
 const Separator = ({ ...props }: SeparatorProps) => {
   return (
     <svg
@@ -57,10 +61,10 @@ const Separator = ({ ...props }: SeparatorProps) => {
         strokeDasharray="24 24"
       />
     </svg>
-  )
-}
+  );
+};
 
-type CTAArrowProps = SVGProps
+type CTAArrowProps = SVGProps;
 const CTAArrow = ({ ...props }: CTAArrowProps) => {
   return (
     <svg
@@ -114,14 +118,14 @@ const CTAArrow = ({ ...props }: CTAArrowProps) => {
         </filter>
       </defs>
     </svg>
-  )
-}
+  );
+};
 
-export default async function Landing() {
+export async function Landing() {
   // const startDate = new Date('10/07/2023 06:00:00')
   // const endDate = new Date('10/08/2023 18:00:00')
   // const events = await getEvents()
-  const faqs = await getFaqs()
+  const faqs = await getFaqs();
   const sponsors = [
     {
       companyName: "Mouser Electronics",
@@ -160,7 +164,7 @@ export default async function Landing() {
       imageUrl: "/images/Sponsors/acmuta.png",
       kind: "Sponsor",
     },
-  ]
+  ];
 
   const partners = [
     {
@@ -199,7 +203,7 @@ export default async function Landing() {
       imageUrl: "/images/Partners/echo3d.png",
       kind: "Partner",
     },
-  ]
+  ];
 
   const specialThanks = [
     {
@@ -226,17 +230,17 @@ export default async function Landing() {
       imageUrl: "/images/SpecialThanks/csec.png",
       kind: "SpecialThanks",
     },
-  ]
+  ];
 
-  const { user } = getEnhancedSession(headers())
+  const { user } = getEnhancedSession(headers());
 
-  const hackingDeadline = new Date("2024-10-12T12:00:00-05:00")
+  const hackingDeadline = new Date("2024-10-12T12:00:00-05:00");
   const isHackingTimeOver = () => {
-    const currentTime = new Date()
-    const timeDifference = hackingDeadline.getTime() - currentTime.getTime()
+    const currentTime = new Date();
+    const timeDifference = hackingDeadline.getTime() - currentTime.getTime();
 
-    return timeDifference <= 0
-  }
+    return timeDifference <= 0;
+  };
 
   return (
     <>
@@ -414,5 +418,95 @@ export default async function Landing() {
 				</div> */}
       </Box>
     </>
-  )
+  );
+}
+interface info {
+  title: string;
+  url: string;
+}
+const SubContent = (info: info) => {
+  return (
+    <Link href={info.url} className="no-underline">
+      <div className="cursor-pointer ">
+        <div className="border-white border-2 rounded-2xl p-3 min-w-20 min-h-20 md:min-w-32 md:min-h-32  bg-white/5 backdrop-blur-sm"></div>
+        <div className="flex flex-1 justify-center items-center mt-1">
+          <p className="text-sm md:text-lg text-white/60">{info.title}</p>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+export default function LandingPageContent() {
+  const SubContentInfo = [
+    {
+      title: "Apply",
+      url: "/apply",
+    },
+    {
+      title: "FAQ",
+      url: "",
+    },
+    {
+      title: "About Us",
+      url: "",
+    },
+    {
+      title: "What's New",
+      url: "",
+    },
+    {
+      title: "Discord",
+      url: "",
+    },
+  ];
+  return (
+    <div className="flex h-[70vh] justify-center items-center">
+      {/* The Landing Animation ps2 themed */}
+      <Ps2TextAnimation />
+      <div className="  flex flex-col sm:flex-row md:flex-col lg:flex-row w-full justify-center items-center sm:items-center lg:item-start  sm:pt-0">
+        <div className=" flex flex-[0.5] justify-center items-center">
+          <div>
+            <div className="flex flex-1 flex-col border-white border-2 rounded-2xl p-3 justify-center items-center">
+              <Image
+                src={"/Assets/hackutalogo.png"}
+                height={0}
+                width={0}
+                alt=""
+                className="min-w-40 sm:min-w-40 md: lg:min-w-80 "
+                unoptimized
+              />
+              <div className="flex flex-1 justify-center items-center">
+                <ArrowRight
+                  strokeWidth={4}
+                  className="w-[52px] h-[52px] text-white hidden md:hidden lg:inline"
+                />
+                <ArrowDown
+                  strokeWidth={4}
+                  className="w-[52px] h-[52px] text-white lg:hidden"
+                />
+              </div>
+            </div>
+            <div className="flex flex-1 justify-center items-center mt-5">
+              <p className="text-xl text-white/60">Offical HackUTA CountDown</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col-reverse flex-1 w-full justify-center items-center sm:flex-col-reverse md:flex-col ">
+          <div className=" flex  gap-5 flex-wrap sm:flex-nowrap items-center justify-center sm:scale-75 px-10">
+            {SubContentInfo.map((data, i) => {
+              return SubContent(data);
+            })}
+          </div>
+          <div className=" flex flex-1  ">
+            <div className="flex flex-1 items-center mt-5">
+              {/* <p className="text-5xl font-bold text-black"> */}
+              <Timer />
+              {/* </p> */}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
