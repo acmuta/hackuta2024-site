@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { DivProps, HtmlProps, SVGProps } from 'react-html-props'
+import { DivProps, HtmlProps } from 'react-html-props'
 import { twJoin } from 'tailwind-merge'
 
 export type FooterProps = HtmlProps & {

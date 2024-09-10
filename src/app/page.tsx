@@ -370,7 +370,7 @@ export default function LandingPageContent() {
         <div className="flex h-[70vh] justify-center items-center">
             {/* The Landing Animation ps2 themed */}
             <Ps2TextAnimation />
-            <div className="  flex flex-col sm:flex-row md:flex-col lg:flex-row w-full justify-center items-center sm:items-center lg:item-start  sm:pt-0">
+            <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row w-full justify-center items-center sm:items-center lg:item-start  sm:pt-0">
                 <div className=" flex flex-[0.5] justify-center items-center">
                     <div>
                         <div className="flex flex-1 flex-col border-white border-2 rounded-2xl p-3 justify-center items-center">

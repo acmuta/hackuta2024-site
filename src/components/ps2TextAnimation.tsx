@@ -2,6 +2,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 // import soundFile from '../../public/sounds/ps2sound.mp3'
 import useSound from 'use-sound'
+import local from 'next/font/local'
+const PS2Font = local({ src: '../../public/fonts/btseps2.woff2' })
 
 const AudioPlayer = ({ src }: { src: string }) => {
     const [isPlaying, setIsPlaying] = useState(false)
@@ -79,7 +81,9 @@ const Ps2TextAnimation: React.FC = () => {
         >
             <AudioPlayer src="/sounds/ps2sound.mp3" />
             <h2 className="ps2 h-full w-full flex flex-1 justify-center items-center">
-                <div className="flex flex-1 w-full text-center text-3xl sm:text-3xl md:text-[80px] lg:text-[130px] justify-center --font-rhd">
+                <div
+                    className={`${PS2Font.className}"flex flex-1 w-full text-center text-3xl sm:text-3xl md:text-[80px] lg:text-[130px] justify-center --font-rhd`}
+                >
                     <p>HackUTA 2024</p>
                 </div>
             </h2>
