@@ -2,11 +2,16 @@ import { Discord, Instagram, Safari } from 'iconoir-react'
 import Link from 'next/link'
 
 import { Footer, FooterNav } from '@/components/Footer'
+import Image from 'next/image'
 
 export default function SiteFooter() {
     return (
-        <div className={'flex flex-col'}>
-            <Footer>
+        <div>
+
+        <div className={'flex flex-col py-20 lg:px-32 z-100'}>
+            <Footer >
+                <div className='flex md:justify-around md:items-baseline flex-col md:flex-row lg:flex-row md:flex-1 md:w-screen gap-5 sm:gap-0 lg:justify-center lg:gap-52'>
+
                 <FooterNav
                     title={'Socials'}
                     linkClassName={'flex flex-row gap-1'}
@@ -91,7 +96,20 @@ export default function SiteFooter() {
                         </Link>,
                     ]}
                 />
+                </div>
+
             </Footer>
+           
+      </div>
+      <div className="z-90">
+        <Image
+          height={0}
+          width={0}
+          className="h-[50%] w-full mx-auto px-4 sm:px-20 relative"
+          src={"Assets/logo.svg"}
+          alt=""
+        />
+      </div>
         </div>
     )
 }
