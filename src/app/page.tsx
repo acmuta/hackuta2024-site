@@ -13,6 +13,7 @@ import { FaqSection, getFaqs } from './faq/utils'
 import Image from 'next/image'
 import { ArrowDown, ArrowRight } from 'iconoir-react'
 import Timer from '@/components/Timer'
+// import Timer from '@/components/Timer'
 // import Ps2TextAnimation from '@/components/ps2TextAnimation'
 // import { MeetTheTeamSection } from "./MeetTheTeamSection"
 
@@ -332,7 +333,7 @@ const SubContent = (info: info, i: number) => {
     return (
         <Link key={i} href={info.url} className="no-underline">
             <div className="cursor-pointer ">
-                <div className="border-white border-2 rounded-2xl p-3 min-w-20 min-h-20 md:min-w-32 md:min-h-32  bg-white/5 backdrop-blur-sm"></div>
+                <div className="border-white border-2 rounded-2xl p-3 min-w-20 min-h-20 md:min-w-32 md:min-h-32 lg:min-h-36 lg:min-w-36 bg-white/5 backdrop-blur-sm"></div>
                 <div className="flex flex-1 justify-center items-center mt-1">
                     <p className="text-sm md:text-lg text-white/60">
                         {info.title}
@@ -370,8 +371,8 @@ export default function LandingPageContent() {
         <div className="flex h-[70vh] justify-center items-center">
             {/* The Landing Animation ps2 themed */}
             {/* <Ps2TextAnimation /> */}
-            <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row w-full justify-center items-center sm:items-center lg:item-start  sm:pt-0">
-                <div className=" flex flex-[0.5] justify-center items-center">
+            <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row w-full justify-center lg:items-start items-b sm:items-center sm:pt-0">
+                <div className=" flex  justify-center items-center">
                     <div>
                         <div className="flex flex-1 flex-col border-white border-2 rounded-2xl p-3 justify-center items-center">
                             <Image
@@ -400,14 +401,14 @@ export default function LandingPageContent() {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col-reverse flex-1 w-full justify-center items-center sm:flex-col-reverse md:flex-col ">
-                    <div className=" flex  gap-5 flex-wrap sm:flex-nowrap items-center justify-center sm:scale-75 px-10">
+                <div className="flex flex-col-reverse justify-start items-center sm:flex-col-reverse md:flex-col ">
+                    <div className=" flex gap-5 flex-wrap sm:flex-nowrap items-center lg:justify-start lg:items-baseline justify-center sm:scale-75 px-10 lg:scale-100">
                         {SubContentInfo.map((data, i) => {
                             return SubContent(data, i)
                         })}
                     </div>
                     <div className=" flex flex-1  ">
-                        <div className="flex flex-1 items-center mt-5">
+                        <div className="flex items-center mt-5">
                             {/* <p className="text-5xl font-bold text-black"> */}
                             <Timer />
                             {/* </p> */}
