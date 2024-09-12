@@ -25,7 +25,7 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
         showBadge = pathname === '/'
     }
     return (
-        <div className={`${PS2Font.className} mb-2 sticky z-100 top-0`}>
+        <div className={`${PS2Font.className} mb-2 z-100 top-0`}>
             <div
                 className={twMerge(
                     'flex flex-row',
@@ -33,15 +33,27 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                     'my-2 py-5 px-10'
                 )}
             >
-                <div className="flex-wrap flex flex-row flex-1 justify-between no-underline items-center content-start gap-8 gap-y-2 py-4">
-                    <a href="/">
-                        <img src="/HackUTA_Logo.png"></img>
-                    </a>
-                    <ul className="flex flex-row items-center gap-44">
+                <div className="flex-wrap flex flex-col md:flex-row lg:flex-nowrap lg:flex-row items-start flex-1 justify-between no-underline md:items-center content-start gap-y-2 py-4 lg:px-10">
+                    <div 
+                    className="flex flex-1 no-underline w-full md:flex-0 gap-2 lg:flex-0 "
+                    >
+                        <Link
+                            href={'/'}
+                            className="flex flex-1 justify-center items-center w-full md:flex-0 gap-2  no-underline"
+                        >
+                            <img src="/HackUTA_Logo.png"></img>
+
+                            <p className="text-white no-underline ">HackUTA</p>
+                        </Link>
+                    </div>
+
+                    <ul className="flex w-full flex-row justify-around md:flex-row items-start  gap-y-2 scale-90 md:scale-100 ">
                         {/* <div className="flex flex-row items-start gap-3"> */}
                         <HeaderLink href="/dashboard">
                             <NotificationIcon></NotificationIcon>
-                            <span>Updates</span>
+                            <span className="text-2xl text-center md:text-3xl">
+                                Updates
+                            </span>
                         </HeaderLink>
                         {/* </div> */}
                         <HeaderLink
@@ -50,7 +62,9 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                             }
                         >
                             <UserIcon></UserIcon>
-                            <span>{user ? 'Sign Out' : 'Sign In'}</span>
+                            <span className="text-2xl text-center md:text-3xl">
+                                {user ? 'Sign Out' : 'Sign In'}
+                            </span>
                         </HeaderLink>
                         {hasPermission(perms, { administration: {} }) && (
                             <HeaderLink href="/admin">
@@ -59,7 +73,7 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                             </HeaderLink>
                         )}
                     </ul>
-                    <div className="text-white text-2xl items-center pr-[calc(min(1vw,10px)+100px)]">
+                    <div className="text-white text-2xl items-center pr-[calc(min(1vw,10px)+100px)] hidden lg:inline">
                         <LocalTime date={Date.now()}></LocalTime>
                     </div>
                 </div>
@@ -68,7 +82,7 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                     <MLHTrustBadge
                         color="white"
                         imageClassName={twMerge(
-                            'md:w-[100px] block w-[50px] absolute max-w-[100px] min-w-[60px] md:right-[min(1vw,10px)] z-50 top-0 right-0'
+                            'md:w-[100px] block w-[50px] absolute max-w-[100px] min-w-[60px] md:right-[min(1vw,10px)] z-50 top-0 right-2 md:right-1'
                         )}
                     />
                 )}
