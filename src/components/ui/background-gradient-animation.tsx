@@ -89,7 +89,7 @@ export const BackgroundGradientAnimation = ({
     return (
         <div
             className={cn(
-                'h-screen w-screen relative overflow-hidden top-0 left-0 bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]',
+                'min-h-screen z-0 relative overflow-hidden top-0 left-0 bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]',
                 containerClassName
             )}
         >
@@ -111,10 +111,10 @@ export const BackgroundGradientAnimation = ({
                     </filter>
                 </defs>
             </svg>
-            <div className={cn('', className)}>{children}</div>
+            <div className={cn('min-h-screen', className)}>{children}</div>
             <div
                 className={cn(
-                    'gradients-container h-[60%] w-full blur-lg',
+                    'gradients-container min-h-screen w-full blur-lg absolute',
                     isSafari ? 'blur-2xl' : '[filter:url(#blurMe)_blur(40px)]'
                 )}
             >
