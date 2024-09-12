@@ -13,7 +13,7 @@ export interface MarkDownRendererProps {
 
 export function MarkDownRenderer({ children }: MarkDownRendererProps) {
     return (
-        <div className={styles.renderer}>
+        <div className={`${styles.renderer} transition duration-1000`}>
             <Remark
                 remarkPlugins={[remarkGfm]}
                 remarkToRehypeOptions={{ allowDangerousHtml: true }}

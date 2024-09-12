@@ -8,6 +8,35 @@ import logger from '@/lib/logger'
 
 import { MarkDownRenderer } from '../admin/post/MarkDownRenderer'
 
+interface FAQProps {
+    faqs: readonly FaqModel[] | []
+}
+const FAQ: React.FC<FAQProps> = ({ faqs }) => {
+    // Dynamically calculate the number of columns based on array length
+    const columnCount = Math.min(3, Math.ceil(faqs.length / 2)) // Adjust based on how many columns you want
+
+    return (
+        <div className={`flex flex-wrap justify-start gap-6 `}>
+            {faqs.map((faq, index) => (
+                <div
+                    key={index}
+                    className={`w-full ${columnCount === 2 ? 'md:w-[calc(50%-1rem)]' : columnCount === 3 ? 'lg:w-[calc(33.333%-1rem)]' : ''} transition-all duration-300 ease-in-out`}
+                >
+                    <Accordion
+                        className="rounded-md relative z-10 overflow-visible border-l-4 border-blue-600 pl-4 w-full transition-all duration-300 ease-in-out hover:shadow-lg"
+                        arrowClassName=" "
+                        summaryClassName="text-xl font-body font-semibold"
+                        contentClassName="font-body mb-4"
+                        summary={faq.q}
+                    >
+                        <MarkDownRenderer>{faq.a}</MarkDownRenderer>
+                    </Accordion>
+                </div>
+            ))}
+        </div>
+    )
+}
+
 export function FaqSection({
     faqs,
 }: {
@@ -17,24 +46,27 @@ export function FaqSection({
         <>Failed loading FAQs. Please try again later.</>
     ) : (
         <>
-            {
-                // order by _id
-                [...faqs]
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                {[...faqs]
                     // .sort((a, b) => a._id - b._id)
                     .map((faq) => (
-                        <Accordion
-                            className="drop-shadow-hackuta border-l-4 border-hackuta-darkred pl-4 w-full max-w-md transition-all hover:drop-shadow-none"
-                            arrowClassName="text-hackuta-red drop-shadow-hackuta"
-                            summaryClassName="text-xl font-body"
-                            contentClassName="font-body mb-4"
-                            key={`${faq.q}-${faq.a}`}
-                            summary={faq.q}
-                        >
-                            <MarkDownRenderer>{faq.a}</MarkDownRenderer>
-                            {/* <p>{faq.a}</p> */}
-                        </Accordion>
-                    ))
-            }
+                        <div className="w-full">
+                            <Accordion
+                                className="rounded-md relative z-10 overflow-visible border-l-4 border-blue-600 pl-4 w-full max-w-full transition-all duration-300 ease-in-out hover:shadow-lg"
+                                arrowClassName=" "
+                                summaryClassName="text-xl font-body font-semibold"
+                                contentClassName="font-body mb-4 w-full"
+                                key={`${faq.q}-${faq.a}`}
+                                summary={faq.q}
+                            >
+                                <div className="w-full max-w-md">
+                                    <MarkDownRenderer>{faq.a}</MarkDownRenderer>
+                                </div>
+                            </Accordion>
+                        </div>
+                    ))}
+            </div> */}
+            <FAQ faqs={faqs} />
         </>
     )
 
