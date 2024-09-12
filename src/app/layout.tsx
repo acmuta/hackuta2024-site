@@ -112,12 +112,12 @@ export default function RootLayout({
                     />
                 )}
             </head>
-            <Box as="body" direction="column" className="p-0">
+            <Box as="body" direction="column" className="p-0 m-0 min-h-screen">
                 {/* <ViewAsRoleBanner user={user} /> */}
                 <div className="">
                     <BackgroundGradientAnimation className="z-0">
                         <PS2Header user={user} perms={perms} />
-                        <main className="flex-[1]">{children}</main>
+                        <main className="flex-[1] z-100">{children}</main>
                         <SiteFooter />
                     </BackgroundGradientAnimation>
                 </div>
