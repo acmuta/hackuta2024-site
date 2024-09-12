@@ -13,7 +13,7 @@ import { FaqSection, getFaqs } from './faq/utils'
 import Image from 'next/image'
 import { ArrowDown, ArrowRight } from 'iconoir-react'
 import Timer from '@/components/Timer'
-import Ps2TextAnimation from '@/components/ps2TextAnimation'
+// import Ps2TextAnimation from '@/components/ps2TextAnimation'
 // import { MeetTheTeamSection } from "./MeetTheTeamSection"
 
 // https://beta.nextjs.org/docs/api-reference/segment-config#dynamic
@@ -369,7 +369,7 @@ export default function LandingPageContent() {
     return (
         <div className="flex h-[70vh] justify-center items-center">
             {/* The Landing Animation ps2 themed */}
-            <Ps2TextAnimation />
+            {/* <Ps2TextAnimation /> */}
             <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row w-full justify-center items-center sm:items-center lg:item-start  sm:pt-0">
                 <div className=" flex flex-[0.5] justify-center items-center">
                     <div>
