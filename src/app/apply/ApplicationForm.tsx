@@ -95,7 +95,7 @@ export function ApplicationForm() {
             as="form"
             direction="column"
             gap="1.25rem"
-            className={styles.applicationForm}
+            className={`${styles.applicationForm} h-max`}
         >
             <h2 className="font-heading text-4xl m-auto">Application</h2>
             <h3 className="font-heading text-2xl">General Information</h3>
