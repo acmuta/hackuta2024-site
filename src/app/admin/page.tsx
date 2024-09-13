@@ -10,54 +10,82 @@ import clientPromise from '@/lib/db'
 export default async function page() {
     try {
         const client = await clientPromise
-        // const applications = await client
-        //     .db()
-        //     .collection<User>('users')
-        //     .aggregate([
-        //         {
-        //             $match: {
-        //                 application: { $exists: true },
-        //             },
-        //         },
-        //         {
-        //             $set: {
-        //                 'application.email': '$email',
-        //                 'application.resume': {
-        //                     $cond: {
-        //                         if: {
-        //                             $regexMatch: {
-        //                                 input: {
-        //                                     $substrCP: [
-        //                                         '$application.resume',
-        //                                         0,
-        //                                         32,
-        //                                     ],
-        //                                 },
-        //                                 regex: '^data:application/pdf;base64,.',
-        //                             },
-        //                         },
-        //                         then: true,
-        //                         else: false,
-        //                     },
-        //                 },
-        //                 'application.status': {
-        //                     $cond: {
-        //                         if: '$applicationStatus',
-        //                         then: '$applicationStatus',
-        //                         else: 'undecided',
-        //                     },
-        //                 },
-        //                 'application.checkedIn': '$checkedIn',
-        //             },
-        //         },
-        //         {
-        //             $replaceRoot: {
-        //                 newRoot: '$application',
-        //             },
-        //         },
-        //     ])
-        //     .toArray()
-        // console.log(applications)
+        const applications = await client
+            .db()
+            .collection<User>('users')
+            .aggregate([
+                {
+                    $match: {
+                        application: { $exists: true },
+                    },
+                },
+                {
+                    $set: {
+                        'application.email': '$email',
+                        'application.resume': {
+                            $cond: {
+                                if: {
+                                    $regexMatch: {
+                                        input: {
+                                            $substrCP: [
+                                                '$application.resume',
+                                                0,
+                                                32,
+                                            ],
+                                        },
+                                        regex: '^data:application/pdf;base64,.',
+                                    },
+                                },
+                                then: true,
+                                else: false,
+                            },
+                        },
+                        'application.status': {
+                            $cond: {
+                                if: '$applicationStatus',
+                                then: '$applicationStatus',
+                                else: 'undecided',
+                            },
+                        },
+                        'application.checkedIn': '$checkedIn',
+                        'application.form': '$application',
+                    },
+                },
+                {
+                    $replaceRoot: {
+                        newRoot: '$application',
+                    },
+                },
+            ])
+            .toArray()
+
+        const schoolCountMap = applications.reduce(
+            (acc: Record<string, number>, app: any) => {
+                const school = String(app.form.school) // Ensure the school field is a string
+                if (school) {
+                    acc[school] = (acc[school] || 0) + 1 // Increment the count for the school
+                }
+                return acc
+            },
+            {}
+        )
+
+        const sortedSchools = Object.entries(schoolCountMap).sort(
+            (a, b) => b[1] - a[1]
+        )
+
+        const top4 = sortedSchools.slice(0, 4)
+        const otherCount = sortedSchools
+            .slice(4)
+            .reduce((acc, [, count]) => acc + count, 0)
+
+        const top5Schools = [
+            ...top4.map(([school, count]) => ({ school, count })),
+            { school: 'Other', count: otherCount },
+        ]
+
+        // console.log(top5Schools)
+
         const totalRegistrations = await countDocuments(client, 'users', true)
         return (
             <div className="space-y-2">
@@ -86,7 +114,9 @@ export default async function page() {
                             </svg>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">1</div>
+                            <div className="text-2xl font-bold">
+                                {applications.length}
+                            </div>
                             <p className="text-xs text-muted-foreground">
                                 +20.1% from last month
                             </p>
@@ -172,7 +202,13 @@ export default async function page() {
                             </svg>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">+573</div>
+                            <div className="text-2xl font-bold">
+                                {
+                                    applications.filter(
+                                        (application) => application.checkedIn
+                                    ).length
+                                }
+                            </div>
                             <p className="text-xs text-muted-foreground">
                                 +201 since last hour
                             </p>
@@ -184,7 +220,7 @@ export default async function page() {
                         <AreaGraph />
                     </div>
                     <div className="col-span-4 md:col-span-3">
-                        <PieGraph />
+                        <PieGraph applications={applications} />
                     </div>
                 </div>
             </div>

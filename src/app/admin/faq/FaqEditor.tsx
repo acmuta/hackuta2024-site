@@ -30,7 +30,7 @@ export default function FaqEditor({ faqs }: FaqEditorProps) {
     }
 
     return (
-        <article className={'flex flex-col gap-4'}>
+        <article className={'flex flex-col gap-4 text-white'}>
             <Heading level={1}>Frequently Asked</Heading>
             <table className={'border'}>
                 <thead>

@@ -19,7 +19,9 @@ export default function AdminLayout({
                 <aside className="flex border-r border-r-[#3a3a3a] px-4 py-6 sm:flex-col sm:gap-4 sm:py-5">
                     <AdminNavBar perms={perms} />
                 </aside>
-                <main className="max-w-[1000px] mx-auto">{children}</main>
+                <main className="max-w-[1000px] mx-auto text-white">
+                    {children}
+                </main>
             </div>
         </div>
     )
