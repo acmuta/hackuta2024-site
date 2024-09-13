@@ -12,7 +12,7 @@ export const BackgroundGradientAnimation = ({
     fourthColor = '18, 113, 255',
     fifthColor = '18, 113, 255',
     pointerColor = '140, 100, 255',
-    size = '22%',
+    size = '20%',
     blendingValue = 'hard-light',
     children,
     className,
@@ -89,7 +89,7 @@ export const BackgroundGradientAnimation = ({
     return (
         <div
             className={cn(
-                'min-h-screen z-0 relative overflow-hidden top-0 left-0 bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]',
+                'min-h-screen relative overflow-hidden top-0 left-0 bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]',
                 containerClassName
             )}
         >

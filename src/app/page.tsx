@@ -13,7 +13,6 @@ import { FaqSection, getFaqs } from './faq/utils'
 import Image from 'next/image'
 import { ArrowDown, ArrowRight } from 'iconoir-react'
 import Timer from '@/components/Timer'
-// import Timer from '@/components/Timer'
 // import Ps2TextAnimation from '@/components/ps2TextAnimation'
 // import { MeetTheTeamSection } from "./MeetTheTeamSection"
 
@@ -359,8 +358,8 @@ export default function LandingPageContent() {
             url: '/',
         },
         {
-            title: "What's New",
-            url: '/',
+            title: 'Dashboard',
+            url: '/dashboard',
         },
         {
             title: 'Discord',
