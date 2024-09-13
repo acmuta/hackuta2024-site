@@ -18,16 +18,18 @@ export default async function Dashboard() {
     return (
         <Box
             direction="column"
-            className={classNames('pagePadding')}
+            className={classNames('pagePadding w-full text-white text-2xl')}
             style={{ flex: 1 }}
             gap="1rem"
         >
-            <p>
-                {' '}
-                Thanks for applying! Your application is currently being
-                reviewed. You will receive an email once your application has
-                been approved.{' '}
-            </p>
+            <div className="text-center p-10">
+                <p>
+                    {' '}
+                    Thanks for applying! Your application is currently being
+                    reviewed. You will receive an email once your application
+                    has been approved.{' '}
+                </p>
+            </div>
             <Box
                 direction="row"
                 alignItems="start"
