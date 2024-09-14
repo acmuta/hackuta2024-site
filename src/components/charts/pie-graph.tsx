@@ -1,8 +1,9 @@
 'use client'
 
 import * as React from 'react'
-import { TrendingUp } from 'lucide-react'
+// import { TrendingUp } from 'lucide-react'
 import { Label, Pie, PieChart } from 'recharts'
+import { Application } from '@/lib/db/models/User'
 
 import {
     Card,
@@ -18,17 +19,10 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from '@/components/ui/chart'
-const chartData = [
-    { browser: 'chrome', visitors: 275, fill: 'var(--color-chrome)' },
-    { browser: 'safari', visitors: 200, fill: 'var(--color-safari)' },
-    { browser: 'firefox', visitors: 287, fill: 'var(--color-firefox)' },
-    { browser: 'edge', visitors: 173, fill: 'var(--color-edge)' },
-    { browser: 'other', visitors: 190, fill: 'var(--color-other)' },
-]
 
 const chartConfig = {
-    visitors: {
-        label: 'Visitors',
+    applications: {
+        label: 'Applicants',
     },
     chrome: {
         label: 'Chrome',
@@ -52,15 +46,88 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
-export function PieGraph() {
+export type Row = Omit<Application, 'resume'> & {
+    email: string
+    resume: boolean
+    status: 'accepted' | 'rejected' | 'waitlisted' | 'undecided'
+    checkedIn: string
+}
+
+export interface ApplicantDataTableProps {
+    applications: Row[]
+}
+
+export function PieGraph({ applications }: ApplicantDataTableProps) {
+    const schoolCountMap = applications.reduce(
+        (acc: Record<string, number>, app: Row) => {
+            const school = String(app.school).trim()
+            if (school) {
+                acc[school] = (acc[school] || 0) + 1
+            }
+            return acc
+        },
+        {}
+    )
+    console.log('SCHOOL COUNT MAP:', schoolCountMap)
+
+    const schoolCounts = Object.entries(schoolCountMap).map(
+        ([school, count]) => ({
+            school,
+            applications: count,
+        })
+    )
+
+    console.log('SCHOOL COUNTS:', schoolCounts)
+
+    schoolCounts.sort((a, b) => b.applications - a.applications)
+
+    console.log('SCHOOL COUNTS SORTED:', schoolCounts)
+
+    const topN = 4
+    const topSchools = schoolCounts.slice(0, topN)
+
+    console.log('TOP SCHOOLS:', topSchools)
+
+    const otherCount = schoolCounts
+        .slice(topN)
+        .reduce((sum, item) => sum + item.applications, 0)
+
+    console.log('OTHER COUNT:', otherCount)
+
+    let chartData = [...topSchools]
+
+    if (otherCount > 0) {
+        chartData.push({ school: 'Other', applications: otherCount })
+    }
+
+    console.log('NEW CHART DATA:', chartData)
+
+    const colors = [
+        'var(--color-chrome)',
+        'var(--color-safari)',
+        'var(--color-firefox)',
+        'var(--color-edge)',
+        'var(--color-other)',
+    ]
+
+    chartData = chartData.map((item, index) => ({
+        ...item,
+        fill: colors[index] || 'var(--default-color)',
+    }))
+
+    console.log('EVEN NEWER CHART DATA:', chartData)
+
     const totalVisitors = React.useMemo(() => {
-        return chartData.reduce((acc, curr) => acc + curr.visitors, 0)
+        return chartData.reduce((acc, curr) => acc + curr.applications, 0)
     }, [])
+
+    console.log(chartData)
+    console.log(totalVisitors)
 
     return (
         <Card className="flex flex-col">
             <CardHeader className="items-center pb-0">
-                <CardTitle>Applicants by School</CardTitle>
+                <CardTitle>Top School by Number of Applicants</CardTitle>
                 <CardDescription></CardDescription>
             </CardHeader>
             <CardContent className="flex-1 pb-0">
@@ -75,8 +142,8 @@ export function PieGraph() {
                         />
                         <Pie
                             data={chartData}
-                            dataKey="visitors"
-                            nameKey="browser"
+                            dataKey="applications"
+                            nameKey="school"
                             innerRadius={60}
                             strokeWidth={5}
                         >
@@ -106,7 +173,7 @@ export function PieGraph() {
                                                     y={(viewBox.cy || 0) + 24}
                                                     className="fill-muted-foreground"
                                                 >
-                                                    Visitors
+                                                    Applicants
                                                 </tspan>
                                             </text>
                                         )
@@ -119,12 +186,10 @@ export function PieGraph() {
             </CardContent>
             <CardFooter className="flex-col gap-2 text-sm">
                 <div className="flex items-center gap-2 font-medium leading-none">
-                    Trending up by 5.2% this month{' '}
-                    <TrendingUp className="h-4 w-4" />
+                    From all applications on hackuta.org{' '}
+                    {/* <TrendingUp className="h-4 w-4" /> */}
                 </div>
-                <div className="leading-none text-muted-foreground">
-                    Showing total visitors for the last 6 months
-                </div>
+                <div className="leading-none text-muted-foreground">Sample</div>
             </CardFooter>
         </Card>
     )

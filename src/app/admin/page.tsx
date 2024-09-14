@@ -4,13 +4,15 @@ import { PieGraph } from '@/components/charts/pie-graph'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import type User from '@/lib/db/models/User'
 import { countDocuments } from '@/lib/utils/server'
+import ApplicantDataTable, { Row } from './applications/ApplicantDataTable'
 
 import clientPromise from '@/lib/db'
 
 export default async function page() {
     try {
         const client = await clientPromise
-        const applications = await client
+
+        const applications = (await client
             .db()
             .collection<User>('users')
             .aggregate([
@@ -48,7 +50,6 @@ export default async function page() {
                             },
                         },
                         'application.checkedIn': '$checkedIn',
-                        'application.form': '$application',
                     },
                 },
                 {
@@ -57,34 +58,7 @@ export default async function page() {
                     },
                 },
             ])
-            .toArray()
-
-        const schoolCountMap = applications.reduce(
-            (acc: Record<string, number>, app: any) => {
-                const school = String(app.form.school) // Ensure the school field is a string
-                if (school) {
-                    acc[school] = (acc[school] || 0) + 1 // Increment the count for the school
-                }
-                return acc
-            },
-            {}
-        )
-
-        const sortedSchools = Object.entries(schoolCountMap).sort(
-            (a, b) => b[1] - a[1]
-        )
-
-        const top4 = sortedSchools.slice(0, 4)
-        const otherCount = sortedSchools
-            .slice(4)
-            .reduce((acc, [, count]) => acc + count, 0)
-
-        const top5Schools = [
-            ...top4.map(([school, count]) => ({ school, count })),
-            { school: 'Other', count: otherCount },
-        ]
-
-        // console.log(top5Schools)
+            .toArray()) as Row[]
 
         const totalRegistrations = await countDocuments(client, 'users', true)
         return (
@@ -100,7 +74,7 @@ export default async function page() {
                             <CardTitle className="text-sm font-medium">
                                 Total Applications
                             </CardTitle>
-                            <svg
+                            {/* <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
                                 fill="none"
@@ -111,14 +85,14 @@ export default async function page() {
                                 className="h-4 w-4 text-muted-foreground"
                             >
                                 <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                            </svg>
+                            </svg> */}
                         </CardHeader>
                         <CardContent>
                             <div className="text-2xl font-bold">
                                 {applications.length}
                             </div>
                             <p className="text-xs text-muted-foreground">
-                                +20.1% from last month
+                                # of applications
                             </p>
                         </CardContent>
                     </Card>
@@ -147,7 +121,7 @@ export default async function page() {
                                 {totalRegistrations}
                             </div>
                             <p className="text-xs text-muted-foreground">
-                                # of accounts in hackuta.org
+                                accounts in hackuta.org
                             </p>
                         </CardContent>
                     </Card>
@@ -156,7 +130,7 @@ export default async function page() {
                             <CardTitle className="text-sm font-medium">
                                 Some metric
                             </CardTitle>
-                            <svg
+                            {/* <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
                                 fill="none"
@@ -174,12 +148,12 @@ export default async function page() {
                                     rx="2"
                                 />
                                 <path d="M2 10h20" />
-                            </svg>
+                            </svg> */}
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">+12,234</div>
+                            <div className="text-2xl font-bold">123</div>
                             <p className="text-xs text-muted-foreground">
-                                +19% from last month
+                                description
                             </p>
                         </CardContent>
                     </Card>
@@ -210,7 +184,7 @@ export default async function page() {
                                 }
                             </div>
                             <p className="text-xs text-muted-foreground">
-                                +201 since last hour
+                                +0 since last hour
                             </p>
                         </CardContent>
                     </Card>
@@ -220,7 +194,12 @@ export default async function page() {
                         <AreaGraph />
                     </div>
                     <div className="col-span-4 md:col-span-3">
-                        <PieGraph applications={applications} />
+                        <PieGraph
+                            applications={applications.map((a) => ({
+                                ...a,
+                                checkedIn: a.checkedIn?.toString(),
+                            }))}
+                        />
                     </div>
                 </div>
             </div>
