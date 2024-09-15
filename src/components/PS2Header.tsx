@@ -33,11 +33,11 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                     'my-2 py-5 px-10'
                 )}
             >
-                <div className="flex-wrap flex flex-col md:flex-row lg:flex-nowrap lg:flex-row items-start flex-1 justify-between no-underline md:items-center content-start gap-y-2 py-4 lg:px-10">
-                    <div className="flex flex-1 no-underline w-full md:flex-0 gap-2 lg:flex-0 ">
+                <div className="flex-wrap flex flex-col md:flex-row lg:flex-nowrap lg:flex-row items-start flex-1 justify-between no-underline md:items-center content-start gap-y-2 py-4 lg:px-10 " >
+                    <div className="flex no-underline md:flex-0 gap-2 lg:flex-0 ">
                         <Link
                             href={'/'}
-                            className="flex flex-1 justify-center items-center w-full md:flex-0 gap-2 no-underline"
+                            className="flex justify-center items-center md:flex-0 gap-2 no-underline"
                         >
                             <img src="/HackUTA_Logo.png"></img>
 
@@ -45,7 +45,7 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                         </Link>
                     </div>
 
-                    <ul className="flex w-full flex-row justify-around md:flex-row items-start gap-y-2 scale-90 md:scale-100 ">
+                    <ul className="flex flex-1 w-full flex-row justify-around md:flex-row items-start gap-y-2 scale-90 md:scale-100 lg:scale-100 ">
                         {/* <div className="flex flex-row items-start gap-3"> */}
                         <HeaderLink href="/dashboard">
                             <NotificationIcon></NotificationIcon>
