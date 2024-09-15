@@ -13,6 +13,7 @@ import { FaqSection, getFaqs } from './faq/utils'
 import Image from 'next/image'
 import { ArrowDown, ArrowRight } from 'iconoir-react'
 import Timer from '@/components/Timer'
+import Map from '@/components/Map/Map'
 // import Ps2TextAnimation from '@/components/ps2TextAnimation'
 // import { MeetTheTeamSection } from "./MeetTheTeamSection"
 
@@ -327,12 +328,21 @@ export async function Landing() {
 interface info {
     title: string
     url: string
+    icon:string
 }
 const SubContent = (info: info, i: number) => {
     return (
         <Link key={i} href={info.url} className="no-underline">
             <div className="cursor-pointer ">
-                <div className="border-white border-2 rounded-2xl p-3 min-w-20 min-h-20 md:min-w-32 md:min-h-32 lg:min-h-36 lg:min-w-36 bg-white/5 backdrop-blur-sm"></div>
+                <div className=" hover:scale-110 transition duration-200 rounded-2xl min-w-20 min-h-20 md:min-w-32 md:min-h-32 lg:min-h-36 lg:min-w-36  backdrop-blur-sm">
+                    <Image
+                        src={info.icon? info.icon : "Assets/about.svg"}
+                        height={0}
+                        width={0}
+                        alt=""
+                        className='w-32 h-32 md:min-w-32 md:min-h-32 lg:min-h-36 lg:min-w-36'
+                    />
+                </div>
                 <div className="flex flex-1 justify-center items-center mt-1">
                     <p className="text-sm md:text-lg text-white/60">
                         {info.title}
@@ -348,72 +358,86 @@ export default function LandingPageContent() {
         {
             title: 'Apply',
             url: '/apply',
+            icon:"Assets/apply.svg"
         },
         {
             title: 'FAQ',
             url: '/faq',
+            icon:"Assets/faq.svg"
+
         },
         {
             title: 'About Us',
             url: '/',
+            icon:"Assets/about.svg"
+
         },
         {
             title: 'Dashboard',
             url: '/dashboard',
+            icon:"Assets/dashboard.svg"
+
         },
         {
             title: 'Discord',
             url: '/discord',
+            icon:"Assets/discord2.svg"
+
         },
     ]
     return (
-        <div className="flex h-[70vh] justify-center items-center">
+        <div className="flex min-h-[80vh] justify-center items-center">
             {/* The Landing Animation ps2 themed */}
             {/* <Ps2TextAnimation /> */}
-            <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row w-full justify-center lg:items-start items-b sm:items-center sm:pt-0">
-                <div className=" flex  justify-center items-center">
-                    <div>
-                        <div className="flex flex-1 flex-col border-white border-2 rounded-2xl p-3 justify-center items-center">
-                            <Image
-                                src={'/Assets/hackutalogo.png'}
-                                height={0}
-                                width={0}
-                                alt=""
-                                className="min-w-40 sm:min-w-40 md: lg:min-w-80 "
-                                unoptimized
-                            />
-                            <div className="flex flex-1 justify-center items-center">
-                                <ArrowRight
-                                    strokeWidth={4}
-                                    className="w-[52px] h-[52px] text-white hidden md:hidden lg:inline"
+            <div className="lg:pt-20">
+                <div className="flex flex-col min-h-[80vh] sm:flex-row md:flex-col lg:flex-row w-full justify-center lg:items-start items-b sm:items-center sm:pt-0">
+                    <div className=" flex  justify-center items-center">
+                        <div>
+                            <div className="flex flex-1 flex-col border-white border-2 rounded-2xl p-3 justify-center items-center">
+                                <Image
+                                    src={'/Assets/HackUTALogo.svg'}
+                                    height={0}
+                                    width={0}
+                                    alt=""
+                                    className="min-w-40 sm:min-w-40 md: lg:min-w-80 p-10"
+                                    unoptimized
                                 />
-                                <ArrowDown
-                                    strokeWidth={4}
-                                    className="w-[52px] h-[52px] text-white lg:hidden"
-                                />
+                                <div className="flex flex-1 justify-center items-center">
+                                    <ArrowRight
+                                        strokeWidth={4}
+                                        className="w-[52px] h-[52px] text-white hidden md:hidden lg:inline"
+                                    />
+                                    <ArrowDown
+                                        strokeWidth={4}
+                                        className="w-[52px] h-[52px] text-white lg:hidden"
+                                    />
+                                </div>
+                            </div>
+                            <div className="flex flex-1 justify-center items-center mt-5">
+                                <p className="text-xl text-white/60">
+                                    Offical HackUTA CountDown
+                                </p>
                             </div>
                         </div>
-                        <div className="flex flex-1 justify-center items-center mt-5">
-                            <p className="text-xl text-white/60">
-                                Offical HackUTA CountDown
-                            </p>
+                    </div>
+                    {/* <div > */}
+                    <div className="flex flex-col-reverse justify-start items-center sm:flex-col-reverse md:flex-col ">
+                        <div className=" flex gap-5 flex-wrap sm:flex-nowrap items-center lg:justify-start lg:items-baseline justify-center sm:scale-75 px-10 lg:scale-100">
+                            {SubContentInfo.map((data, i) => {
+                                return SubContent(data, i)
+                            })}
+                        </div>
+                        <div className=" flex flex-1  ">
+                            <div className="flex items-center mt-5">
+                                {/* <p className="text-5xl font-bold text-black"> */}
+                                <Timer />
+                                {/* </p> */}
+                            </div>
                         </div>
                     </div>
+                    {/* </div> */}
                 </div>
-                <div className="flex flex-col-reverse justify-start items-center sm:flex-col-reverse md:flex-col ">
-                    <div className=" flex gap-5 flex-wrap sm:flex-nowrap items-center lg:justify-start lg:items-baseline justify-center sm:scale-75 px-10 lg:scale-100">
-                        {SubContentInfo.map((data, i) => {
-                            return SubContent(data, i)
-                        })}
-                    </div>
-                    <div className=" flex flex-1  ">
-                        <div className="flex items-center mt-5">
-                            {/* <p className="text-5xl font-bold text-black"> */}
-                            <Timer />
-                            {/* </p> */}
-                        </div>
-                    </div>
-                </div>
+                <Map />
             </div>
         </div>
     )

@@ -12,7 +12,7 @@ export default function AdminLayout({
         <div>
             <div
                 className={
-                    'flex flex-row content-center w-full bg-[rgba(255,255,255,0.1)]'
+                    'flex flex-row content-center w-full '
                 }
             >
                 {/* <aside className="flex border-r border-r-[#3a3a3a] bg-gradient-to-b from-[#1a1a1a] to-[#2c2c2c] px-4 py-6 sm:flex-col sm:gap-4 sm:py-5"> */}
