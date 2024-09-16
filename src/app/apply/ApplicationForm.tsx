@@ -348,7 +348,6 @@ export function ApplicationForm() {
             <span>
                 <Button onClick={submit}>Submit</Button>
             </span>
-
         </Box>
     )
 }

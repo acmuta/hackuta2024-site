@@ -7,7 +7,7 @@ import { twJoin } from 'tailwind-merge'
 
 const getButtonClassNames = () =>
     twJoin(
-        'flex flex-row gap-4 justify-center items-center',
+        'flex flex-row gap-4 justify-center items-center rounded-sm',
         'py-3 px-5 mb-2 md:mb-0 md:mr-2',
         'bg-[#8088ff] drop-shadow-hackuta text-white font-heading tracking-wider te',
         'cursor-pointer select-none',
@@ -45,7 +45,7 @@ export type ButtonProps = HtmlButtonProps & {
 export function Button({
     children,
     className,
-    kind = 'primary',
+    // kind = 'primary',
     type = 'button',
     ...props
 }: ButtonProps) {
@@ -55,9 +55,9 @@ export function Button({
             className={twJoin(getButtonClassNames(), className)}
             {...props}
         >
-            {kind === 'primary' ? <ButtonStar /> : undefined}
+            {/* {kind === 'primary' ? <ButtonStar /> : undefined} */}
             {children}
-            {kind === 'primary' ? <ButtonStar /> : undefined}
+            {/* {kind === 'primary' ? <ButtonStar /> : undefined} */}
         </button>
     )
 }
