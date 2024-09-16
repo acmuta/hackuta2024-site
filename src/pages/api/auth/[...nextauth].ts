@@ -166,7 +166,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
                         user.checkInPin = pin
                         break
                     } catch (_ignored) {
-                        // Ignore
+                        // Ignorels
                         console.log(_ignored)
                     }
                 }

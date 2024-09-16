@@ -38,8 +38,8 @@ export const HackTicket = ({ className, user }: HackTicketProps) => {
                 break
             case 'Unknown':
             default:
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 suite = ''
-                console.log(suite)
                 break
         }
     }
