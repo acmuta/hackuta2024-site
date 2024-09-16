@@ -13,7 +13,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowDown, ArrowRight } from 'iconoir-react'
 import Timer from '@/components/Timer'
-import Map from '@/components/Map/Map'
+// import Map from '@/components/Map/Map'
 // import Ps2TextAnimation from '@/components/ps2TextAnimation'
 // import { MeetTheTeamSection } from "./MeetTheTeamSection"
 
@@ -434,7 +434,7 @@ export default function LandingPageContent() {
                     </div>
                     {/* </div> */}
                 </div>
-                <Map />
+                {/* <Map /> */}
             </div>
         </div>
     )
