@@ -10,11 +10,7 @@ export default function AdminLayout({
     const { perms } = getEnhancedSession(headers())
     return (
         <div>
-            <div
-                className={
-                    'flex flex-row content-center w-full '
-                }
-            >
+            <div className={'flex flex-row content-center w-full '}>
                 {/* <aside className="flex border-r border-r-[#3a3a3a] bg-gradient-to-b from-[#1a1a1a] to-[#2c2c2c] px-4 py-6 sm:flex-col sm:gap-4 sm:py-5"> */}
                 <aside className="flex border-r border-r-[#3a3a3a] px-4 py-6 sm:flex-col sm:gap-4 sm:py-5">
                     <AdminNavBar perms={perms} />

@@ -30,30 +30,27 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                 className={twMerge(
                     'flex flex-row',
                     'text-white text-4xl',
-                    'my-2 py-5 px-10'
+                    'my-2 py-5 px-0 md:px-10'
                 )}
             >
-                <div className="flex-wrap flex flex-col md:flex-row lg:flex-nowrap lg:flex-row items-start flex-1 justify-between no-underline md:items-center content-start gap-y-2 py-4 lg:px-10 " >
-                    <div className="flex no-underline md:flex-0 gap-2 lg:flex-0 ">
+                <div className="flex flex-col w-full justify-between items-center py-4 sm:gap-y-5 lg:px-10 lg:flex-row">
+                    <div className="flex no-underline w-full items-center justify-center lg:w-auto">
                         <Link
                             href={'/'}
-                            className="flex justify-center items-center md:flex-0 gap-2 no-underline"
+                            className="flex justify-center items-center gap-2 no-underline"
                         >
                             <img src="/HackUTA_Logo.png"></img>
-
                             <p className="text-white no-underline ">HackUTA</p>
                         </Link>
                     </div>
-
-                    <ul className="flex flex-1 w-full flex-row justify-around md:flex-row items-start gap-y-2 scale-90 md:scale-100 lg:scale-100 ">
-                        {/* <div className="flex flex-row items-start gap-3"> */}
+                    {/* <ul className="flex flex-row items-start scale-90 lg:w-auto sm:w-full sm:justify-center sm:scale-100 "> */}
+                    <ul className="flex flex-row w-full justify-around scale-90 sm:w-full sm:scale-100 sm:justify-center items-center lg:w-auto md:gap-12 lg:gap-48 lg:justify-between">
                         <HeaderLink href="/dashboard">
                             <NotificationIcon></NotificationIcon>
                             <span className="text-2xl text-center md:text-3xl">
                                 Updates
                             </span>
                         </HeaderLink>
-                        {/* </div> */}
                         <HeaderLink
                             href={
                                 user ? '/api/auth/signout' : '/api/auth/signin'
@@ -71,7 +68,7 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                             </HeaderLink>
                         )}
                     </ul>
-                    <div className="text-white text-2xl items-center pr-[calc(min(1vw,10px)+100px)] hidden lg:inline">
+                    <div className="text-white text-2xl justify-center items-center pr-[calc(min(1vw,10px)+100px)] hidden lg:inline md:hidden">
                         <LocalTime date={Date.now()}></LocalTime>
                     </div>
                 </div>
