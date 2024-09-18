@@ -55,9 +55,9 @@ export default function PS2Carousel() {
         },
     ]
     return (
-        <div className="flex h-[70vh] justify-center items-center">
+        <div className="block sm:flex h-[70vh] justify-center items-center">
             <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row w-full justify-center lg:items-start items-b sm:items-center sm:pt-0">
-                <div className=" flex  justify-center items-center">
+                <div className="flex justify-center items-center">
                     <div>
                         <div className="flex flex-1 flex-col border-white border-2 rounded-2xl p-3 ustify-center items-center">
                             <HackUTALogoIcon className="w-40 h-auto sm:min-w-40 lg:min-w-80 p-5"></HackUTALogoIcon>
