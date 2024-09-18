@@ -7,7 +7,7 @@ import { Footer, FooterNav } from '@/components/Footer'
 export default function SiteFooter() {
     return (
         <div>
-            <div className={'flex flex-col py-20 lg:px-32 z-100'}>
+            <div className={'flex flex-col mt-40 sm:mt-0 py-20 lg:px-32 z-100'}>
                 <Footer>
                     <div
                         className={`flex text-white sm:justify-around md:items-baseline flex-col md:flex-row lg:flex-row md:flex-1 md:w-screen gap-5 sm:gap-0 lg:justify-center lg:gap-52`}
