@@ -2,6 +2,7 @@
 
 import { TrendingUp } from 'lucide-react'
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
+import { Row } from './pie-graph'
 
 import {
     Card,
@@ -18,12 +19,12 @@ import {
     ChartTooltipContent,
 } from '@/components/ui/chart'
 const chartData = [
-    { month: 'January', desktop: 186, mobile: 80 },
-    { month: 'February', desktop: 305, mobile: 200 },
-    { month: 'March', desktop: 237, mobile: 120 },
-    { month: 'April', desktop: 73, mobile: 190 },
-    { month: 'May', desktop: 209, mobile: 130 },
-    { month: 'June', desktop: 214, mobile: 140 },
+    { month: 'January', applications: 186, mobile: 80 },
+    { month: 'February', applications: 305, mobile: 200 },
+    { month: 'March', applications: 237, mobile: 120 },
+    { month: 'April', applications: 73, mobile: 190 },
+    { month: 'May', applications: 209, mobile: 130 },
+    { month: 'June', applications: 214, mobile: 140 },
 ]
 
 const chartConfig = {
@@ -37,7 +38,13 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
-export function AreaGraph() {
+interface AreaGraphProps {
+    applications: Row[]
+}
+
+export function AreaGraph({ applications }: AreaGraphProps) {
+    console.log(applications)
+
     return (
         <Card>
             <CardHeader>
@@ -80,7 +87,7 @@ export function AreaGraph() {
                             stackId="a"
                         />
                         <Area
-                            dataKey="desktop"
+                            dataKey="applications"
                             type="natural"
                             fill="var(--color-desktop)"
                             fillOpacity={0.4}

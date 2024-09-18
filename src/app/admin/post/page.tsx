@@ -15,7 +15,14 @@ export default async function Post() {
             .toArray()
         return (
             <Box direction="column">
-                <Link href="/admin/post/new">Create a new post</Link>
+                <div className="flex py-3">
+                    <Link
+                        className="bg-blue-500 rounded-sm text-white p-2 no-underline font-bold hover:opacity-45"
+                        href="/admin/post/new"
+                    >
+                        Create a new post
+                    </Link>
+                </div>
                 {posts.length ? (
                     <table
                         className="borderTable"
