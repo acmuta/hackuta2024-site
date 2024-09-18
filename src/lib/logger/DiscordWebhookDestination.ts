@@ -9,9 +9,10 @@ export default class DiscordWebhookStream extends Writable {
     }
 
     async _write(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         chunk: any,
         encoding: BufferEncoding,
-        callback: (error?: Error | null) => void,
+        callback: (error?: Error | null) => void
     ) {
         const data = chunk.toString()
         try {

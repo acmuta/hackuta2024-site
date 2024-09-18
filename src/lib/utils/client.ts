@@ -12,7 +12,7 @@ export const jsonFetcher = (...args: Parameters<typeof fetch>) =>
 export function useEnhancedSession() {
     const { data, error, isLoading } = useSWR<EnhancedSession>(
         '/api/auth/enhanced-session',
-        jsonFetcher,
+        jsonFetcher
     )
     return {
         user: data?.user,
