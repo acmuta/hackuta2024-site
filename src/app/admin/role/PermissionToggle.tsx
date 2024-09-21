@@ -58,7 +58,7 @@ export function PermissionToggle({
         <div className={twJoin('flex flex-col')}>
             <div
                 className={twJoin(
-                    'flex justify-between gap-12 border-b border-black'
+                    'flex justify-between gap-12 border-b border-black  p-2 rounded-xl border bg-card text-card-foreground shadow'
                 )}
             >
                 <span className="flex gap-1">

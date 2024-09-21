@@ -14,6 +14,7 @@ import { useImmer } from 'use-immer'
 import { z } from 'zod'
 import { PutBody } from './[roles]/route'
 import { PermissionOption, PermissionToggle } from './PermissionToggle'
+import { Card, CardTitle } from '@/components/ui/card'
 
 export interface RoleEditorProps {
     role: Role
@@ -44,6 +45,7 @@ export function RoleEditor({ role, onExit }: RoleEditorProps) {
     }
 
     return (
+
         <article className="w-[300px] flex flex-col items-start gap-2">
             <header className="text-lg font-bold">edit role: {role._id}</header>
             <section className="w-full">

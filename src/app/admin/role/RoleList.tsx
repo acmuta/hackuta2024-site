@@ -7,6 +7,7 @@ import { stringifyError } from '@/lib/utils/client'
 import { Edit } from 'iconoir-react'
 import { ChangeEvent, useState } from 'react'
 import { useImmer } from 'use-immer'
+import { Card, CardTitle } from '@/components/ui/card'
 
 export interface RoleListProps {
     roles: readonly Role[]
@@ -94,30 +95,27 @@ export function RoleList({ roles, onRoleEdit }: RoleListProps) {
             alert(stringifyError(e))
         }
     }
-
     return (
         <article className="flex flex-col gap-2">
-            <ul className="border border-black w-[300px]">
-                {roles.map((r) => (
-                    <li key={r._id} className="flex w-full border border-black">
-                        <label className="p-2 flex gap-2 flex-1 text-left active:text-hackuta-red hover:text-hackuta-red">
-                            <input
-                                type="checkbox"
-                                checked={selectedRoles[r._id]}
-                                onChange={onCheckboxChange(r._id)}
-                            />
-                            {r._id}
-                        </label>
-                        <button
-                            title="Edit"
-                            className="p-2 active:text-hackuta-red hover:text-hackuta-red"
-                            onClick={() => onRoleEdit?.(r._id)}
-                        >
-                            <Edit aria-label="Edit" />
-                        </button>
-                    </li>
-                ))}
-            </ul>
+            {roles.map((r) => (
+                <Card className='flex flex-row justify-between items-center p-2'>
+                    <CardTitle className="flex flex-row gap-2 text-medium font-medium p-2 ">
+                        <input
+                            type="checkbox"
+                            checked={selectedRoles[r._id]}
+                            onChange={onCheckboxChange(r._id)}
+                        />
+                        {r._id}
+                    </CardTitle>
+                    <button
+                        title="Edit"
+                        className=" active:text-hackuta-red hover:text-hackuta-red  "
+                        onClick={() => onRoleEdit?.(r._id)}
+                    >
+                        <Edit aria-label="Edit" />
+                    </button>
+                </Card>
+            ))}
             <div className="flex gap-2c">
                 <Button
                     kind="secondary"
@@ -138,7 +136,7 @@ export function RoleList({ roles, onRoleEdit }: RoleListProps) {
                     Delete
                 </Button>
             </div>
-            <div className="flex gap-2 border-2 p-2 border-black">
+            <div className="flex gap-2 border-2 p-2 border-black ">
                 <TextInput
                     text="New Role Name"
                     value={newRoleName}

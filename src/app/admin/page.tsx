@@ -130,7 +130,7 @@ export default async function page() {
                             <CardTitle className="text-sm font-medium">
                                 Some metric
                             </CardTitle>
-                            {/* <svg
+                            <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
                                 fill="none"
@@ -148,7 +148,7 @@ export default async function page() {
                                     rx="2"
                                 />
                                 <path d="M2 10h20" />
-                            </svg> */}
+                            </svg>
                         </CardHeader>
                         <CardContent>
                             <div className="text-2xl font-bold">123</div>
