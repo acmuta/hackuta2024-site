@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
-import { LocalTime } from './LocalTime'
 import { SVGProps } from 'react-html-props'
 import { JsonUser } from '@/lib/db/models/User'
 import { AppPermissions } from '@/lib/db/models/Role'
@@ -20,12 +19,17 @@ export type MarqueeHeaderProps = {
 }
 
 export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
+    const HackUTADate = new Date(2024, 9, 12)
+    const month = HackUTADate.toLocaleString('default', { month: 'long' })
+    
     const pathname = usePathname()
     if (showBadge === undefined) {
         showBadge = pathname === '/'
     }
     return (
-        <div className={`${PS2Font.className} mb-2 z-100 top-0`}>
+        <div
+            className={`${PS2Font.className} mb-2 z-100 top-0 tracking-widest`}
+        >
             <div
                 className={twMerge(
                     'flex flex-row',
@@ -33,7 +37,7 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                     'my-2 py-5 px-0 md:px-10'
                 )}
             >
-                <div className="flex flex-col w-full justify-between items-center py-4 sm:gap-y-5 lg:px-10 lg:flex-row">
+                <div className="flex flex-col w-full justify-between items-center py-4 sm:gap-y-5 lg:px-10 lg:flex-row flex-wrap">
                     <div className="flex no-underline w-full items-center justify-center lg:w-auto">
                         <Link
                             href={'/'}
@@ -44,7 +48,7 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                         </Link>
                     </div>
                     {/* <ul className="flex flex-row items-start scale-90 lg:w-auto sm:w-full sm:justify-center sm:scale-100 "> */}
-                    <ul className="flex flex-row w-full justify-around scale-90 sm:w-full sm:scale-100 sm:justify-center items-center lg:w-auto md:gap-12 lg:gap-48 lg:justify-between">
+                    <ul className="flex flex-row w-full justify-around sm:w-full sm:scale-100 sm:justify-center items-center lg:items-center lg:w-auto md:gap-12 lg:gap-48 lg:justify-between ">
                         <HeaderLink href="/dashboard">
                             <NotificationIcon></NotificationIcon>
                             <span className="text-2xl text-center md:text-3xl">
@@ -68,8 +72,15 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                             </HeaderLink>
                         )}
                     </ul>
-                    <div className="text-white text-2xl justify-center items-center pr-[calc(min(1vw,10px)+100px)] hidden lg:inline md:hidden">
-                        <LocalTime date={Date.now()}></LocalTime>
+                    <div className="text-white text-2xl justify-center items-center lg:pr-[calc(min(1vw,10px)+100px)] lg:inline">
+                        {/* <LocalTime date={Date.now()}></LocalTime> */}
+                        <div className="flex flex-row gap-5">
+                            <p className="tracking-widest ">
+                                {month.toUpperCase()}
+                            </p>
+                            <p className="">`{HackUTADate.getDate()} - 13`</p>
+                            {/* <p>{HackUTADate.getFullYear()}</p> */}
+                        </div>
                     </div>
                 </div>
 
