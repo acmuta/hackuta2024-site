@@ -2,10 +2,6 @@ import { ReactNode } from 'react'
 import { DivProps, HtmlProps } from 'react-html-props'
 import { twJoin } from 'tailwind-merge'
 
-import local from 'next/font/local'
-
-const PS2Font = local({ src: '../../public/fonts/btseps2.woff2' })
-
 export type FooterProps = HtmlProps & {
     children?: ReactNode
 }
@@ -40,12 +36,12 @@ export const FooterNav = ({
     return (
         <section
             className={twJoin(
-                'flex flex-col justify-center items-center gap-2'
+                'flex flex-col justify-center items-center gap-2 font-heading'
             )}
             {...props}
         >
             <h3
-                className={`${PS2Font.className} text-3xl md:text-5xl lg:text-6xl`}
+                className={` text-3xl md:text-5xl lg:text-6xl font-heading`}
             >
                 {title}
             </h3>
