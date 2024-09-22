@@ -8,9 +8,6 @@ import { SVGProps } from 'react-html-props'
 import { JsonUser } from '@/lib/db/models/User'
 import { AppPermissions } from '@/lib/db/models/Role'
 import { hasPermission } from '@/lib/auth/shared'
-import local from 'next/font/local'
-
-const PS2Font = local({ src: '../../public/fonts/btseps2.woff2' })
 
 export type MarqueeHeaderProps = {
     showBadge?: boolean
@@ -21,15 +18,13 @@ export type MarqueeHeaderProps = {
 export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
     const HackUTADate = new Date(2024, 9, 12)
     const month = HackUTADate.toLocaleString('default', { month: 'long' })
-    
+
     const pathname = usePathname()
     if (showBadge === undefined) {
         showBadge = pathname === '/'
     }
     return (
-        <div
-            className={`${PS2Font.className} mb-2 z-100 top-0 tracking-widest`}
-        >
+        <div className={` mb-2 z-100 top-0  font-heading`}>
             <div
                 className={twMerge(
                     'flex flex-row',
@@ -72,13 +67,13 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                             </HeaderLink>
                         )}
                     </ul>
-                    <div className="text-white text-2xl justify-center items-center lg:pr-[calc(min(1vw,10px)+100px)] lg:inline">
+                    <div className="text-white  justify-center items-center lg:pr-[calc(min(1vw,10px)+100px)] lg:inline">
                         {/* <LocalTime date={Date.now()}></LocalTime> */}
                         <div className="flex flex-row gap-5">
-                            <p className="tracking-widest ">
+                            <p className=" text-2xl md:text-3xl tracking-widest ">
                                 {month.toUpperCase()}
                             </p>
-                            <p className="">`{HackUTADate.getDate()} - 13`</p>
+                            <p className="text-2xl md:text-3xl">{HackUTADate.getDate()} - 13</p>
                             {/* <p>{HackUTADate.getFullYear()}</p> */}
                         </div>
                     </div>
