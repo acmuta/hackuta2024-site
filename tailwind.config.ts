@@ -107,8 +107,8 @@ const config: Config = {
                 hackuta: shadow,
             },
             fontFamily: {
-                heading: ['var(--font-rhd)', 'sans-serif'],
-                body: ['var(--font-atkinson)', 'sans-serif'],
+                heading: ['var(--font-zrnic)', 'sans-serif'],
+                body: ['var(--font-nunito)', 'sans-serif'],
                 mono: ['var(--font-rhm)', 'monospace'],
             },
             borderRadius: {
