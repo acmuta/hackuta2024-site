@@ -4,6 +4,7 @@ import './globals.css'
 
 import {
     Atkinson_Hyperlegible,
+    Nunito_Sans,
     Red_Hat_Display,
     Red_Hat_Mono,
 } from 'next/font/google'
@@ -18,12 +19,11 @@ import SiteFooter from './SiteFooter'
 import { Viewport, Metadata } from 'next'
 import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation'
 
-/** fonts **/
-// const bungee = Bungee({
-// 	subsets: ['latin-ext'],
-// 	weight: ['400'],
-// 	variable: '--font-bungee',
-// })
+const nunito = Nunito_Sans({
+    subsets: ['latin-ext'],
+    weight: ['300', '400', '500', '600', '700', '800', '900'],
+    variable: '--font-nunito',
+})
 const rhd = Red_Hat_Display({
     subsets: ['latin-ext'],
     weight: ['900'],
@@ -79,7 +79,12 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={twMerge(rhd.variable, atkinson.variable, rhm.variable)}
+            className={twMerge(
+                rhd.variable,
+                atkinson.variable,
+                rhm.variable,
+                nunito.variable
+            )}
         >
             <head>
                 {(pathname || '/') === '/' && (
@@ -118,7 +123,7 @@ export default function RootLayout({
                 <BackgroundGradientAnimation className="z-0">
                     <div className="relative z-50">
                         <PS2Header user={user} perms={perms} />
-                        <main className="flex-[1] z-100">{children}</main>
+                        <main className="flex-[1] z-100 font-body">{children}</main>
                         <SiteFooter />
                     </div>
                 </BackgroundGradientAnimation>
