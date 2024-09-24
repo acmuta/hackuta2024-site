@@ -74,7 +74,7 @@ export default function PS2Carousel() {
                         </div>
                         <div className="flex flex-1 justify-center items-center mt-5">
                             <p className="text-xl text-white/60">
-                                Offical HackUTA CountDown
+                                Official HackUTA CountDown
                             </p>
                         </div>
                     </div>
