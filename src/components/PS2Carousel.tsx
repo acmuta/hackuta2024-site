@@ -90,7 +90,10 @@ export default function PS2Carousel() {
                             <Timer />
                         </div>
                         <div className="flex items-center mt-5 justify-center text-white">
-                            <Link href={'https://forms.gle/Drc1FNLbuvBA1U29A'} className='no-underline text-white'>
+                            <Link
+                                href={'https://forms.gle/Drc1FNLbuvBA1U29A'}
+                                className="no-underline text-white"
+                            >
                                 <div className="flex flex-row gap-1 justify-center cursor-pointer">
                                     <p>calling for Volunteers</p>
                                     <ArrowRight style={{ rotate: '-45deg' }} />

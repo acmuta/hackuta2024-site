@@ -73,7 +73,9 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                             <p className=" text-2xl md:text-3xl tracking-widest ">
                                 {month.toUpperCase()}
                             </p>
-                            <p className="text-2xl md:text-3xl">{HackUTADate.getDate()} - 13</p>
+                            <p className="text-2xl md:text-3xl">
+                                {HackUTADate.getDate()} - 13
+                            </p>
                             {/* <p>{HackUTADate.getFullYear()}</p> */}
                         </div>
                     </div>

@@ -2,7 +2,6 @@
 import React from 'react'
 import Countdown, { isCountdownOver } from './Countdown'
 
-
 const Timer = () => {
     const countdownOver = isCountdownOver()
 

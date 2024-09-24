@@ -40,9 +40,7 @@ export const FooterNav = ({
             )}
             {...props}
         >
-            <h3
-                className={` text-3xl md:text-5xl lg:text-6xl font-heading`}
-            >
+            <h3 className={` text-3xl md:text-5xl lg:text-6xl font-heading`}>
                 {title}
             </h3>
             <ul className={linkClassName}>

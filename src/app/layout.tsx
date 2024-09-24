@@ -123,7 +123,9 @@ export default function RootLayout({
                 <BackgroundGradientAnimation className="z-0">
                     <div className="relative z-50">
                         <PS2Header user={user} perms={perms} />
-                        <main className="flex-[1] z-100 font-body">{children}</main>
+                        <main className="flex-[1] z-100 font-body">
+                            {children}
+                        </main>
                         <SiteFooter />
                     </div>
                 </BackgroundGradientAnimation>

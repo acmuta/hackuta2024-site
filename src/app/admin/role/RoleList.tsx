@@ -98,7 +98,7 @@ export function RoleList({ roles, onRoleEdit }: RoleListProps) {
     return (
         <article className="flex flex-col gap-2">
             {roles.map((r) => (
-                <Card className='flex flex-row justify-between items-center p-2'>
+                <Card className="flex flex-row justify-between items-center p-2">
                     <CardTitle className="flex flex-row gap-2 text-medium font-medium p-2 ">
                         <input
                             type="checkbox"
