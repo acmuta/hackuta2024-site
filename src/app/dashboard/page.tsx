@@ -39,11 +39,10 @@
 //         </Box>
 //     )
 // }
-import classNames from 'classnames'
+// import classNames from 'classnames'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-import { Box } from '@/components/Box'
 import { getEnhancedSession } from '@/lib/utils/server'
 
 import { canAccessDashboard } from '@/lib/auth/shared'
@@ -63,22 +62,13 @@ export default async function Dashboard() {
     }
 
     return (
-        <Box
-            direction="column"
-            className={classNames('pagePadding')}
-            style={{ flex: 1 }}
-            gap="1rem"
+        <div
+            className={
+                'flex flex-row flex-wrap gap-3 justify-center items-start  p-3  '
+            }
         >
             <Cards />
-            <Box
-                direction="row"
-                alignItems="start"
-                wrap="wrap"
-                className={classNames('flex-1 gap-8')}
-            >
-            </Box>
-
-            <Users />
-        </Box>
+            {user ? <Users /> : <></>}
+        </div>
     )
 }

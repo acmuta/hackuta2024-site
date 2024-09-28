@@ -86,10 +86,10 @@ export default function PS2Carousel() {
                         })}
                     </div>
                     <div className="flex flex-1 flex-col">
-                        <div className="flex items-center mt-5">
+                        <div className="flex items-start md:items-center mt-5">
                             <Timer />
                         </div>
-                        <div className="flex items-center mt-5 justify-center text-white">
+                        <div className="flex items-center my-5 justify-center text-white">
                             <Link
                                 href={'https://forms.gle/Drc1FNLbuvBA1U29A'}
                                 className="no-underline text-white"
