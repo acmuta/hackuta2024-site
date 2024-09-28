@@ -1,33 +1,28 @@
-import classNames from 'classnames'
+import React from 'react'
 import Link from 'next/link'
 
-import { CardStyle } from '@/lib/db/models/Post'
-
-import styles from './Card.module.css'
-
-export interface CardProps {
-	cardStyle?: CardStyle
-	children: JSX.Element
-	href?: string
+interface CardProps {
+    children: React.ReactNode
+    href?: string
+    className?: string
 }
 
-export default function Card({ cardStyle, children, href }: CardProps) {
-	const card = (
-		<div
-			className={classNames(
-				styles.card,
-				styles[cardStyle ?? 'blue'],
-				'p-4 w-full',
-			)}
-		>
-			{children}
-		</div>
-	)
-	return href
-		? (
-			<Link href={href} className={styles.cardLink}>
-				{card}
-			</Link>
-		)
-		: card
+const Card: React.FC<CardProps> = ({ children, href, className = '' }) => {
+    const cardContent = (
+        <div
+            className={`p-4 w-full h-fit bg-black/10 backdrop-blur-2xl text-white rounded-lg shadow-md ${className} md:p-8 bg-gradient-to-tl from-black/10 to-violet-400/10 `}
+        >
+            {children}
+        </div>
+    )
+
+    return href ? (
+        <Link href={href} className="block hover:no-underline">
+            {cardContent}
+        </Link> 
+    ) : (
+        cardContent
+    )
 }
+
+export default Card
