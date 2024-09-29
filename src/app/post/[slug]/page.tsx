@@ -22,7 +22,7 @@ export default async function Post({ params: { slug } }: PageProps) {
 		}
 
 		return (
-			<div className="pagePadding">
+			<div className="pagePadding bg-white">
 				<PostRenderer
 					post={post}
 					sourceType="contentSource"

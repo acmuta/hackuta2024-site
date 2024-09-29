@@ -25,20 +25,20 @@ export default async function Post() {
                 </div>
                 {posts.length ? (
                     <table
-                        className="borderTable"
-                        style={{ maxWidth: '48rem' }}
+                        className="borderTable bg-slate-100 text-slate-950 border border-slate-200 rounded-lg shadow-lg"
+                        style={{ maxWidth: '60rem', width: '100%', overflow: 'hidden' }}
                     >
-                        <thead>
+                        <thead className="bg-yellow-300"> {/* Apply yellow background to the entire header row */}
                             <tr>
-                                <th>Name</th>
-                                <th>Display Type</th>
-                                <th>Priority</th>
-                                <th>Visible</th>
-                                <th>Actions</th>
+                                <th className="p-4 border-b border-slate-300">Name</th>
+                                <th className="p-4 border-b border-slate-300">Display Type</th>
+                                <th className="p-4 border-b border-slate-300">Priority</th>
+                                <th className="p-4 border-b border-slate-300">Visible</th>
+                                <th className="p-4 border-b border-slate-300">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {...posts.map(
+                            {posts.map(
                                 ({
                                     name,
                                     slug,
@@ -47,35 +47,41 @@ export default async function Post() {
                                     contentSource,
                                     visibleCondition,
                                 }) => (
-                                    <tr key={slug}>
-                                        <td>{name}</td>
-                                        <td>
+                                    <tr
+                                        key={slug}
+                                        className="hover:bg-slate-200 transition-all duration-200 ease-in-out cursor-pointer"
+                                    >
+                                        {/* Bold the Name column in each row */}
+                                        <td className="p-4 border-b border-slate-200 font-bold">{name}</td>
+                                        <td className="p-4 border-b border-slate-200">
                                             {briefSource
                                                 ? contentSource
                                                     ? 'card + page'
                                                     : 'card'
                                                 : contentSource
-                                                  ? 'page'
-                                                  : 'empty'}
+                                                    ? 'page'
+                                                    : 'empty'}
                                         </td>
-                                        <td>{priority}</td>
-                                        <td>
+                                        <td className="p-4 border-b border-slate-200">{priority}</td>
+                                        <td className="p-4 border-b border-slate-200">
                                             <code>{visibleCondition}</code>
                                         </td>
-                                        <td>
+                                        <td className="p-4 border-b border-slate-200">
                                             <Box direction="row" gap="0.75rem">
                                                 <Link
                                                     href={`/admin/post/edit/${slug}`}
+                                                    className="text-blue-600 hover:text-blue-800"
                                                 >
                                                     Edit
                                                 </Link>
                                                 {contentSource ? (
                                                     <Link
                                                         href={`/post/${slug}`}
+                                                        className="text-blue-600 hover:text-blue-800"
                                                     >
                                                         View Page
                                                     </Link>
-                                                ) : undefined}
+                                                ) : null}
                                             </Box>
                                         </td>
                                     </tr>
