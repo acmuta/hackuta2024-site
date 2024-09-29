@@ -45,7 +45,7 @@ export const FooterNav = ({
             </h3>
             <ul className={linkClassName}>
                 {links.map((link, index) => (
-                    <li className={'font-body'} key={index}>
+                    <li className={''} key={index}>
                         {link}
                     </li>
                 ))}

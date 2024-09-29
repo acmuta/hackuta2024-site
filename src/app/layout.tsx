@@ -2,43 +2,21 @@ import 'primereact/resources/primereact.min.css'
 import 'primereact/resources/themes/lara-light-teal/theme.css'
 import './globals.css'
 
-import {
-    Atkinson_Hyperlegible,
-    Nunito_Sans,
-    Red_Hat_Display,
-    Red_Hat_Mono,
-} from 'next/font/google'
+import { Nunito } from 'next/font/google'
 import { twMerge } from 'tailwind-merge'
 import { Box } from '@/components/Box'
 import { PS2Header } from '@/components/PS2Header'
 import { getEnhancedSession, siteName } from '@/lib/utils/server'
 
 import { headers } from 'next/headers'
-// import { ViewAsRoleBanner } from "./admin/role/ViewAsRoleBanner"
 import SiteFooter from './SiteFooter'
 import { Viewport, Metadata } from 'next'
 import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation'
 
-const nunito = Nunito_Sans({
-    subsets: ['latin-ext'],
-    weight: ['300', '400', '500', '600', '700', '800', '900'],
+const nunito = Nunito({
+    subsets: ['latin'],
+    weight: ['400', '500', '600'],
     variable: '--font-nunito',
-})
-const rhd = Red_Hat_Display({
-    subsets: ['latin-ext'],
-    weight: ['900'],
-    variable: '--font-rhd',
-})
-
-const atkinson = Atkinson_Hyperlegible({
-    subsets: ['latin-ext'],
-    weight: ['400', '700'],
-    variable: '--font-atkinson',
-})
-const rhm = Red_Hat_Mono({
-    subsets: ['latin-ext'],
-    weight: ['400', '700'],
-    variable: '--font-rhm',
 })
 
 export const viewport: Viewport = {
@@ -77,15 +55,8 @@ export default function RootLayout({
     const { user, perms } = getEnhancedSession(headers())
 
     return (
-        <html
-            lang="en"
-            className={twMerge(
-                rhd.variable,
-                atkinson.variable,
-                rhm.variable,
-                nunito.variable
-            )}
-        >
+        <html lang="en" className={twMerge(nunito.className)}>
+            {/* <html lang="en" className={twMerge(nunito.variable)}> */}
             <head>
                 {(pathname || '/') === '/' && (
                     <script
@@ -118,14 +89,10 @@ export default function RootLayout({
                 )}
             </head>
             <Box as="body" direction="column" className="p-0 m-0 min-h-screen">
-                {/* <ViewAsRoleBanner user={user} /> */}
-
                 <BackgroundGradientAnimation className="z-0">
                     <div className="relative z-50">
                         <PS2Header user={user} perms={perms} />
-                        <main className="flex-[1] z-100 font-body">
-                            {children}
-                        </main>
+                        <main className="flex-[1] z-100">{children}</main>
                         <SiteFooter />
                     </div>
                 </BackgroundGradientAnimation>

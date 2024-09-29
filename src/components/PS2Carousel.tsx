@@ -59,7 +59,7 @@ export default function PS2Carousel() {
             <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row w-full justify-center lg:items-start items-b sm:items-center sm:pt-0">
                 <div className="flex justify-center items-center">
                     <div>
-                        <div className="flex flex-1 flex-col border-white border-2 rounded-2xl p-3 ustify-center items-center">
+                        <div className="flex flex-1 flex-col border-white border-2 rounded-2xl p-3 items-center">
                             <HackUTALogoIcon className="w-40 h-auto sm:min-w-40 lg:min-w-80 p-5"></HackUTALogoIcon>
                             <div className="flex flex-1 justify-center items-center">
                                 <ArrowRight
@@ -118,8 +118,8 @@ const ApplyIcon = (props: SVGProps) => {
             xmlns="http://www.w3.org/2000/svg"
         >
             <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M13 4H39.6667C44.6372 4 48.6667 8.02944 48.6667 13V41.3569C48.4464 41.3413 48.2239 41.3334 47.9997 41.3334C46.0121 41.3334 44.1696 41.9547 42.6559 43.0136C42.4916 40.5854 40.4699 38.6667 38 38.6667H14.6667C12.0893 38.6667 10 40.756 10 43.3333C10 45.9107 12.0893 48 14.6667 48H38C38.3761 48 38.7418 47.9555 39.0921 47.8715C38.8155 48.754 38.6663 49.693 38.6663 50.6667C38.6663 51.8411 38.8832 52.9648 39.2791 54H13C8.02944 54 4 49.9706 4 45V13C4 8.02944 8.02944 4 13 4ZM41.9752 57.7956C41.226 57.9299 40.4545 58 39.6667 58H13C5.82031 58 0 52.1797 0 45V13C0 5.8203 5.8203 0 13 0H39.6667C46.8464 0 52.6667 5.8203 52.6667 13V42.5822C55.4562 44.1961 57.333 47.2122 57.333 50.6667C57.333 55.8214 53.1543 60.0001 47.9997 60.0001C45.7035 60.0001 43.601 59.1709 41.9752 57.7956ZM10 14.3333C10 11.9401 11.9401 10 14.3333 10H38.3333C40.7266 10 42.6667 11.9401 42.6667 14.3333C42.6667 16.7266 40.7266 18.6667 38.3333 18.6667H14.3333C11.9401 18.6667 10 16.7266 10 14.3333ZM10 29C10 26.6068 11.9401 24.6667 14.3333 24.6667H38.3333C40.7266 24.6667 42.6667 26.6068 42.6667 29C42.6667 31.3932 40.7266 33.3333 38.3333 33.3333H14.3333C11.9401 33.3333 10 31.3932 10 29ZM50.1726 45.3488C50.5148 45.0065 50.9743 44.8072 51.4581 44.7913C51.9418 44.7754 52.4135 44.944 52.7774 45.263L52.8689 45.3488L53.3182 45.7981C53.6603 46.1402 53.8595 46.5996 53.8754 47.0831C53.8913 47.5667 53.7228 48.0382 53.404 48.4021L53.3182 48.4936L46.1933 55.6188C46.0925 55.7195 45.9705 55.7964 45.8361 55.8438L45.7332 55.8736L42.9028 56.5268C42.8036 56.5499 42.7004 56.5488 42.6017 56.5236C42.503 56.4985 42.4119 56.4499 42.3359 56.3822C42.2599 56.3144 42.2013 56.2294 42.165 56.1342C42.1288 56.0391 42.1159 55.9366 42.1275 55.8355L42.1402 55.7637L42.7929 52.9328C42.8251 52.7939 42.8881 52.6641 42.9771 52.5528L43.0477 52.4734L50.1726 45.3488ZM49.7233 47.5951L44.0104 53.3077L43.6063 55.0602L45.3589 54.6555L51.0718 48.9429L49.7233 47.5951ZM51.9704 46.2473C51.8609 46.1379 51.7154 46.0722 51.5609 46.0625C51.4065 46.0528 51.2538 46.0997 51.1315 46.1946L51.0718 46.2473L50.6219 46.6966L51.9704 48.0443L52.4196 47.5951C52.5291 47.4857 52.5948 47.3401 52.6045 47.1857C52.6142 47.0312 52.5672 46.8786 52.4724 46.7563L52.4196 46.6966L51.9704 46.2473Z"
                 fill="url(#paint0_linear_326_95)"
             />
@@ -132,8 +132,8 @@ const ApplyIcon = (props: SVGProps) => {
                     y2="67.0001"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#4D2C85" />
-                    <stop offset="1" stop-color="#03B1E0" />
+                    <stop stopColor="#4D2C85" />
+                    <stop offset="1" stopColor="#03B1E0" />
                 </linearGradient>
             </defs>
         </svg>
@@ -167,8 +167,8 @@ const FaqIcon = (props: SVGProps) => {
                     y2="74.6017"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#4D2C85" />
-                    <stop offset="1" stop-color="#03B1E0" />
+                    <stop stopColor="#4D2C85" />
+                    <stop offset="1" stopColor="#03B1E0" />
                 </linearGradient>
                 <linearGradient
                     id="paint1_linear_326_67"
@@ -178,8 +178,8 @@ const FaqIcon = (props: SVGProps) => {
                     y2="74.6017"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#4D2C85" />
-                    <stop offset="1" stop-color="#03B1E0" />
+                    <stop stopColor="#4D2C85" />
+                    <stop offset="1" stopColor="#03B1E0" />
                 </linearGradient>
             </defs>
         </svg>
@@ -209,8 +209,8 @@ const AboutIcon = (props: SVGProps) => {
                     y2="78.1818"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#4D2C85" />
-                    <stop offset="1" stop-color="#03B1E0" />
+                    <stop stopColor="#4D2C85" />
+                    <stop offset="1" stopColor="#03B1E0" />
                 </linearGradient>
             </defs>
         </svg>
@@ -240,8 +240,8 @@ const DashboardIcon = (props: SVGProps) => {
                     y2="75.6604"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#4D2C85" />
-                    <stop offset="1" stop-color="#03B1E0" />
+                    <stop stopColor="#4D2C85" />
+                    <stop offset="1" stopColor="#03B1E0" />
                 </linearGradient>
             </defs>
         </svg>
@@ -271,8 +271,8 @@ const DiscordIcon = (props: SVGProps) => {
                     y2="73.0645"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#4D2C85" />
-                    <stop offset="1" stop-color="#03B1E0" />
+                    <stop stopColor="#4D2C85" />
+                    <stop offset="1" stopColor="#03B1E0" />
                 </linearGradient>
             </defs>
         </svg>

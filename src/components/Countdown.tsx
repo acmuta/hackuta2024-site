@@ -49,7 +49,7 @@ const CountDownNumberWrapper = (numbers: number, i: number) => {
             key={i}
             suppressHydrationWarning
             className={
-                ' border-white/30 border-[1px] rounded-sm p-3 mx-1 min-w-32 min-h-32  backdrop-blur-lg bg-black/5 font-body '
+                ' border-white/30 border-[1px] rounded-sm p-3 mx-1 min-w-32 min-h-32  backdrop-blur-lg bg-black/5'
             }
         >
             {numbers}

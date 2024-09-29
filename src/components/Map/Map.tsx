@@ -1,13 +1,10 @@
 import React from 'react'
-import local from 'next/font/local'
-
-const PS2Font = local({ src: '../../../public/fonts/btseps2.woff2' })
 
 const Map = ({ src }: { src?: string }) => {
     return (
         <section className="z-100 bg-transparent flex flex-col items-center justify-start pt-0 px-5 box-border gap-[35px_0px] max-w-full text-center text-57xl text-white">
             <div
-                className={`${PS2Font.className} flex flex-row items-start md:text-6xl text-4xl justify-center py-0 px-5`}
+                className={`flex flex-row items-start md:text-6xl text-4xl justify-center py-0 px-5`}
             >
                 Venue & Parking
             </div>

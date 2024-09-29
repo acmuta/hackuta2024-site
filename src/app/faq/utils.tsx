@@ -25,8 +25,8 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
                     <Accordion
                         className="rounded-md relative z-10 overflow-visible border-l-4 border-blue-600 pl-4 w-full transition-all duration-300 ease-in-out hover:shadow-lg pb-[1px]"
                         arrowClassName=" "
-                        summaryClassName="text-xl font-body font-semibold"
-                        contentClassName="font-body mb-4"
+                        summaryClassName="text-xl font-semibold"
+                        contentClassName="mb-4"
                         summary={faq.q}
                     >
                         <MarkDownRenderer>{faq.a}</MarkDownRenderer>

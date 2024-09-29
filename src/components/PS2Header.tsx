@@ -68,7 +68,6 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                         )}
                     </ul>
                     <div className="text-white  justify-center items-center lg:pr-[calc(min(1vw,10px)+100px)] lg:inline">
-                        {/* <LocalTime date={Date.now()}></LocalTime> */}
                         <div className="flex flex-row gap-5">
                             <p className=" text-2xl md:text-3xl tracking-widest ">
                                 {month.toUpperCase()}
@@ -76,7 +75,6 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                             <p className="text-2xl md:text-3xl">
                                 {HackUTADate.getDate()} - 13
                             </p>
-                            {/* <p>{HackUTADate.getFullYear()}</p> */}
                         </div>
                     </div>
                 </div>
