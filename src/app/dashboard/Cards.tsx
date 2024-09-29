@@ -1,10 +1,7 @@
 'use client'
-
 import useSWR from 'swr'
-
 import { JSend, JSendError } from '@/lib/api/jsend'
 import { jsonFetcher, stringifyError } from '@/lib/utils/client'
-
 import PostRenderer from '../post/[slug]/PostRenderer'
 import Card from './Card'
 import { DashboardInfoResponse } from './info/route'

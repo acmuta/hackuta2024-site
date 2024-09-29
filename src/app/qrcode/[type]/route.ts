@@ -1,7 +1,6 @@
 import { headers } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 import QRCode from 'qrcode'
-
 import { getEnhancedSession, siteUrl } from '@/lib/utils/server'
 import { notFound } from 'next/navigation'
 
