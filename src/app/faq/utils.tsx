@@ -23,7 +23,7 @@ const FAQ: React.FC<FAQProps> = ({ faqs }) => {
                     className={`w-full ${columnCount === 2 ? 'md:w-[calc(50%-1rem)]' : columnCount === 3 ? 'lg:w-[calc(33.333%-1rem)]' : ''} transition-all duration-300 ease-in-out`}
                 >
                     <Accordion
-                        className="rounded-md relative z-10 overflow-visible border-l-4 border-blue-600 pl-4 w-full transition-all duration-300 ease-in-out hover:shadow-lg"
+                        className="rounded-md relative z-10 overflow-visible border-l-4 border-blue-600 pl-4 w-full transition-all duration-300 ease-in-out hover:shadow-lg pb-[1px]"
                         arrowClassName=" "
                         summaryClassName="text-xl font-body font-semibold"
                         contentClassName="font-body mb-4"
