@@ -28,7 +28,7 @@ export function AdminNavBar({ perms }: AdminNavProps) {
     const selectedSegment = useSelectedLayoutSegment()
     const selectedPath = `/admin${selectedSegment ? `/${selectedSegment}` : ''}`
     return (
-        <nav className="flex flex-col gap-4 w-full">
+        <nav className="flex flex-wrap w-full gap-4 lg:flex-col">
             {Object.entries(Links)
                 .filter(([path]) => hasRoutePermission(path, perms))
                 .map(([path, name]) => (

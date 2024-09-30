@@ -13,7 +13,7 @@ const SubContent = (info: info, i: number) => {
     return (
         <Link key={i} href={info.url} className="no-underline">
             <div className="cursor-pointer ">
-                <div className="border-white min-w-20 min-h-20 hover:scale-110 transition duration-200 md:min-w-32 md:min-h-32 lg:min-h-36 lg:min-w-36">
+                <div className="border-white min-w-20 p-3 min-h-20 hover:scale-110 transition duration-200 md:min-w-32 md:min-h-32 lg:min-h-36 lg:min-w-36">
                     <ContentComponent className="h-full w-full" />
                 </div>
                 <div className="flex flex-1 justify-center items-center mt-1">
@@ -55,8 +55,8 @@ export default function PS2Carousel() {
         },
     ]
     return (
-        <div className="block sm:flex h-[70vh] justify-center items-center">
-            <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row w-full justify-center lg:items-start items-b sm:items-center sm:pt-0">
+        <div className="block sm:flex h-auto lg:h-[70vh] justify-center items-center">
+            <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row w-full justify-center lg:h-[450px] lg:items-start items-b sm:items-center sm:pt-0">
                 <div className="flex justify-center items-center">
                     <div>
                         <div className="flex flex-1 flex-col border-white border-2 rounded-2xl p-3 items-center">
@@ -79,13 +79,13 @@ export default function PS2Carousel() {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col-reverse justify-start items-center lg:flex-col">
-                    <div className=" flex gap-5 flex-wrap sm:flex-nowrap items-center lg:justify-start lg:items-baseline justify-center sm:scale-75 px-10 lg:scale-100">
+                <div className="flex flex-col-reverse items-center justify-between h-full lg:flex-col">
+                    <div className=" flex gap-7 flex-wrap sm:flex-nowrap items-center lg:justify-start lg:items-baseline justify-center sm:scale-75 px-10 lg:scale-100">
                         {SubContentInfo.map((data, i) => {
                             return SubContent(data, i)
                         })}
                     </div>
-                    <div className="flex flex-1 flex-col">
+                    <div className="flex flex-col">
                         <div className="flex items-start md:items-center mt-5">
                             <Timer />
                         </div>
@@ -111,8 +111,8 @@ const ApplyIcon = (props: SVGProps) => {
     return (
         <svg
             {...props}
-            width="58"
-            height="60"
+            width="43"
+            height="43"
             viewBox="0 0 58 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -144,8 +144,8 @@ const FaqIcon = (props: SVGProps) => {
     return (
         <svg
             {...props}
-            width="60"
-            height="60"
+            width="43"
+            height="43"
             viewBox="0 0 60 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -190,8 +190,8 @@ const AboutIcon = (props: SVGProps) => {
     return (
         <svg
             {...props}
-            width="88"
-            height="60"
+            width="43"
+            height="43"
             viewBox="0 0 88 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -221,8 +221,8 @@ const DashboardIcon = (props: SVGProps) => {
     return (
         <svg
             {...props}
-            width="61"
-            height="60"
+            width="43"
+            height="43"
             viewBox="0 0 61 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -252,8 +252,8 @@ const DiscordIcon = (props: SVGProps) => {
     return (
         <svg
             {...props}
-            width="78"
-            height="60"
+            width="43"
+            height="43"
             viewBox="0 0 78 60"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

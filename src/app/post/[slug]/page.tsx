@@ -9,29 +9,32 @@ import { isVisible } from '../constants'
 import PostRenderer from './PostRenderer'
 
 interface PageProps {
-	params: { slug: string }
+    params: { slug: string }
 }
 
 export default async function Post({ params: { slug } }: PageProps) {
-	try {
-		const client = await clientPromise
-		const post = await client.db().collection<Post>('posts').findOne({ slug })
-		const ctx = await createTemplateRenderContext()
-		if (!(post?.contentSource && isVisible(post, ctx))) {
-			return notFound()
-		}
+    try {
+        const client = await clientPromise
+        const post = await client
+            .db()
+            .collection<Post>('posts')
+            .findOne({ slug })
+        const ctx = await createTemplateRenderContext()
+        if (!(post?.contentSource && isVisible(post, ctx))) {
+            return notFound()
+        }
 
-		return (
-			<div className="pagePadding bg-white">
-				<PostRenderer
-					post={post}
-					sourceType="contentSource"
-					context={ctx}
-				/>
-			</div>
-		)
-	} catch (e) {
-		logger.error(e, `[/post/${slug}]`)
-		throw e
-	}
+        return (
+            <div className="pagePadding bg-white">
+                <PostRenderer
+                    post={post}
+                    sourceType="contentSource"
+                    context={ctx}
+                />
+            </div>
+        )
+    } catch (e) {
+        logger.error(e, `[/post/${slug}]`)
+        throw e
+    }
 }

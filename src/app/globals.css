@@ -270,7 +270,7 @@ a:where(:visited) {
 }
 
 a {
-    color: #FFD700;
+    color: #ffd700;
 }
 
 table.borderTable,
@@ -366,7 +366,8 @@ table.borderTable,
 }
 
 .ps2 {
-    background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+    background: 50% 100% / 50% 50% no-repeat
+        radial-gradient(ellipse at bottom, #fff, transparent, transparent);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

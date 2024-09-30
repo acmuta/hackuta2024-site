@@ -9,13 +9,13 @@ import { RenderContext } from '@/lib/utils/server'
  * code execution access as a bonus. Good job breachers!
  */
 export function isVisible(post: Post, ctx: RenderContext): boolean {
-	return new Function(
-		`const it = arguments[0];
+    return new Function(
+        `const it = arguments[0];
 		try {
 			return !!(${post.visibleCondition})
 		} catch (_ignored) {
 			return false
 		}
-	`,
-	)(ctx)
+	`
+    )(ctx)
 }

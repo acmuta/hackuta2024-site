@@ -26,15 +26,31 @@ export default async function Post() {
                 {posts.length ? (
                     <table
                         className="borderTable bg-slate-100 text-slate-950 border border-slate-200 rounded-lg shadow-lg"
-                        style={{ maxWidth: '60rem', width: '100%', overflow: 'hidden' }}
+                        style={{
+                            maxWidth: '60rem',
+                            width: '100%',
+                            overflow: 'hidden',
+                        }}
                     >
-                        <thead className="bg-yellow-300"> {/* Apply yellow background to the entire header row */}
+                        <thead className="bg-[#FFD700]">
+                            {' '}
+                            {/* Apply yellow background to the entire header row */}
                             <tr>
-                                <th className="p-4 border-b border-slate-300">Name</th>
-                                <th className="p-4 border-b border-slate-300">Display Type</th>
-                                <th className="p-4 border-b border-slate-300">Priority</th>
-                                <th className="p-4 border-b border-slate-300">Visible</th>
-                                <th className="p-4 border-b border-slate-300">Actions</th>
+                                <th className="p-4 border-b border-slate-300">
+                                    Name
+                                </th>
+                                <th className="p-4 border-b border-slate-300">
+                                    Display Type
+                                </th>
+                                <th className="p-4 border-b border-slate-300">
+                                    Priority
+                                </th>
+                                <th className="p-4 border-b border-slate-300">
+                                    Visible
+                                </th>
+                                <th className="p-4 border-b border-slate-300">
+                                    Actions
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,17 +68,21 @@ export default async function Post() {
                                         className="hover:bg-slate-200 transition-all duration-200 ease-in-out cursor-pointer"
                                     >
                                         {/* Bold the Name column in each row */}
-                                        <td className="p-4 border-b border-slate-200 font-bold">{name}</td>
+                                        <td className="p-4 border-b border-slate-200 font-bold">
+                                            {name}
+                                        </td>
                                         <td className="p-4 border-b border-slate-200">
                                             {briefSource
                                                 ? contentSource
                                                     ? 'card + page'
                                                     : 'card'
                                                 : contentSource
-                                                    ? 'page'
-                                                    : 'empty'}
+                                                  ? 'page'
+                                                  : 'empty'}
                                         </td>
-                                        <td className="p-4 border-b border-slate-200">{priority}</td>
+                                        <td className="p-4 border-b border-slate-200">
+                                            {priority}
+                                        </td>
                                         <td className="p-4 border-b border-slate-200">
                                             <code>{visibleCondition}</code>
                                         </td>

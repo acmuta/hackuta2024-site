@@ -10,7 +10,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ children, href, className = '' }) => {
     const cardContent = (
         <div
-            className={`p-4 w-full h-fit bg-black/10 backdrop-blur-2xl text-white rounded-lg shadow-md ${className} md:p-8 bg-gradient-to-tl from-black/10 to-violet-400/10 `}
+            className={`p-4 w-full h-fit bg-white/5 backdrop-blur-2xl text-white rounded-lg shadow-md ${className} md:p-8 bg-gradient-to-tl from-black/10 to-violet-400/10 `}
         >
             {children}
         </div>
@@ -19,7 +19,7 @@ const Card: React.FC<CardProps> = ({ children, href, className = '' }) => {
     return href ? (
         <Link href={href} className="block hover:no-underline">
             {cardContent}
-        </Link> 
+        </Link>
     ) : (
         cardContent
     )

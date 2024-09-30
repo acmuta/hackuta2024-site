@@ -33,7 +33,9 @@ export const PointTable: React.FC<PointTableProps> = ({
 
     useEffect(() => {
         // Sort users by points in descending order
-        const sorted = [...users].sort((a, b) => b.pointsObtained - a.pointsObtained)
+        const sorted = [...users].sort(
+            (a, b) => b.pointsObtained - a.pointsObtained
+        )
         setSortedUsers(sorted)
 
         // Filter users based on search term
@@ -65,7 +67,9 @@ export const PointTable: React.FC<PointTableProps> = ({
     return (
         currentUsers.length > 0 && (
             <div className="flex justify-center items-center flex-col w-[390px]">
-                <h2 className="text-2xl font-bold mb-2 text-white">Leaderboard</h2>
+                <h2 className="text-2xl font-bold mb-2 text-white">
+                    Leaderboard
+                </h2>
 
                 <Input
                     type="text"
@@ -102,7 +106,10 @@ export const PointTable: React.FC<PointTableProps> = ({
                     </TableBody>
                 </Table>
                 <div className="flex justify-between mt-4 text-white w-fit gap-5">
-                    <button onClick={handlePrevPage} disabled={currentPage === 1}>
+                    <button
+                        onClick={handlePrevPage}
+                        disabled={currentPage === 1}
+                    >
                         <ArrowLeft />
                     </button>
                     <span>
