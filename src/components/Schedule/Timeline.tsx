@@ -1,6 +1,6 @@
+import type { Timeline } from '@acmuta/planby'
 import {
     CurrentTime,
-    Timeline,
     TimelineBox,
     TimelineDivider,
     TimelineDividers,
