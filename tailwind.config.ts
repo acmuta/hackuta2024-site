@@ -61,7 +61,6 @@ const config: Config = {
                 'hackuta-beige': '#D2C2A9',
                 'hackuta-blue': '#2869A9',
                 'hackuta-darkblue': '#122F4C',
-                'hackuta-red': '#AF2922',
                 'hackuta-darkred': '#7A1D18',
                 'hackuta-yellow': '#F8B92A',
                 'hackuta-black-60': 'rgba(19, 13, 8, 0.6)',

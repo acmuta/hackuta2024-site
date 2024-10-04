@@ -2,7 +2,7 @@
 
 import { TrendingUp } from 'lucide-react'
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
-import { Row } from './pie-graph'
+// import { Row } from './pie-graph'
 
 import {
     Card,
@@ -38,13 +38,11 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
-interface AreaGraphProps {
-    applications: Row[]
-}
+// interface AreaGraphProps {
+//     applications: Row[]
+// }
 
-export function AreaGraph({ applications }: AreaGraphProps) {
-    console.log(applications)
-
+export function AreaGraph() {
     return (
         <Card>
             <CardHeader>

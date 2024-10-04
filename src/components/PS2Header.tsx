@@ -16,8 +16,8 @@ export type MarqueeHeaderProps = {
 }
 
 export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
-    const HackUTADate = new Date(2024, 9, 12)
-    const month = HackUTADate.toLocaleString('default', { month: 'long' })
+    // const HackUTADate = new Date(2024, 9, 12)
+    // const month = HackUTADate.toLocaleString('default', { month: 'long' })
 
     const pathname = usePathname()
     if (showBadge === undefined) {
@@ -32,7 +32,7 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                     'my-2 py-5 px-0 md:px-10'
                 )}
             >
-                <div className="flex flex-col w-full justify-between items-center py-4 sm:gap-y-5 lg:px-10 lg:flex-row flex-wrap">
+                <div className="flex flex-col w-full justify-between items-center pt-2 sm:py-4 gap-y-7 sm:gap-y-5 lg:px-10 lg:flex-row flex-wrap">
                     <div className="flex no-underline w-full items-center justify-center lg:w-auto">
                         <Link
                             href={'/'}
@@ -43,7 +43,7 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                         </Link>
                     </div>
                     {/* <ul className="flex flex-row items-start scale-90 lg:w-auto sm:w-full sm:justify-center sm:scale-100 "> */}
-                    <ul className="flex flex-row w-full justify-around sm:w-full sm:scale-100 sm:justify-center items-center lg:items-center lg:w-auto md:gap-12 lg:gap-48 lg:justify-between ">
+                    <ul className="flex flex-row w-full justify-around scale-75 sm:w-full sm:scale-100 sm:justify-center items-center lg:items-center lg:w-auto md:gap-12 lg:gap-32 lg:justify-between ">
                         <HeaderLink href="/dashboard">
                             <NotificationIcon></NotificationIcon>
                             <span className="text-2xl text-center md:text-3xl">
@@ -63,17 +63,19 @@ export const PS2Header = ({ showBadge, user, perms }: MarqueeHeaderProps) => {
                         {hasPermission(perms, { administration: {} }) && (
                             <HeaderLink href="/admin">
                                 <AdminGear></AdminGear>
-                                <span>Admin</span>
+                                <span className="text-2xl text-center md:text-3xl">
+                                    Admin
+                                </span>
                             </HeaderLink>
                         )}
                     </ul>
                     <div className="text-white  justify-center items-center lg:pr-[calc(min(1vw,10px)+100px)] lg:inline">
-                        <div className="flex flex-row gap-5">
-                            <p className=" text-2xl md:text-3xl tracking-widest ">
-                                {month.toUpperCase()}
+                        <div className="flex flex-row sm:flex-col gap-2 items-center">
+                            <p className=" text-xl md:text-3xl tracking-widest">
+                                {'OCTOBER 12 - 13'}
                             </p>
-                            <p className="text-2xl md:text-3xl">
-                                {HackUTADate.getDate()} - 13
+                            <p className="text-xl md:text-3xl tracking-wider">
+                                {'🕗 08:00 AM'}
                             </p>
                         </div>
                     </div>

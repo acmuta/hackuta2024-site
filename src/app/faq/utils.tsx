@@ -1,7 +1,6 @@
 import { WithId } from 'mongodb'
 
 import { Accordion } from '@/components/Accordion'
-import { WavyPattern } from '@/components/WavyPattern'
 import clientPromise from '@/lib/db'
 import { FaqModel } from '@/lib/db/models/Faq'
 import logger from '@/lib/logger'
@@ -73,9 +72,8 @@ export function FaqSection({
     // return <PageSection heading="FAQ">{content}</PageSection>
     return (
         <div className="flex flex-col items-center justify-start gap-8 p-8 md:p-16 w-full">
-            <h2 className="flex flex-col items-center gap-2 font-heading drop-shadow-hackuta text-white text-4xl">
+            <h2 className="flex flex-col items-center gap-2 font-heading text-white text-4xl">
                 Frequently Asked
-                <WavyPattern className="w-32" />
             </h2>
             <div className="flex flex-row flex-wrap gap-4 items-start justify-center">
                 {content}

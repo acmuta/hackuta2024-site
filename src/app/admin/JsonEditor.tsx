@@ -59,9 +59,10 @@ export default function JsonEditor({ text, postUrl, schema }: Props) {
     }
 
     return (
-        <Box direction="column" gap="1rem">
-            <span className="text-hackuta-red">{error}</span>
+        <Box className="flex flex-col gap-4" direction="column" gap="1rem">
+            <span className="text-red-500">{error}</span>
             <textarea
+                className="text-black"
                 title="idk"
                 id="json"
                 rows={16}
