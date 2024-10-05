@@ -65,7 +65,7 @@ export const PointTable: React.FC<PointTableProps> = ({
     }
 
     return (
-        currentUsers.length > 0 && (
+       
             <div className="flex justify-center items-center flex-col w-[390px]">
                 <h2 className="text-2xl font-bold mb-2 text-white">
                     Leaderboard
@@ -123,6 +123,6 @@ export const PointTable: React.FC<PointTableProps> = ({
                     </button>
                 </div>
             </div>
-        )
+        
     )
 }
