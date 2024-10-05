@@ -69,7 +69,6 @@ export default function JsonEditor({ text, postUrl, schema }: Props) {
                 cols={80}
                 value={textVal}
                 onChange={(e) => setTextVal(e.target.value)}
-                className="text-black"
             />
             <Box direction="row" gap="1rem">
                 <Button onClick={save}>Save</Button>
