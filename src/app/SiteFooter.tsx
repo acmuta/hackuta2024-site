@@ -47,7 +47,7 @@ export default function SiteFooter() {
                             links={[
                                 <Link
                                     key="website"
-                                    href={'https://acm.uta.edu'}
+                                    href={'https://acmuta.com/'}
                                     className="no-underline text-white"
                                 >
                                     <Safari
