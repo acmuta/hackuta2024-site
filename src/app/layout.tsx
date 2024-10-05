@@ -89,8 +89,8 @@ export default function RootLayout({
                 )}
             </head>
             <Box as="body" direction="column" className="p-0 m-0 min-h-screen">
-                <BackgroundGradientAnimation className="z-0">
-                    <div className="relative z-50">
+                <BackgroundGradientAnimation className="z-0 h-screen">
+                    <div className="relative z-50 h-full overflow-y-auto">
                         <PS2Header user={user} perms={perms} />
                         <main className="flex-[1] z-100">{children}</main>
                         <SiteFooter />
