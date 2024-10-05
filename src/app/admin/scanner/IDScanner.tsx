@@ -142,10 +142,10 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
         hasEventPerm
             ? 'event'
             : hasLinkPerm
-              ? 'checkin'
-              : hasMealPerm
-                ? 'meal'
-                : 'shop'
+                ? 'checkin'
+                : hasMealPerm
+                    ? 'meal'
+                    : 'shop'
     )
     const [eventSelected, setEventSelected] = useState<boolean>(false)
     const { currMeal, currEvents, swags, error: eventsFetchError } = useData()
@@ -180,8 +180,7 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
     }) => {
         try {
             const response = await fetch(
-                `/admin/scanner/submit?checkInPin=${checkInPin ?? ''}&hexId=${
-                    hexId ?? ''
+                `/admin/scanner/submit?checkInPin=${checkInPin ?? ''}&hexId=${hexId ?? ''
                 }&eventName=${eventName ?? ''}&id=${id ?? ''}&swagName=${swagName ?? ''}`,
                 {
                     method: 'POST',
@@ -251,7 +250,7 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
         // phys id ie: A00000
         // dig id: 123456
         const hexMatch = data.match(
-            /^https:\/\/hackuta.org\/dashboard\?id=[ABCD][a-f0-9]{5}$/i
+            /^https:\/\/hackuta.org\/dashboard\?id=[ABCD][a-f0-9]{6}$/i
         )
         const pinMatch = data.match(
             /^https:\/\/hackuta.org\/dashboard\?id=\d{6}$/i
@@ -271,14 +270,14 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
             showFlashAnimation()
         } else {
             setErrorMessage(
-                'Scanned QR code is not a valid hex ID or 6-digit check-in PIN.'
+                'Scanned QR code is not a valid hex ID or 7-digit check-in PIN.'
             )
             showFlashAnimation('error')
         }
     }
 
     const isValidHexID = (id: string) =>
-        id.length === 6 && !!id.match(/^[ABCD][a-f0-9]{5}$/i)
+        id.length === 7 && !!id.match(/^[ABCD][a-f0-9]{6}$/i)
     const isValidPin = (pin: string) =>
         pin.length === 6 && !!pin.match(/^\d{6}$/i)
     const isValidGeneralID = (id: string) => isValidHexID(id) || isValidPin(id)
@@ -306,9 +305,8 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
             setUserData({
                 firstName: data[0].application?.firstName ?? 'undefined',
                 lastName: data[0].application?.lastName ?? 'undefined',
-                fullName: `${data[0].application?.firstName ?? 'undefined'} ${
-                    data[0].application?.lastName ?? 'undefined'
-                }`,
+                fullName: `${data[0].application?.firstName ?? 'undefined'} ${data[0].application?.lastName ?? 'undefined'
+                    }`,
                 school: data[0].application?.school ?? 'undefined',
                 age: data[0].application?.age ?? NaN,
                 group: getGroupName(hexIdValue),
@@ -493,6 +491,7 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
                                 <TextInput
                                     type="text"
                                     placeholder="Attendee ID"
+                                    errors={[errorMessage]}
                                     value={generalIdValue}
                                     onChange={(e) =>
                                         setGeneralIdValue(
@@ -532,6 +531,7 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
                                 <TextInput
                                     type="text"
                                     placeholder="Attendee ID"
+                                    errors={[errorMessage]}
                                     value={generalIdValue}
                                     onChange={(e) =>
                                         setGeneralIdValue(
@@ -586,6 +586,7 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
                                 <TextInput
                                     type="text"
                                     placeholder="Attendee ID"
+                                    errors={[errorMessage]}
                                     value={generalIdValue}
                                     onChange={(e) =>
                                         setGeneralIdValue(

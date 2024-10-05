@@ -16,7 +16,7 @@ const Links = {
     '/admin/role': 'Role',
     '/admin/scanner': 'Scanner',
     '/admin/schedule': 'Schedule',
-    // '/admin/shop': 'Shop',
+    '/admin/shop': 'Shop',
     '/admin/user': 'User',
 }
 
