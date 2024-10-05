@@ -84,7 +84,7 @@ async function addEvent(
     users: Collection<User>,
     eventName: string
 ) {
-    const isHexId = generalId.match(/^[ABCD][a-f0-9]{5}$/i)
+    const isHexId = generalId.match(/^[ABCD][a-f0-9]{6}$/i)
     const idKey = (isHexId ? 'hexId' : 'checkInPin') satisfies keyof User
 
     // check if user already has event
@@ -136,7 +136,7 @@ async function redeemSwag(
     client: MongoClient,
     swagName: string
 ) {
-    const isHexId = generalId.match(/^[ABCD][a-f0-9]{5}$/i)
+    const isHexId = generalId.match(/^[ABCD][a-f0-9]{6}$/i)
     const idKey = (isHexId ? 'hexId' : 'checkInPin') satisfies keyof User
 
     const swags = await client
