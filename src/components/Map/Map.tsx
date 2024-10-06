@@ -3,11 +3,12 @@ import React from 'react'
 const Map = ({ src }: { src?: string }) => {
     return (
         <section className="z-100 bg-transparent flex flex-col items-center justify-start pt-0 px-5 box-border gap-[35px_0px] max-w-full text-center text-57xl text-white">
-            <div
+            {/* <div
                 className={`flex flex-row items-start md:text-6xl text-4xl justify-center py-0 px-5`}
             >
                 Venue & Parking
-            </div>
+            </div> */}
+            <p className="text-white font-heading text-4xl mb-8 text-neon">Venue & Parking</p>
             <div className=" max-[640px]:justify-center flex md:flex-row flex-col items-center justify-start max-w-full text-left font-regular-14 lg:gap-[0px_134px]">
                 {/* <div className=" text-xl max-[640px]:text-[18px]">
               Park in lot F10 which will be marked in blue on the HackUTA Event
