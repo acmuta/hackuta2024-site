@@ -463,7 +463,7 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
                             <div className="text-center mt-3">
                                 <select
                                     ref={eventSelect}
-                                    className="font-heading text-center mt-2 text-lg pl-4 pr-8 py-2 rounded-lg form-select appearance-none bg-no-repeat bg-hackuta-red text-white w-full"
+                                    className="font-heading text-center mt-2 text-lg pl-4 pr-8 py-2 rounded-lg form-select appearance-none bg-no-repeat bg-hackuta-red text-white w-full bg-red-700"
                                     onChange={() => {
                                         setEventSelected(true)
                                     }}
@@ -567,7 +567,7 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
                             {/* Dropdown for selecting swags */}
                             <div className="text-center mt-3">
                                 <select
-                                    className="font-heading text-center mt-2 text-lg pl-4 pr-8 py-2 rounded-lg form-select appearance-none bg-no-repeat bg-hackuta-red text-white w-full"
+                                    className="font-heading text-center mt-2 text-lg pl-4 pr-8 py-2 rounded-lg form-select appearance-none bg-no-repeat bg-hackuta-red text-white w-full bg-red-700"
                                     onChange={(e) => {
                                         setSelectedSwag(e.target.value)
                                     }}

@@ -3,7 +3,7 @@ import { Role } from '@/lib/db/models/Role'
 import User from '@/lib/db/models/User'
 import { getEnhancedSession } from '@/lib/utils/server'
 import { headers } from 'next/headers'
-import Link from 'next/link'
+// import Link from 'next/link'
 import UserDataTable from './UserDataTable'
 
 export default async function Users() {
@@ -27,9 +27,9 @@ export default async function Users() {
                 perms={perms}
             />
             <br />
-            <Link href="/admin/user/print">
+            {/* <Link href="/admin/user/print">
                 Print a table of all accepted users
-            </Link>
+            </Link> */}
         </>
     )
 }

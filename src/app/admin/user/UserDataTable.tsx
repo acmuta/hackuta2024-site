@@ -23,6 +23,7 @@ export interface UserDataTableProps {
     perms: AppPermissions
     allRoles: readonly string[]
 }
+export type Row = JsonUser
 
 export default function UserDataTable({
     allRoles,
@@ -39,9 +40,44 @@ export default function UserDataTable({
     const hasWriteRolePerm = hasPermission(perms, {
         administration: { user: { writeRole: true } },
     })
-
+    const exportCsv = (anchor: HTMLAnchorElement, users: readonly Row[]) => {
+        const stringify = (v: boolean | number | string | undefined) =>
+            v ? v.toString() : ''
+        const quote = (s: string) => (s.includes(',') ? `"${s}"` : s)
+        const cell = (v: boolean | number | string | undefined) =>
+            quote(stringify(v))
+        const fields = (r: Row) => [
+            r.application?.firstName,
+            r.application?.lastName,
+            r.email,
+            r.application?.school,
+            r.checkInPin,
+        ]
+        const row = (r: Row) => fields(r).map(cell).join(',')
+        const headers = () => [
+            'First Name',
+            'Last Name',
+            'Email',
+            'School',
+            'CheckedIn Pin',
+        ]
+        const csv = [headers(), ...users.filter(user => user.applicationStatus === "accepted").map(row)].join('\n')
+        anchor.setAttribute(
+            'href',
+            encodeURI(`data:text/csv;charset=utf-8,${csv}`)
+        )
+    }
     return (
         <div className="flex flex-col gap-2">
+            <p>
+                <a
+                    className="text-hackuta-blue underline cursor-pointer"
+                    onClick={(e) => exportCsv(e.currentTarget, users)}
+                    download="applications.csv"
+                >
+                    Export to CSV
+                </a>
+            </p>
             <DataTable
                 value={users}
                 // pagination
