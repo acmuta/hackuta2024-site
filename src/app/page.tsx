@@ -23,7 +23,7 @@ export default function LandingPageContent() {
             <div className='py-5' id="aboutUs-section">
                 <AboutUs />
             </div>
-            <div>
+            <div className='py-5'>
                 <Sponsors />
             </div>
         </>
