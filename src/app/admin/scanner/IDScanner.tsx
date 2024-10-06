@@ -19,7 +19,7 @@ export interface IDScannerProps {
     perms: AppPermissions
 }
 
-type ScanType = 'checkin' | 'event' | 'meal' | 'shop'
+type ScanType = 'checkin' | 'event' | 'meal' | 'shop' | 'bonus'
 
 interface UserData {
     firstName: string
@@ -75,7 +75,8 @@ const useData = (): {
                     event.eventType === 'minievent' ||
                     event.eventType === 'sponsor' ||
                     event.eventType === 'event' ||
-                    event.eventType === 'general'
+                    event.eventType === 'general' ||
+                    event.eventType === 'bonus'
             )
         }
     }
