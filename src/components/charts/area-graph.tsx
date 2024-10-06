@@ -1,6 +1,6 @@
 'use client'
 
-import { TrendingUp } from 'lucide-react'
+// import { TrendingUp } from 'lucide-react'
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 // import { Row } from './pie-graph'
 
@@ -18,14 +18,14 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from '@/components/ui/chart'
-const chartData = [
-    { month: 'January', applications: 186, mobile: 80 },
-    { month: 'February', applications: 305, mobile: 200 },
-    { month: 'March', applications: 237, mobile: 120 },
-    { month: 'April', applications: 73, mobile: 190 },
-    { month: 'May', applications: 209, mobile: 130 },
-    { month: 'June', applications: 214, mobile: 140 },
-]
+// const chartData = [
+//     { month: 'January', applications: 186, mobile: 80 },
+//     { month: 'February', applications: 305, mobile: 200 },
+//     { month: 'March', applications: 237, mobile: 120 },
+//     { month: 'April', applications: 73, mobile: 190 },
+//     { month: 'May', applications: 209, mobile: 130 },
+//     { month: 'June', applications: 214, mobile: 140 },
+// ]
 
 const chartConfig = {
     desktop: {
@@ -41,14 +41,18 @@ const chartConfig = {
 // interface AreaGraphProps {
 //     applications: Row[]
 // }
+export type ChartData = {
+    month: string;
+    applications: number;
+}
 
-export function AreaGraph() {
+export function AreaGraph({ chartData }: { chartData: ChartData[] }) {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Area Chart - Stacked</CardTitle>
+                <CardTitle>Area Chart </CardTitle>
                 <CardDescription>
-                    Showing total visitors for the last 6 months
+                    Showing total applied applications by month
                 </CardDescription>
             </CardHeader>
             <CardContent>
@@ -76,14 +80,14 @@ export function AreaGraph() {
                             cursor={false}
                             content={<ChartTooltipContent indicator="dot" />}
                         />
-                        <Area
+                        {/* <Area
                             dataKey="mobile"
                             type="natural"
                             fill="var(--color-mobile)"
                             fillOpacity={0.4}
                             stroke="var(--color-mobile)"
                             stackId="a"
-                        />
+                        /> */}
                         <Area
                             dataKey="applications"
                             type="natural"
@@ -99,11 +103,11 @@ export function AreaGraph() {
                 <div className="flex w-full items-start gap-2 text-sm">
                     <div className="grid gap-2">
                         <div className="flex items-center gap-2 font-medium leading-none">
-                            Trending up by 5.2% this month{' '}
-                            <TrendingUp className="h-4 w-4" />
+                            {/* Trending up by 5.2% this month{' '} */}
+                            {/* <TrendingUp className="h-4 w-4" /> */}
                         </div>
                         <div className="flex items-center gap-2 leading-none text-muted-foreground">
-                            January - June 2024
+                            May - Oct 2024
                         </div>
                     </div>
                 </div>
