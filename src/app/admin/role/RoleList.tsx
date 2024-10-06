@@ -78,23 +78,23 @@ export function RoleList({ roles, onRoleEdit }: RoleListProps) {
         }
     }
 
-    const viewAs = async () => {
-        try {
-            const response = await fetch(
-                `/admin/role/${Object.keys(selectedRoles).join(',')}/view-as`,
-                {
-                    method: 'POST',
-                }
-            )
-            const content = await response.json()
-            if (content?.status !== 'success') {
-                throw new Error('Error')
-            }
-            window.location.reload()
-        } catch (e) {
-            alert(stringifyError(e))
-        }
-    }
+    // const viewAs = async () => {
+    //     try {
+    //         const response = await fetch(
+    //             `/admin/role/${Object.keys(selectedRoles).join(',')}/view-as`,
+    //             {
+    //                 method: 'POST',
+    //             }
+    //         )
+    //         const content = await response.json()
+    //         if (content?.status !== 'success') {
+    //             throw new Error('Error')
+    //         }
+    //         window.location.reload()
+    //     } catch (e) {
+    //         alert(stringifyError(e))
+    //     }
+    // }
     return (
         <article className="flex flex-col gap-2">
             {roles.map((r) => (
@@ -117,13 +117,13 @@ export function RoleList({ roles, onRoleEdit }: RoleListProps) {
                 </Card>
             ))}
             <div className="flex gap-2c">
-                <Button
+                {/* <Button
                     kind="secondary"
                     disabled={!Object.keys(selectedRoles).length}
                     onClick={viewAs}
                 >
                     View As
-                </Button>
+                </Button> */}
                 <Button
                     kind="secondary"
                     className="bg-hackuta-red"

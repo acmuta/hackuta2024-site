@@ -35,12 +35,12 @@ export default function PS2Carousel() {
         },
         {
             title: 'FAQ',
-            url: '/faq',
+            url: '#faq-section',
             content: FaqIcon,
         },
         {
             title: 'About Us',
-            url: '/about',
+            url: '#aboutUs-section',
             content: AboutIcon,
         },
         {
