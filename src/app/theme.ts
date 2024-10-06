@@ -1,47 +1,49 @@
 export const theme = {
     primary: {
-        600: '#1a202c',
-        900: '#171923',
+        600: '#1A202E',
+        900: '#0D1117',
     },
-    grey: { 300: '#d1d1d1' },
-    white: '#fff',
+    grey: {
+        300: '#A0AEC0',
+    },
+    white: '#FFFFFF',
     teal: {
-        100: '#dc2626',
+        100: '#FE53BB',
     },
     green: {
-        200: '#389493',
-        300: '#2C7A7B',
+        200: '#39FF14',
+        300: '#0ACF83',
     },
     scrollbar: {
-        border: '#ffffff',
+        border: '#FFFFFF',
         thumb: {
-            bg: '#e1e1e1',
+            bg: '#FE53BB',
         },
     },
     loader: {
-        teal: '#5DDADB',
-        purple: '#3437A2',
-        pink: '#F78EB6',
-        bg: '#171923db',
+        teal: '#0ACF83',
+        blue: '#38BDF8',
+        pink: '#FE53BB',
+        bg: '#0D1117DB',
     },
     gradient: {
         blue: {
-            300: '#fca5a5',
-            600: '#dc2626',
-            900: '#7f1d1d',
+            300: '#3B82F6',
+            600: '#1E3A8A',
+            900: '#1A202E',
         },
     },
 
     text: {
         grey: {
-            300: '#a0aec0',
-            500: '#718096',
+            300: '#38BDF8',
+            500: '#A0AEC0',
         },
     },
 
     timeline: {
         divider: {
-            bg: '#718096',
+            bg: '#38BDF8',
         },
     },
 }
