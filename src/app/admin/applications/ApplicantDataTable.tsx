@@ -119,6 +119,9 @@ export default function ApplicantDataTable({
             r.countryOfResidence,
             r.levelOfStudy,
             r.checkedIn ?? 'N/A',
+            r.agreedMlhCoC,
+            r.agreedMlhMarketing,
+            r.agreedMlhSharing,
         ]
         const row = (r: Row) => fields(r).map(cell).join(',')
         const headers = () => [
@@ -131,6 +134,9 @@ export default function ApplicantDataTable({
             'Country',
             'Current Level of Study',
             'Checked In',
+            'MLH CoC',
+            'MLH Marketing',
+            'MLH Sharing',
         ]
         const csv = [headers(), ...apps.map(row)].join('\n')
         anchor.setAttribute(
