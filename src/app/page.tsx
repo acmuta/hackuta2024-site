@@ -17,13 +17,13 @@ export default function LandingPageContent() {
             <div className="py-5">
                 <Schedule />
             </div>
-            <div className='py-5' id="faq-section">
+            <div className="py-5" id="faq-section">
                 <FAQ />
             </div>
-            <div className='py-5' id="aboutUs-section">
+            <div className="py-5" id="aboutUs-section">
                 <AboutUs />
             </div>
-            <div className='py-5'>
+            <div className="py-5">
                 <Sponsors />
             </div>
         </>

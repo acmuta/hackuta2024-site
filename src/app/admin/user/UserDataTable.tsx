@@ -61,7 +61,12 @@ export default function UserDataTable({
             'School',
             'CheckedIn Pin',
         ]
-        const csv = [headers(), ...users.filter(user => user.applicationStatus === "accepted").map(row)].join('\n')
+        const csv = [
+            headers(),
+            ...users
+                .filter((user) => user.applicationStatus === 'accepted')
+                .map(row),
+        ].join('\n')
         anchor.setAttribute(
             'href',
             encodeURI(`data:text/csv;charset=utf-8,${csv}`)

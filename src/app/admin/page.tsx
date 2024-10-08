@@ -12,43 +12,49 @@ type appliedDate = {
     applied: Date
 }
 
-
-
 function countApplicationsByMonth(appliedDate: appliedDate[]) {
     // Parse the dates into Date objects
-    const dates = appliedDate.map(({ applied }) => new Date(applied));
+    const dates = appliedDate.map(({ applied }) => new Date(applied))
 
     // Find the latest date by converting each date to its timestamp using getTime()
-    const latestDate = new Date(Math.max(...dates.map(date => date.getTime())));
+    const latestDate = new Date(
+        Math.max(...dates.map((date) => date.getTime()))
+    )
 
     // Initialize counts for the last 6 months
-    const counts = Array(6).fill(0);
+    const counts = Array(6).fill(0)
 
     // Iterate over each date and increment the appropriate month counter
-    dates.forEach(date => {
+    dates.forEach((date) => {
         // Calculate the difference in months between the current date and the latest date
-        const monthsDiff = latestDate.getFullYear() * 12 + latestDate.getMonth() - (date.getFullYear() * 12 + date.getMonth());
+        const monthsDiff =
+            latestDate.getFullYear() * 12 +
+            latestDate.getMonth() -
+            (date.getFullYear() * 12 + date.getMonth())
 
         // Only consider dates within the last 6 months
         if (monthsDiff >= 0 && monthsDiff < 6) {
-            counts[monthsDiff]++;
+            counts[monthsDiff]++
         }
-    });
+    })
 
     // Create a mapping of the counts with month names for display
-    const monthNames = [];
+    const monthNames = []
     for (let i = 0; i < 6; i++) {
-        const date = new Date(latestDate);
-        date.setMonth(date.getMonth() - i);
-        const monthName = date.toLocaleString('default', { month: 'long' });
-        monthNames.push(monthName);
+        const date = new Date(latestDate)
+        date.setMonth(date.getMonth() - i)
+        const monthName = date.toLocaleString('default', { month: 'long' })
+        monthNames.push(monthName)
     }
 
     // Reverse counts and monthNames arrays to start from the oldest to the latest month
-    return monthNames.reverse().map((month, index) => ({
-        month,
-        applications: counts.reverse()[index] as number,
-    } as ChartData));
+    return monthNames.reverse().map(
+        (month, index) =>
+            ({
+                month,
+                applications: counts.reverse()[index] as number,
+            }) as ChartData
+    )
 }
 
 export default async function page() {
@@ -103,7 +109,14 @@ export default async function page() {
             ])
             .toArray()) as Row[]
 
-        const appliedTime = await client.db().collection<User>('users').find({ applied: { $exists: true } }, { projection: { applied: 1, _id: 0 } }).toArray() as appliedDate[]
+        const appliedTime = (await client
+            .db()
+            .collection<User>('users')
+            .find(
+                { applied: { $exists: true } },
+                { projection: { applied: 1, _id: 0 } }
+            )
+            .toArray()) as appliedDate[]
         const chartData = countApplicationsByMonth(appliedTime)
 
         const totalRegistrations = await countDocuments(client, 'users', true)
@@ -200,7 +213,9 @@ export default async function page() {
                             </svg>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">{totalAccepted}</div>
+                            <div className="text-2xl font-bold">
+                                {totalAccepted}
+                            </div>
                             <p className="text-xs text-muted-foreground">
                                 accplications
                             </p>

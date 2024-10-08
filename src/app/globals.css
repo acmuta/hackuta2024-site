@@ -103,7 +103,6 @@ html {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
-
 }
 
 body {
@@ -371,7 +370,8 @@ table.borderTable,
 }
 
 .ps2 {
-    background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+    background: 50% 100% / 50% 50% no-repeat
+        radial-gradient(ellipse at bottom, #fff, transparent, transparent);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

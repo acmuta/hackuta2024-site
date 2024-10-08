@@ -25,7 +25,7 @@ export default function Cards() {
             </div>
         )
     }
-    console.log(data)
+
     return (
         <div className="flex flex-col md:flex-row gap-5 justify-center items-start">
             {data.data.posts.map((post, index) =>

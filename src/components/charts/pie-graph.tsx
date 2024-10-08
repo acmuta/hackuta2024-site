@@ -68,7 +68,6 @@ export function PieGraph({ applications }: ApplicantDataTableProps) {
         },
         {}
     )
-    // console.log('SCHOOL COUNT MAP:', schoolCountMap)
 
     const schoolCounts = Object.entries(schoolCountMap).map(
         ([school, count]) => ({
@@ -81,26 +80,18 @@ export function PieGraph({ applications }: ApplicantDataTableProps) {
 
     schoolCounts.sort((a, b) => b.applications - a.applications)
 
-    // console.log('SCHOOL COUNTS SORTED:', schoolCounts)
-
     const topN = 4
     const topSchools = schoolCounts.slice(0, topN)
-
-    // console.log('TOP SCHOOLS:', topSchools)
 
     const otherCount = schoolCounts
         .slice(topN)
         .reduce((sum, item) => sum + item.applications, 0)
-
-    // console.log('OTHER COUNT:', otherCount)
 
     let chartData = [...topSchools]
 
     if (otherCount > 0) {
         chartData.push({ school: 'Other', applications: otherCount })
     }
-
-    // console.log('NEW CHART DATA:', chartData)
 
     const colors = [
         'var(--color-chrome)',
@@ -115,14 +106,9 @@ export function PieGraph({ applications }: ApplicantDataTableProps) {
         fill: colors[index] || 'var(--default-color)',
     }))
 
-    // console.log('EVEN NEWER CHART DATA:', chartData)
-
     const totalVisitors = React.useMemo(() => {
         return chartData.reduce((acc, curr) => acc + curr.applications, 0)
     }, [])
-
-    // console.log(chartData)
-    // console.log(totalVisitors)
 
     return (
         <Card className="flex flex-col">

@@ -1,12 +1,14 @@
 'use client'
 import Image from 'next/image'
 import { sponsorsList } from './sponsorsList'
-import "./sponsor.module.css"
+import './sponsor.module.css'
 
 const Sponsors = () => {
     return (
         <div className="flex justify-center items-center flex-col mb-10">
-            <p className="text-white font-heading text-4xl mb-8 text-neon">Our Sponsors</p>
+            <p className="text-white font-heading text-4xl mb-8 text-neon">
+                Our Sponsors
+            </p>
             <div className="flex flex-wrap justify-center items-center gap-8 px-10">
                 {sponsorsList.map((data, index) => (
                     <div
@@ -26,8 +28,6 @@ const Sponsors = () => {
                 ))}
             </div>
         </div>
-
-
     )
 }
 

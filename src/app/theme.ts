@@ -17,12 +17,12 @@ export const theme = {
     scrollbar: {
         border: '#FFFFFF',
         thumb: {
-            bg: '#FE53BB',
+            bg: '#4D2C85',
         },
     },
     loader: {
         teal: '#0ACF83',
-        blue: '#38BDF8',
+        purple: '#38BDF8',
         pink: '#FE53BB',
         bg: '#0D1117DB',
     },
@@ -36,14 +36,14 @@ export const theme = {
 
     text: {
         grey: {
-            300: '#38BDF8',
+            300: '#089ddd',
             500: '#A0AEC0',
         },
     },
 
     timeline: {
         divider: {
-            bg: '#38BDF8',
+            bg: '#089ddd',
         },
     },
 }

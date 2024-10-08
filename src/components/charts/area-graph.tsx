@@ -42,8 +42,8 @@ const chartConfig = {
 //     applications: Row[]
 // }
 export type ChartData = {
-    month: string;
-    applications: number;
+    month: string
+    applications: number
 }
 
 export function AreaGraph({ chartData }: { chartData: ChartData[] }) {

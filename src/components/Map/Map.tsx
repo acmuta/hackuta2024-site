@@ -8,7 +8,9 @@ const Map = ({ src }: { src?: string }) => {
             >
                 Venue & Parking
             </div> */}
-            <p className="text-white font-heading text-4xl mb-8 text-neon">Venue & Parking</p>
+            <p className="text-white font-heading text-4xl mb-8 text-neon">
+                Venue & Parking
+            </p>
             <div className=" max-[640px]:justify-center flex md:flex-row flex-col items-center justify-start max-w-full text-left font-regular-14 lg:gap-[0px_134px]">
                 {/* <div className=" text-xl max-[640px]:text-[18px]">
               Park in lot F10 which will be marked in blue on the HackUTA Event
