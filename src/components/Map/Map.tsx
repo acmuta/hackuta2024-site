@@ -1,55 +1,79 @@
 'use client'
 import React, { useRef, useState } from 'react'
 
-const InfoBox = () => {
+const InfoBox = ({ isOpen, toggleOpen }: { isOpen: boolean; toggleOpen: () => void }) => {
     return (
         <div
-            className="absolute top-4 left-4 bg-white rounded-lg shadow-lg p-3 w-[200px] border border-gray-300 text-left transform transition-transform duration-300 hover:scale-110"
+            className={`absolute top-7 left-7 bg-white rounded-lg shadow-lg border border-gray-300 text-left transition-all duration-300 ${isOpen ? 'h-auto opacity-100' : 'h-[40px] opacity-90'
+                }`}
             style={{
+                width: '200px',
+                overflow: 'hidden',
                 zIndex: 2,
             }}
         >
-            {/* Title */}
-            <h3 className="text-xs font-bold text-black">PARKING ZONES</h3>
-            {/* General Parking Row */}
-            <div className="flex items-center mt-2 text-xs">
-                <div className="w-3 h-3 bg-[#312f92] rounded-full mr-2"></div>
-                <span className="text-black">General Parking</span>
-            </div>
-            {/* ADA Accessible Row */}
-            <div className="flex items-center mt-1 text-xs">
-                <div className="w-3 h-3 bg-orange-500 rounded-full mr-2"></div>
-                <span className="text-black">ADA Accessible</span>
+            {/* Header with Toggle Button */}
+            <div
+                className="flex items-center justify-between p-3 cursor-pointer "
+                onClick={toggleOpen}
+            >
+                <h3 className="text-xs font-bold text-black flex items-center">
+                    {/* Title will only be visible if the box is open */}
+                    PARKING ZONES
+                </h3>
+                {/* Toggle Button */}
+                <button className="ml-2 w-4 h-4 flex items-center justify-center rounded-full bg-slate-950 hover:bg-gray-400 text-white text-xs">
+                    {isOpen ? '−' : '+'}
+                </button>
+
             </div>
 
-            <p className="text-xs text-black">
-                <strong>Permits required AT ALL TIMES</strong>
-            </p>
+            {/* Content will be shown or hidden based on isOpen */}
+            <div
+                className={`transition-all duration-300 p-3 ${isOpen ? 'max-h-[500px]' : 'max-h-0'} overflow-hidden`}
+            >
+                {/* General Parking Row */}
+                <div className="flex items-center mt-2 text-xs">
+                    <div className="w-3 h-3 bg-[#312f92] rounded-full mr-2"></div>
+                    <span className="text-black">General Parking</span>
+                </div>
+                {/* ADA Accessible Row */}
+                <div className="flex items-center mt-1 text-xs">
+                    <div className="w-3 h-3 bg-orange-500 rounded-full mr-2"></div>
+                    <span className="text-black">ADA Accessible</span>
+                </div>
 
-            <p className="text-xs text-black mt-2">
-                Please make sure you have registered your vehicle to park prior
-                to coming to campus. Vehicles parked outside of the designated
-                areas without the correct permit may be cited or towed at the
-                owner's expense.
-            </p>
+                <p className="text-xs text-black mt-2">
+                    <strong>Permits required AT ALL TIMES</strong>
+                </p>
+
+                <p className="text-xs text-black mt-2">
+                    Please make sure you have registered your vehicle to park prior
+                    to coming to campus. Vehicles parked outside of the designated
+                    areas without the correct permit may be cited or towed at the
+                    owner's expense.
+                </p>
+            </div>
         </div>
     )
 }
 
+
+
+
 const Map = ({ src }: { src?: string }) => {
     const imageRef = useRef<HTMLImageElement>(null) // Reference to the image element
 
-    // Initialize with the given values from the <img> tag
     const [scale, setScale] = useState(2.0) // Adjust initial scale for better fit
     const [position, setPosition] = useState({ x: -150.37, y: 50.5926 }) // Initial position
 
     const [isDragging, setIsDragging] = useState(false) // State to check if the image is being dragged
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 }) // Initial position when dragging starts
+    const [isInfoBoxOpen, setIsInfoBoxOpen] = useState(true) // InfoBox state to toggle visibility
 
     // Handle zoom in and zoom out buttons
     const zoomIn = () => setScale((prevScale) => Math.min(prevScale + 0.1, 3)) // Max zoom 3x
-    const zoomOut = () =>
-        setScale((prevScale) => Math.max(prevScale - 0.1, 0.5)) // Min zoom 0.5x
+    const zoomOut = () => setScale((prevScale) => Math.max(prevScale - 0.1, 0.5)) // Min zoom 0.5x
     const resetZoom = () => {
         setScale(2.0) // Reset zoom level to 2.0 (initial scale)
         setPosition({ x: -150.37, y: 50.5926 }) // Reset position to initial values
@@ -81,13 +105,44 @@ const Map = ({ src }: { src?: string }) => {
         ) // Adjust scale with limits
     }
 
+    // Toggle InfoBox visibility
+    const toggleInfoBox = () => setIsInfoBoxOpen((prev) => !prev)
+
     return (
-        <section className="z-100 bg-transparent flex flex-col items-center justify-start pt-0 px-3 md:px-5 box-border gap-[35px_0px] max-w-full text-center text-57xl text-white">
+        <section className="z-100 bg-transparent flex flex-col items-center justify-start pt-0 px-3 md:px-5 box-border gap-[35px_0px] max-w-full text-center text-57xl text-white relative">
             <p className="text-white font-heading text-2xl md:text-4xl mb-4 md:mb-8 text-neon">
                 Venue & Parking
             </p>
             <div className="max-[640px]:justify-center flex md:flex-row flex-col items-center justify-start max-w-full text-left font-regular-14 lg:gap-[0px_134px]">
                 <div className="relative bg-white/5 backdrop-blur-sm bg-aliceblue box-border max-[640px]:gap-[5px_0px] gap-[20px_0px] flex flex-col items-center justify-center max-w-full border-[1px] border-solid border-white max-[640px]:p-2 md:p-5 p-10 w-full">
+                    {/* InfoBox and Zoom Controls positioned outside the Map container */}
+                    <InfoBox isOpen={isInfoBoxOpen} toggleOpen={toggleInfoBox} />
+
+                    {/* Zoom Controls Overlay */}
+                    <div className="absolute top-2 md:top-6 right-2 md:right-6 flex flex-col items-center gap-1 md:gap-2 z-10">
+                        <button
+                            onClick={zoomIn}
+                            className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 bg-transparent text-black rounded-full focus:outline-none border border-black hover:bg-gray-200 transition-all"
+                            title="Zoom In"
+                        >
+                            <span className="text-lg md:text-2xl">+</span>
+                        </button>
+                        <button
+                            onClick={zoomOut}
+                            className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 bg-transparent text-black rounded-full focus:outline-none border border-black hover:bg-gray-200 transition-all"
+                            title="Zoom Out"
+                        >
+                            <span className="text-lg md:text-2xl">−</span>
+                        </button>
+                        <button
+                            onClick={resetZoom}
+                            className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 bg-transparent text-black rounded-full focus:outline-none border border-black hover:bg-gray-200 transition-all"
+                            title="Reset"
+                        >
+                            <span className="text-md md:text-xl">↺</span>
+                        </button>
+                    </div>
+
                     {/* Container for Image with Initial Position and Scale */}
                     <div
                         onWheel={handleWheel}
@@ -115,34 +170,6 @@ const Map = ({ src }: { src?: string }) => {
                                     : 'transform 0.2s ease-out', // Smooth transition if not dragging
                             }}
                         />
-
-                        {/* Use the renamed InfoBox component */}
-                        <InfoBox />
-
-                        {/* Zoom Controls Overlay */}
-                        <div className="absolute top-2 md:top-4 right-2 md:right-4 flex flex-col items-center gap-1 md:gap-2">
-                            <button
-                                onClick={zoomIn}
-                                className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 bg-transparent text-black rounded-full focus:outline-none border border-black hover:bg-gray-200 transition-all"
-                                title="Zoom In"
-                            >
-                                <span className="text-lg md:text-2xl">+</span>
-                            </button>
-                            <button
-                                onClick={zoomOut}
-                                className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 bg-transparent text-black rounded-full focus:outline-none border border-black hover:bg-gray-200 transition-all"
-                                title="Zoom Out"
-                            >
-                                <span className="text-lg md:text-2xl">−</span>
-                            </button>
-                            <button
-                                onClick={resetZoom}
-                                className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 bg-transparent text-black rounded-full focus:outline-none border border-black hover:bg-gray-200 transition-all"
-                                title="Reset"
-                            >
-                                <span className="text-md md:text-xl">↺</span>
-                            </button>
-                        </div>
                     </div>
 
                     {/* Description and Links */}
