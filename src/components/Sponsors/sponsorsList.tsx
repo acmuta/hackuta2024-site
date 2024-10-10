@@ -24,4 +24,16 @@ export const sponsorsList = [
         imageUrl: '/Sponsors/utaiso.png',
         kind: 'Sponsor',
     },
+    {
+        companyName: 'UTA Student Govenment',
+        companyUrl: 'https://acm.uta.edu',
+        imageUrl: '/Sponsors/studentGovt.png',
+        kind: 'Sponsor',
+    },
+    {
+        companyName: 'Cuprum Runic',
+        companyUrl: 'https://cuprumrunic.com',
+        imageUrl: '/Sponsors/cuprum_runic.png',
+        kind: 'Sponsor',
+    },
 ]
