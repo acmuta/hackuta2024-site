@@ -3,6 +3,7 @@ import { Box } from '@/components/Box'
 import Map from '@/components/Map/Map'
 
 export default async function Dashboard() {
+    const src = "/parking/parkingImage.jpg"
     return (
         <Box
             direction="column"
@@ -10,7 +11,7 @@ export default async function Dashboard() {
             style={{ flex: 1 }}
             gap="1rem"
         >
-            <Map></Map>
+            <Map src={src}></Map>
             <Box
                 direction="row"
                 alignItems="start"
