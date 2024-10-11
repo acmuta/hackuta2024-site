@@ -90,7 +90,6 @@ async function addEvent(
     // check if user already has event
     const user = await users.findOne(
         {
-            checkedIn: { $ne: undefined },
             [idKey]: { $eq: isHexId ? generalId : parseInt(generalId) },
         },
         { projection: { 'application.resume': 0 } }
@@ -152,7 +151,6 @@ async function redeemSwag(
     const swag = swags[0]
 
     const user = await updatePoints({
-        checkedIn: { $ne: undefined },
         [idKey]: { $eq: isHexId ? generalId : parseInt(generalId) },
     })
     if (user.points < swag.price) {
