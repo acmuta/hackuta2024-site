@@ -4,6 +4,7 @@ import Schedule from './schedule/page'
 import Sponsors from '@/components/Sponsors/Sponsors'
 import FAQ from './faq/page'
 import AboutUs from './about/page'
+import MeetTeam from './team/team'
 
 // https://beta.nextjs.org/docs/api-reference/segment-config#dynamic
 // We read from the database on this route, so this has to be dynamic.
@@ -25,6 +26,9 @@ export default function LandingPageContent() {
             </div>
             <div className="py-5">
                 <Sponsors />
+            </div>
+            <div className="py-5">
+                <MeetTeam />
             </div>
         </>
     )
