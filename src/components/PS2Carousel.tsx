@@ -40,7 +40,7 @@ export default function PS2Carousel() {
         },
         {
             title: 'About Us',
-            url: '#aboutUs-section',
+            url: '#meetTeam-section',
             content: AboutIcon,
         },
         {
