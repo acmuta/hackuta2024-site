@@ -64,7 +64,7 @@ export default function UserDataTable({
         const csv = [
             headers(),
             ...users
-                .filter((user) => user.applicationStatus === 'accepted' && user.checkedIn)
+                .filter((user) => user.applicationStatus === 'accepted')
                 .map(row),
         ].join('\n')
         anchor.setAttribute(
