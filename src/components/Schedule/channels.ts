@@ -8,8 +8,8 @@ export const channels = [
         logo: './images/Schedule/schedule-meals.png',
     },
     {
-        uuid: 'sponsor',
-        logo: './images/Schedule/schedule-sponsors.png',
+        uuid: 'additionalWorkshop',
+        logo: './images/Schedule/schedule-workshops.png',
     },
     {
         uuid: 'workshop',
