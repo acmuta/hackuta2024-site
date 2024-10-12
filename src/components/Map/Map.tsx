@@ -200,7 +200,7 @@ const Map = ({ src }: { src?: string }) => {
                         </div>
                     </div>
 
-                    <div className="flex flex-row max-[640px]:flex-col relative max-[640px]:top-[10px] max-[640px]:gap-2 gap-5 mt-4">
+                    <div className="flex flex-row max-[640px]:flex-col relative max-[640px]:top-[10px] max-[640px]:gap-2 gap-5 my-4">
                         <a
                             className="font-mono font-extrabold text-[14px] md:text-[20px] px-3 md:px-5 py-2 md:py-3 no-underline bg-white rounded-lg text-center text-blue-900"
                             target="_blank"
