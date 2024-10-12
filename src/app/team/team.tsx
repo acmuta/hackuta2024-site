@@ -8,101 +8,132 @@ import 'slick-carousel/slick/slick-theme.css'
 
 const TechTeamIMG = () => (
     <Image
-        src="/Teams/techTeam.png"
+        src="/Teams/techTeam.svg"
         alt=""
         className="bg-cover"
         width={1024}
         height={780}
         quality={100}
-        unoptimized
     />
 )
 
 const CorpTeamIMG = () => (
     <Image
-        src="/Teams/corporateTeam.png"
+        src="/Teams/corporateTeam.svg"
         alt=""
         className="bg-cover"
         width={1024}
         height={780}
         quality={100}
-        unoptimized
     />
 )
 
 const ExpeTeamIMG = () => (
     <Image
-        src="/Teams/experienceTeam.jpg"
+        src="/Teams/experienceTeam.svg"
         alt=""
         className="bg-cover"
         width={1024}
         height={780}
         quality={100}
-        unoptimized
     />
 )
 
 const CreatTeamIMG = () => (
     <Image
-        src="/Teams/creativeTeam.png"
+        src="/Teams/creativeTeam.svg"
         alt=""
         className="bg-cover"
         width={1024}
         height={780}
         quality={100}
-        unoptimized
     />
 )
 
 const AdvisorIMG = () => (
     <Image
-        src="/Teams/advisorTeam.jpg"
+        src="/Teams/advisorTeam.svg"
         alt=""
         className="bg-cover"
         width={1024}
         height={780}
         quality={100}
-        unoptimized
     />
 )
 const LogisticsTeamIMG = () => (
     <Image
-        src="/Teams/logisticsTeam.png"
+        src="/Teams/logisticsTeam.svg"
         alt=""
         className="bg-cover"
         width={1024}
         height={780}
         quality={100}
-        unoptimized
     />
 )
 const ExeTeamIMG = () => (
     <Image
-        src="/Teams/exeTeam.png"
+        src="/Teams/exeTeam.svg"
         alt=""
         className="bg-cover"
         width={1024}
         height={780}
         quality={100}
-        unoptimized
     />
 )
-
 
 const MeetTeam = () => {
     const sliderRef = useRef(null)
 
     const Team = [
-        { id: 1, team: 'Executive', component: ExeTeamIMG, description: 'We oversee the operations of HackUTA and we take care of different organizing teams. We offer a helping hand to all our directors using our previous experience as directors' },
-        { id: 2, team: 'Advisors', component: AdvisorIMG, description: 'Hi y’all, I’m Patrick, but most people call me Pchang. I helped start HackUTA back in 2022, and have been here helping the event grow to what it is today! I’m really here just for Bobby to take good photos of me but if you want to catch an L in pickleball let me know' },
         {
-            id: 3, team: 'Tech', component: TechTeamIMG, description: 'The Tech Team: Turning coffee into code and ideas into reality. We may or may not have tried to fix a toaster with JavaScript—spoiler alert: it didn’t work. But when it comes to HackUTA, we\'ve got your back!'
+            id: 1,
+            team: 'Executive',
+            component: ExeTeamIMG,
+            description:
+                'We oversee the operations of HackUTA and we take care of different organizing teams. We offer a helping hand to all our directors using our previous experience as directors',
         },
-        { id: 4, team: 'Logistics', component: LogisticsTeamIMG, description: 'The Logistics team is the backbone of HackUTA! We take care of so many things from delicious food, the amazing venue, tasty snacks, and so much more! Every part of HackUTA involves Logistics and we love making HackUTA come to life!' },
-        { id: 5, team: 'Creative', component: CreatTeamIMG, description: 'From the makers of “Code Me Everything” the creative team of HackUTA 2024 is proud to bring you an exciting and fresh theme for those in love with nostalgia. HackUTA: Turn of the Millennium.' },
-        { id: 6, team: 'Corporate', component: CorpTeamIMG, description: 'Raining money on the HackUTA team, Milton style. May, Izzy, Dev, Yash, Bridge, Thanh, and us from corporate are so excited and PUMPED to see you serve y2k builds and inspired projects, get out there and MAKE IT RAIN' },
-        { id: 1, team: 'Experience', component: ExpeTeamIMG, description: 'The Experience Team is dedicated to making every moment of HackUTA extraordinary and memorable! We host our mini-events, add flair with fun décor, and keep the good times rolling. Give us a shout if you ever need a helping hand. We are here to make your EXPERIENCE here at HackUTA the best it can possibly be!' },
-
+        {
+            id: 2,
+            team: 'Advisors',
+            component: AdvisorIMG,
+            description:
+                'Hi y’all, I’m Patrick, but most people call me Pchang. I helped start HackUTA back in 2022, and have been here helping the event grow to what it is today! I’m really here just for Bobby to take good photos of me but if you want to catch an L in pickleball let me know',
+        },
+        {
+            id: 3,
+            team: 'Tech',
+            component: TechTeamIMG,
+            description:
+                "The Tech Team: Turning coffee (except for Sandro) into code and ideas into reality. We may or may not have tried to fix a toaster with JavaScript—spoiler alert: it didn’t work. But when it comes to HackUTA, we've got your back!",
+        },
+        {
+            id: 4,
+            team: 'Logistics',
+            component: LogisticsTeamIMG,
+            description:
+                'The Logistics team is the backbone of HackUTA! We take care of so many things from delicious food, the amazing venue, tasty snacks, and so much more! Every part of HackUTA involves Logistics and we love making HackUTA come to life!',
+        },
+        {
+            id: 5,
+            team: 'Creative',
+            component: CreatTeamIMG,
+            description:
+                'From the makers of “Code Me Everything” the creative team of HackUTA 2024 is proud to bring you an exciting and fresh theme for those in love with nostalgia. HackUTA: Turn of the Millennium.',
+        },
+        {
+            id: 6,
+            team: 'Corporate',
+            component: CorpTeamIMG,
+            description:
+                'Raining money on the HackUTA team, Milton style. May, Izzy, Dev, Yash, Bridge, Thanh, and us from corporate are so excited and PUMPED to see you serve y2k builds and inspired projects, get out there and MAKE IT RAIN',
+        },
+        {
+            id: 1,
+            team: 'Experience',
+            component: ExpeTeamIMG,
+            description:
+                'The Experience Team is dedicated to making every moment of HackUTA extraordinary and memorable! We host our mini-events, add flair with fun décor, and keep the good times rolling. Give us a shout if you ever need a helping hand. We are here to make your EXPERIENCE here at HackUTA the best it can possibly be!',
+        },
     ]
 
     const settings = {

@@ -3,7 +3,7 @@ import { Box } from '@/components/Box'
 import Map from '@/components/Map/Map'
 
 export default async function Dashboard() {
-    const src = "/parking/parkingImage.jpg"
+    const src = '/parking/parkingImage.jpg'
     return (
         <Box
             direction="column"
