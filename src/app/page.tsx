@@ -30,7 +30,6 @@ export default function LandingPageContent() {
             <div className="py-5">
                 <Sponsors />
             </div>
-
         </>
     )
 }

@@ -1,11 +1,18 @@
 'use client'
 import React, { useRef, useState } from 'react'
 
-const InfoBox = ({ isOpen, toggleOpen }: { isOpen: boolean; toggleOpen: () => void }) => {
+const InfoBox = ({
+    isOpen,
+    toggleOpen,
+}: {
+    isOpen: boolean
+    toggleOpen: () => void
+}) => {
     return (
         <div
-            className={`absolute top-7 left-7 bg-white rounded-lg shadow-lg border border-gray-300 text-left transition-all duration-300 ${isOpen ? 'h-auto opacity-100' : 'h-[40px] opacity-90'
-                }`}
+            className={`absolute top-7 left-7 bg-white rounded-lg shadow-lg border border-gray-300 text-left transition-all duration-300 ${
+                isOpen ? 'h-auto opacity-100' : 'h-[40px] opacity-90'
+            }`}
             style={{
                 width: '200px',
                 overflow: 'hidden',
@@ -25,7 +32,6 @@ const InfoBox = ({ isOpen, toggleOpen }: { isOpen: boolean; toggleOpen: () => vo
                 <button className="ml-2 w-4 h-4 flex items-center justify-center rounded-full bg-slate-950 hover:bg-gray-400 text-white text-xs">
                     {isOpen ? '−' : '+'}
                 </button>
-
             </div>
 
             {/* Content will be shown or hidden based on isOpen */}
@@ -48,18 +54,15 @@ const InfoBox = ({ isOpen, toggleOpen }: { isOpen: boolean; toggleOpen: () => vo
                 </p>
 
                 <p className="text-xs text-black mt-2">
-                    Please make sure you have registered your vehicle to park prior
-                    to coming to campus. Vehicles parked outside of the designated
-                    areas without the correct permit may be cited or towed at the
-                    owner's expense.
+                    Please make sure you have registered your vehicle to park
+                    prior to coming to campus. Vehicles parked outside of the
+                    designated areas without the correct permit may be cited or
+                    towed at the owner's expense.
                 </p>
             </div>
         </div>
     )
 }
-
-
-
 
 const Map = ({ src }: { src?: string }) => {
     const imageRef = useRef<HTMLImageElement>(null) // Reference to the image element
@@ -73,7 +76,8 @@ const Map = ({ src }: { src?: string }) => {
 
     // Handle zoom in and zoom out buttons
     const zoomIn = () => setScale((prevScale) => Math.min(prevScale + 0.1, 3)) // Max zoom 3x
-    const zoomOut = () => setScale((prevScale) => Math.max(prevScale - 0.1, 0.5)) // Min zoom 0.5x
+    const zoomOut = () =>
+        setScale((prevScale) => Math.max(prevScale - 0.1, 0.5)) // Min zoom 0.5x
     const resetZoom = () => {
         setScale(2.0) // Reset zoom level to 2.0 (initial scale)
         setPosition({ x: -150.37, y: 50.5926 }) // Reset position to initial values
@@ -116,7 +120,10 @@ const Map = ({ src }: { src?: string }) => {
             <div className="max-[640px]:justify-center flex md:flex-row flex-col items-center justify-start max-w-full text-left font-regular-14 lg:gap-[0px_134px]">
                 <div className="relative bg-white/5 backdrop-blur-sm bg-aliceblue box-border max-[640px]:gap-[5px_0px] gap-[20px_0px] flex flex-col items-center justify-center max-w-full border-[1px] border-solid border-white max-[640px]:p-2 md:p-5 p-10 w-full">
                     {/* InfoBox and Zoom Controls positioned outside the Map container */}
-                    <InfoBox isOpen={isInfoBoxOpen} toggleOpen={toggleInfoBox} />
+                    <InfoBox
+                        isOpen={isInfoBoxOpen}
+                        toggleOpen={toggleInfoBox}
+                    />
 
                     {/* Zoom Controls Overlay */}
                     <div className="absolute top-2 md:top-6 right-2 md:right-6 flex flex-col items-center gap-1 md:gap-2 z-10">
