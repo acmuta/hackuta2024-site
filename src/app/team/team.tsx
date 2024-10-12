@@ -135,7 +135,7 @@ const MeetTeam = () => {
                 'The Experience Team is dedicated to making every moment of HackUTA extraordinary and memorable! We host our mini-events, add flair with fun décor, and keep the good times rolling. Give us a shout if you ever need a helping hand. We are here to make your EXPERIENCE here at HackUTA the best it can possibly be!',
         },
     ]
-
+    
     const settings = {
         dots: true,
         infinite: true,
@@ -171,7 +171,7 @@ const MeetTeam = () => {
 
     return (
         <>
-            <div className="w-full flex-col flex justify-start items-center py-5 gap-5">
+            <div className="w-full flex-col flex justify-center  items-center py-5 gap-5 px-3">
                 <div>
                     <p className="font-heading text-white text-4xl">
                         Meet the Team
@@ -180,12 +180,15 @@ const MeetTeam = () => {
                 <Slider
                     ref={sliderRef}
                     {...settings}
-                    className="flex justify-center items-center w-full max-w-screen-lg custom-slider "
+                    className="flex justify-center items-center custom-slider w-[85%] lg:w-[95%] lg:max-w-screen-lg md:scale-100"
                     slidesToShow={3}
                 >
                     {Team.map((data) => (
-                        <div key={data.id} className="custom-slide">
-                            <GlareCard className="flex flex-col items-center">
+                        <div
+                            key={data.id}
+                            className="flex justify-center items-center scale-[0.8] md:scale-100"
+                        >
+                            <GlareCard className="flex flex-col items-center justify-center w-fit">
                                 {data.component ? (
                                     <data.component />
                                 ) : (
