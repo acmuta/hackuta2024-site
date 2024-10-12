@@ -20,7 +20,7 @@ export interface IDScannerProps {
     perms: AppPermissions
 }
 
-type ScanType = 'checkin' | 'event' | 'meal' | 'shop' | 'bonus'
+type ScanType = 'checkin' | 'event' | 'meal' | 'shop' | 'bonus' | 'additionalWorkshop'
 
 interface UserData {
     firstName: string
@@ -77,7 +77,8 @@ const useData = (): {
                     event.eventType === 'sponsor' ||
                     event.eventType === 'event' ||
                     event.eventType === 'general' ||
-                    event.eventType === 'bonus'
+                    event.eventType === 'bonus' ||
+                    event.eventType === 'additionalWorkshop'
             )
         }
     }
@@ -155,10 +156,10 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
         hasEventPerm
             ? 'event'
             : hasLinkPerm
-              ? 'checkin'
-              : hasMealPerm
-                ? 'meal'
-                : 'shop'
+                ? 'checkin'
+                : hasMealPerm
+                    ? 'meal'
+                    : 'shop'
     )
     const [eventSelected, setEventSelected] = useState<boolean>(false)
     const { currMeal, currEvents, swags, error: eventsFetchError } = useData()
@@ -193,8 +194,7 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
     }) => {
         try {
             const response = await fetch(
-                `/admin/scanner/submit?checkInPin=${checkInPin ?? ''}&hexId=${
-                    hexId ?? ''
+                `/admin/scanner/submit?checkInPin=${checkInPin ?? ''}&hexId=${hexId ?? ''
                 }&eventName=${eventName ?? ''}&id=${id ?? ''}&swagName=${swagName ?? ''}`,
                 {
                     method: 'POST',
@@ -319,9 +319,8 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
             setUserData({
                 firstName: data[0].application?.firstName ?? 'undefined',
                 lastName: data[0].application?.lastName ?? 'undefined',
-                fullName: `${data[0].application?.firstName ?? 'undefined'} ${
-                    data[0].application?.lastName ?? 'undefined'
-                }`,
+                fullName: `${data[0].application?.firstName ?? 'undefined'} ${data[0].application?.lastName ?? 'undefined'
+                    }`,
                 school: data[0].application?.school ?? 'undefined',
                 age: data[0].application?.age ?? NaN,
                 group: getGroupName(hexIdValue),
