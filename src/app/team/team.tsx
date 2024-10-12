@@ -20,7 +20,7 @@ const TechTeamIMG = () => (
 
 const CorpTeamIMG = () => (
     <Image
-        src="/Teams/corporateTeam.jpg"
+        src="/Teams/corporateTeam.png"
         alt=""
         className="bg-cover"
         width={1024}
@@ -65,6 +65,29 @@ const AdvisorIMG = () => (
         unoptimized
     />
 )
+const LogisticsTeamIMG = () => (
+    <Image
+        src="/Teams/logisticsTeam.png"
+        alt=""
+        className="bg-cover"
+        width={1024}
+        height={780}
+        quality={100}
+        unoptimized
+    />
+)
+const ExeTeamIMG = () => (
+    <Image
+        src="/Teams/exeTeam.png"
+        alt=""
+        className="bg-cover"
+        width={1024}
+        height={780}
+        quality={100}
+        unoptimized
+    />
+)
+
 
 const MeetTeam = () => {
     const sliderRef = useRef(null)
@@ -72,11 +95,11 @@ const MeetTeam = () => {
     const Team = [
         { id: 1, team: 'Advisors', component: AdvisorIMG },
         { id: 2, team: 'Tech', component: TechTeamIMG },
-        { id: 3, team: 'Logistics' },
+        { id: 3, team: 'Logistics', component: LogisticsTeamIMG },
         { id: 4, team: 'Creative', component: CreatTeamIMG },
         { id: 5, team: 'Experience', component: ExpeTeamIMG },
         { id: 6, team: 'Corporate', component: CorpTeamIMG },
-        { id: 7, team: 'Exec' },
+        { id: 7, team: 'Exec', component: ExeTeamIMG },
     ]
 
     const settings = {
