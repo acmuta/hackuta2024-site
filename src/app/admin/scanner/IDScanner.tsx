@@ -107,15 +107,15 @@ const useData = (): {
     // })
     // EVENTS: only allow events during event time (event start to 10 mins after the event ends)
     filterEvents('event').forEach((event: any) => {
-        const eventTime = new Date(event.date).getTime();
-        const eventEndTime = eventTime + event.durationMins * 60_000;
+        const eventTime = new Date(event.date).getTime()
+        const eventEndTime = eventTime + event.durationMins * 60_000
         if (
             currDateTime >= eventTime &&
-            currDateTime <= eventEndTime + 600_000 // 10 minutes after the event ends
+            currDateTime <= eventEndTime + 1800_000 // 30 minutes after the event ends
         ) {
-            currEvents.push(event.title);
+            currEvents.push(event.title)
         }
-    });
+    })
 
     return {
         isLoading: false,
@@ -155,10 +155,10 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
         hasEventPerm
             ? 'event'
             : hasLinkPerm
-                ? 'checkin'
-                : hasMealPerm
-                    ? 'meal'
-                    : 'shop'
+              ? 'checkin'
+              : hasMealPerm
+                ? 'meal'
+                : 'shop'
     )
     const [eventSelected, setEventSelected] = useState<boolean>(false)
     const { currMeal, currEvents, swags, error: eventsFetchError } = useData()
@@ -193,7 +193,8 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
     }) => {
         try {
             const response = await fetch(
-                `/admin/scanner/submit?checkInPin=${checkInPin ?? ''}&hexId=${hexId ?? ''
+                `/admin/scanner/submit?checkInPin=${checkInPin ?? ''}&hexId=${
+                    hexId ?? ''
                 }&eventName=${eventName ?? ''}&id=${id ?? ''}&swagName=${swagName ?? ''}`,
                 {
                     method: 'POST',
@@ -318,8 +319,9 @@ const IDScanner: React.FC<IDScannerProps> = ({ perms }) => {
             setUserData({
                 firstName: data[0].application?.firstName ?? 'undefined',
                 lastName: data[0].application?.lastName ?? 'undefined',
-                fullName: `${data[0].application?.firstName ?? 'undefined'} ${data[0].application?.lastName ?? 'undefined'
-                    }`,
+                fullName: `${data[0].application?.firstName ?? 'undefined'} ${
+                    data[0].application?.lastName ?? 'undefined'
+                }`,
                 school: data[0].application?.school ?? 'undefined',
                 age: data[0].application?.age ?? NaN,
                 group: getGroupName(hexIdValue),
