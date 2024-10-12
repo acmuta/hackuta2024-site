@@ -93,13 +93,14 @@ const MeetTeam = () => {
     const sliderRef = useRef(null)
 
     const Team = [
-        { id: 1, team: 'Advisors', component: AdvisorIMG },
-        { id: 2, team: 'Tech', component: TechTeamIMG },
-        { id: 3, team: 'Logistics', component: LogisticsTeamIMG },
-        { id: 4, team: 'Creative', component: CreatTeamIMG },
-        { id: 5, team: 'Experience', component: ExpeTeamIMG },
-        { id: 6, team: 'Corporate', component: CorpTeamIMG },
-        { id: 7, team: 'Exec', component: ExeTeamIMG },
+        { id: 1, team: 'Exec', component: ExeTeamIMG, description: 'We are the exec team' },
+        { id: 2, team: 'Advisors', component: AdvisorIMG, description: 'Hi y’all, I’m Patrick, but most people call me Pchang. I helped start HackUTA back in 2022, and have been here helping the event grow to what it is today! I’m really here just for Bobby to take good photos of me but if you want to catch an L in pickleball let me know' },
+        { id: 3, team: 'Tech', component: TechTeamIMG, description: 'We are the tech team' },
+        { id: 4, team: 'Logistics', component: LogisticsTeamIMG, description: 'We are the logistics team' },
+        { id: 5, team: 'Creative', component: CreatTeamIMG, description: 'We are the creative team' },
+        { id: 6, team: 'Corporate', component: CorpTeamIMG, description: 'Raining money on the HackUTA team, Milton style. May, Izzy, Dev, Yash, Bridge, Thanh, and us from corporate are so excited and PUMPED to see you serve y2k builds and inspired projects, get out there and MAKE IT RAIN' },
+        { id: 1, team: 'Experience', component: ExpeTeamIMG, description: 'We are the experience team' },
+
     ]
 
     const settings = {
@@ -167,8 +168,8 @@ const MeetTeam = () => {
                                 <p className="text-2xl text-white font-heading text-center">
                                     {data.team}
                                 </p>
-                                <p className="text-md text-white font-heading text-center">
-                                    Hi we're corporate and we're cool
+                                <p className="text-xs text-white font-heading text-center">
+                                    {data.description}
                                 </p>
                             </GlareCard>
                         </div>
